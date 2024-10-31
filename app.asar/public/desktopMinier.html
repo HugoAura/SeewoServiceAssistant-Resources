@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title></title>
+    <script>
+      /**
+       * 获取路由中的带参
+       *
+       * @returns
+       */
+      function getUrlParams() {
+        let str = window.location.search.substring(1);
+        let arr = str.split("&");
+        let result = {};
+
+        for (let i = 0; i < arr.length; i++) {
+          let arrValues = arr[i].split("=");
+          result[arrValues[0]] =
+            isNaN(arrValues[1]) || arrValues[1] === ""
+              ? arrValues[1]
+              : Number(arrValues[1]);
+        }
+
+        return result;
+      }
+
+      //路由参数提取
+      window.urlParams = getUrlParams();
+      window.windowName = window.urlParams.windowName;
+
+      const { ipcRenderer, remote, webFrame } = require("electron");
+      window.ipcRenderer = ipcRenderer;
+      window.webFrame = webFrame;
+
+      let renderTime = new Date().toTimeString();
+      ipcRenderer.send("startRendering", {
+        time: renderTime,
+        windowName: window.windowName,
+      });
+    </script>
+    <script src="preLoad.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="vendor.js"></script>
+    <script src="desktopMinier.js"></script>
+  </body>
+</html>

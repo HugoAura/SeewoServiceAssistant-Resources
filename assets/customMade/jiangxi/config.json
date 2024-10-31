@@ -1,0 +1,7 @@
+{
+    "appName": "赣教管家",
+    "defaultIconPath": "assistant.ico",
+    "desktopAssistantHide": true,
+    "hideAssistantLogo": true,
+    "systemCode": "seewo-service-odm"
+}

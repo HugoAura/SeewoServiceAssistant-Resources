@@ -1,0 +1,11 @@
+{
+    "appName": "设备管家",
+    "companyName": "",
+    "defaultIconPath": "assistant.ico",
+    "assistantEntryIconPath": "assistant_entry.png",
+    "desktopAssistantHide": true,
+    "hideRelateProtocol": true,
+    "hideFeedback": true,
+    "hideAssistantLogo": true,
+    "systemCode": "seewo-service-odm"
+}

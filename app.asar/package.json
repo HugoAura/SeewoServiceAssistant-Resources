@@ -1,0 +1,14 @@
+{
+  "name": "SeewoServiceAssistant",
+  "version": "1.5.0",
+  "private": true,
+  "author": "广州视睿电子科技有限公司 (Guangzhou Shirui Electronics Co.,Ltd)",
+  "main": "main.js",
+  "scripts": {
+    "build": "electron-app-builder"
+  },
+  "devDependencies": {
+    "@cvte/electron-app-builder": "^1.0.7"
+  },
+  "dependencies": {}
+}
