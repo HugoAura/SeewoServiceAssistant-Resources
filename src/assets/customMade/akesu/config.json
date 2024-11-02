@@ -1,0 +1,23 @@
+{
+  "appName": "教育管家",
+  "seewoDesktopName": "管家助手",
+  "defaultIconPath": "assistant.ico",
+  "assistantEntryIconPath": "assistant_entry.png",
+  "assistantBackgroundPath": "assistant_background.png",
+  "feedbackQrCodePath": "feedback_qrcode.png",
+  "windowRedirect": {},
+  "htmlRedirect": {},
+  "assistantRouteComponent": {},
+  "desktopTeachSourceHide": false,
+  "desktopTeachSourceName": "教学资源",
+  "desktopAppHide": false,
+  "desktopAppName": "教育应用",
+  "desktopAssistantHide": false,
+  "hideRelateProtocol": false,
+  "hideFeedback": false,
+  "hideAssistantLogo": true,
+  "systemCode": "mis-hugo-pb",
+  "hideLightIotNotify": false,
+  "showHighTechSeewoDesktop": false,
+  "podiumOdm": true
+}

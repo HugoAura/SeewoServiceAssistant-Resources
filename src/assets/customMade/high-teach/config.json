@@ -1,0 +1,10 @@
+{
+  "appName": "希沃管家",
+  "seewoDesktopName": "希沃设备助手",
+  "defaultIconPath": "assistant.ico",
+  "assistantEntryIconPath": "assistant_entry.png",
+  "desktopTeachSourceHide": true,
+  "desktopAssistantHide": true,
+  "seewoDewsktopBgPath": "seewoDesktop_bg.png",
+  "hideLightIotNotify": false
+}

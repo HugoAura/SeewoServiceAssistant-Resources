@@ -1,0 +1,17 @@
+{
+  "appName": "十堰教学管家",
+  "seewoDesktopName": "希沃桌面",
+  "defaultIconPath": "assistant.ico",
+  "assistantEntryIconPath": "assistant_entry.png",
+  "windowRedirect": {},
+  "htmlRedirect": {},
+  "assistantRouteComponent": {},
+  "desktopTeachSourceHide": false,
+  "desktopTeachSourceName": "教学资源",
+  "desktopAppHide": false,
+  "desktopAppName": "希沃应用",
+  "desktopAssistantHide": true,
+  "hideRelateProtocol": false,
+  "hideFeedback": false,
+  "hideAssistantLogo": true
+}

@@ -1,0 +1,8 @@
+{
+  "appName": "希沃云蝶管家",
+  "seewoDesktopName": "希沃云蝶桌面",
+  "defaultIconPath": "assistant.ico",
+  "assistantEntryIconPath": "assistant_entry.png",
+  "desktopTeachSourceHide": true,
+  "desktopAppName": "应用集合"
+}
