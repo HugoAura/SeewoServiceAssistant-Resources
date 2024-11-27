@@ -23,7 +23,7 @@
     return t;
   }
   var e = {},
-    u = { 39: 0 },
+    u = { 40: 0 },
     _ = [];
   function a(t) {
     if (e[t]) return e[t].exports;
@@ -80,16 +80,16 @@
   (n.push = t), (n = n.slice());
   for (var r = 0; r < n.length; r++) t(n[r]);
   var f = o;
-  _.push([919, 0]), l();
+  _.push([926, 0]), l();
 })({
-  856: function (t, n, e) {
-    var o = e(857);
+  862: function (t, n, e) {
+    var o = e(863);
     "string" == typeof o && (o = [[t.i, o, ""]]);
     var r = { hmr: !0, transform: void 0, insertInto: void 0 };
     e(12)(o, r);
     o.locals && (t.exports = o.locals);
   },
-  857: function (t, n, e) {
+  863: function (t, n, e) {
     (n = t.exports = e(11)(!1)).push([
       t.i,
       ".shoutInteraction__content__GxXGosSa {\n  width: 100%;\n  height: 100%;\n  padding: 0 0 8px 0;\n}\n.shoutInteraction__content__GxXGosSa .shoutInteraction__main__2zYtH90z {\n  width: 100%;\n  height: 100%;\n  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);\n          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);\n  border-radius: 4px;\n  background: rgba(35, 38, 41, 0.88);\n  border: 0.5px solid #000000;\n  padding: 0.5px;\n}\n.shoutInteraction__content__GxXGosSa .shoutInteraction__main__2zYtH90z .shoutInteraction__main-content__3OKewEhV {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px;\n  border: 1px solid rgba(255, 255, 255, 0.1);\n  padding-top: 24px;\n}\n.shoutInteraction__content__GxXGosSa .shoutInteraction__main__2zYtH90z .shoutInteraction__main-content__3OKewEhV .shoutInteraction__title__3sckEUNE {\n  width: 100%;\n  font-size: 16px;\n  line-height: 24px;\n  text-align: center;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  /* 文本 Text/color-text-white */\n  color: #ffffff;\n}\n.shoutInteraction__content__GxXGosSa .shoutInteraction__main__2zYtH90z .shoutInteraction__main-content__3OKewEhV .shoutInteraction__title__3sckEUNE span {\n  display: inline-block;\n  max-width: 70%;\n  white-space: nowrap;\n  overflow: hidden;\n  -o-text-overflow: ellipsis;\n     text-overflow: ellipsis;\n}\n",
@@ -102,7 +102,7 @@
         title: "shoutInteraction__title__3sckEUNE",
       });
   },
-  919: function (t, n, e) {
+  926: function (t, n, e) {
     "use strict";
     e.r(n);
     var o = e(0),
@@ -119,7 +119,7 @@
       h = e.n(p),
       d = e(2),
       m = e.n(d),
-      x = (e(856), e(117));
+      x = (e(862), e(117));
     function v(o) {
       var r = (function () {
         if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
@@ -224,7 +224,7 @@
           i
         );
       })(o.PureComponent),
-      y = (e(30), e(22));
+      y = (e(30), e(21));
     var g;
     (g = b),
       i.a.render(

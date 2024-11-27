@@ -23,7 +23,7 @@
     return n;
   }
   var t = {},
-    c = { 16: 0 },
+    c = { 17: 0 },
     s = [];
   function r(n) {
     if (t[n]) return t[n].exports;
@@ -80,16 +80,16 @@
   (e.push = n), (e = e.slice());
   for (var i = 0; i < e.length; i++) n(e[i]);
   var f = o;
-  s.push([889, 0]), l();
+  s.push([895, 0]), l();
 })({
-  734: function (n, e, t) {
-    var o = t(735);
+  740: function (n, e, t) {
+    var o = t(741);
     "string" == typeof o && (o = [[n.i, o, ""]]);
     var i = { hmr: !0, transform: void 0, insertInto: void 0 };
     t(12)(o, i);
     o.locals && (n.exports = o.locals);
   },
-  735: function (n, e, t) {
+  741: function (n, e, t) {
     var o = t(27);
     (e = n.exports = t(11)(!1)).push([
       n.i,
@@ -113,7 +113,7 @@
         blockWindow: "index__blockWindow__1dk_M93c",
       });
   },
-  889: function (n, e, t) {
+  895: function (n, e, t) {
     "use strict";
     t.r(e);
     var o = t(0),
@@ -134,10 +134,10 @@
       g = t.n(h),
       b = t(9),
       v = t(48),
-      m = t(21);
+      m = t(20);
     var y,
       k = t(16),
-      C = (t(734), t(7)),
+      C = (t(740), t(7)),
       F = {
         "./index.less": {
           "float-window": "index__float-window__gS0rEtXF",
@@ -398,7 +398,7 @@
         ) || y,
       D = t(24),
       O = t(29),
-      S = t(22);
+      S = t(21);
     t(30);
     var W,
       X = Object(O.a)("floatWindow");

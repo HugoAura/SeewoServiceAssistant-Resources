@@ -23,7 +23,7 @@
     return e;
   }
   var n = {},
-    c = { 28: 0 },
+    c = { 29: 0 },
     f = [];
   function a(e) {
     if (n[e]) return n[e].exports;
@@ -80,12 +80,12 @@
   (t.push = e), (t = t.slice());
   for (var o = 0; o < t.length; o++) e(t[o]);
   var p = r;
-  f.push([913, 0]), u();
+  f.push([920, 0]), u();
 })({
-  800: function (e, t) {
+  806: function (e, t) {
     e.exports = require("electron");
   },
-  913: function (e, t, n) {
+  920: function (e, t, n) {
     "use strict";
     n.r(t);
     var r = n(10),
@@ -111,7 +111,7 @@
       p,
       d,
       b,
-      h = n(800),
+      h = n(806),
       w = h.ipcRenderer,
       y = h.remote;
     (c = new ((function () {

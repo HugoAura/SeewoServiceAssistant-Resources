@@ -23,7 +23,7 @@
     return e;
   }
   var t = {},
-    f = { 31: 0 },
+    f = { 32: 0 },
     s = [];
   function i(e) {
     if (t[e]) return t[e].exports;
@@ -80,16 +80,16 @@
   (n.push = e), (n = n.slice());
   for (var o = 0; o < n.length; o++) e(n[o]);
   var p = r;
-  s.push([915, 0]), l();
+  s.push([922, 0]), l();
 })({
-  818: function (e, n, t) {
-    var r = t(819);
+  824: function (e, n, t) {
+    var r = t(825);
     "string" == typeof r && (r = [[e.i, r, ""]]);
     var o = { hmr: !0, transform: void 0, insertInto: void 0 };
     t(12)(r, o);
     r.locals && (e.exports = r.locals);
   },
-  819: function (e, n, t) {
+  825: function (e, n, t) {
     (n = e.exports = t(11)(!1)).push([
       e.i,
       ".index__container__Avg70JwL {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: relative;\n  border-radius: 20px;\n  width: 100%;\n  height: 100%;\n  color: #FFFFFF;\n  font-size: 14px;\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.index__container__Avg70JwL .index__circle__2ZpxJuF9 {\n  margin-right: 8px;\n  border-radius: 50%;\n  width: 8px;\n  height: 8px;\n  background-color: #EB4240;\n}\n",
@@ -100,7 +100,7 @@
         circle: "index__circle__2ZpxJuF9",
       });
   },
-  915: function (e, n, t) {
+  922: function (e, n, t) {
     "use strict";
     t.r(n);
     var r = t(0),
@@ -118,7 +118,7 @@
       b = t(2),
       h = t.n(b),
       _ = t(7);
-    t(818);
+    t(824);
     function y(r) {
       var o = (function () {
         if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
@@ -188,7 +188,7 @@
           c
         );
       })(r.PureComponent),
-      g = t(22);
+      g = t(21);
     t(30);
     var m;
     (m = x),

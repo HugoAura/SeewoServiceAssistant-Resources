@@ -23,7 +23,7 @@
     return e;
   }
   var t = {},
-    d = { 30: 0 },
+    d = { 31: 0 },
     s = [];
   function i(e) {
     if (t[e]) return t[e].exports;
@@ -80,16 +80,16 @@
   (n.push = e), (n = n.slice());
   for (var r = 0; r < n.length; r++) e(n[r]);
   var u = o;
-  s.push([893, 0]), _();
+  s.push([899, 0]), _();
 })({
-  816: function (e, n, t) {
-    var o = t(817);
+  822: function (e, n, t) {
+    var o = t(823);
     "string" == typeof o && (o = [[e.i, o, ""]]);
     var r = { hmr: !0, transform: void 0, insertInto: void 0 };
     t(12)(o, r);
     o.locals && (e.exports = o.locals);
   },
-  817: function (e, n, t) {
+  823: function (e, n, t) {
     (n = e.exports = t(11)(!1)).push([
       e.i,
       ".index__container__2pamOGzN {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  color: #2C3144;\n  background-color: rgba(0, 0, 0, 0.6);\n}\n.index__container__2pamOGzN .index__modal__26sYw1OL {\n  -webkit-app-region: no-drag;\n  position: absolute;\n  top: calc(50% - 108px);\n  left: calc(50% - 210px);\n  border: 2px;\n  width: 424px;\n  height: 244px;\n  background-color: #FFFFFF;\n}\n.index__container__2pamOGzN .index__modal__26sYw1OL .index__body__3VgYVQXJ {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  height: calc(100% - 48px);\n  font-size: 16px;\n}\n.index__container__2pamOGzN .index__modal__26sYw1OL .index__body__3VgYVQXJ .index__seewo-logo__ckurmax4 {\n  margin-bottom: 24px;\n  width: 108px;\n  height: 24px;\n}\n.index__container__2pamOGzN .index__modal__26sYw1OL .index__footer__wUG-61VJ {\n  overflow: hidden;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  height: 48px;\n  border-top: 1px solid #E9EAEC;\n}\n.index__container__2pamOGzN .index__modal__26sYw1OL .index__footer__wUG-61VJ .index__deny__19Iit2d6 {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  color: #6B6E7C;\n  font-size: 14px;\n  text-align: center;\n  line-height: 48px;\n  cursor: pointer;\n  border-right: 1px solid #E9EAEC;\n}\n.index__container__2pamOGzN .index__modal__26sYw1OL .index__footer__wUG-61VJ .index__agree__kOVJudUN {\n  -webkit-box-flex: 1;\n      -ms-flex: 1;\n          flex: 1;\n  color: #3DA4FF;\n  font-size: 14px;\n  text-align: center;\n  line-height: 48px;\n  cursor: pointer;\n}\n",
@@ -105,7 +105,7 @@
         agree: "index__agree__kOVJudUN",
       });
   },
-  893: function (e, n, t) {
+  899: function (e, n, t) {
     "use strict";
     t.r(n);
     var o = t(0),
@@ -130,7 +130,7 @@
       v = t(76),
       O = t.n(v),
       k = t(38);
-    t(816);
+    t(822);
     function N(o) {
       var r = (function () {
         if ("undefined" == typeof Reflect || !Reflect.construct) return !1;
@@ -278,7 +278,7 @@
       })(o.PureComponent),
       C = t(29),
       V = Object(C.a)("remoteControl"),
-      G = t(22);
+      G = t(21);
     t(30);
     var R;
     (R = E),

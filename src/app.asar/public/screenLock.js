@@ -1,15 +1,15 @@
 !(function (a) {
   function e(e) {
     for (
-      var n, t, o = e[0], c = e[1], r = e[2], _ = 0, s = [];
-      _ < o.length;
-      _++
+      var n, t, o = e[0], c = e[1], r = e[2], s = 0, _ = [];
+      s < o.length;
+      s++
     )
-      (t = o[_]),
-        Object.prototype.hasOwnProperty.call(l, t) && l[t] && s.push(l[t][0]),
+      (t = o[s]),
+        Object.prototype.hasOwnProperty.call(l, t) && l[t] && _.push(l[t][0]),
         (l[t] = 0);
     for (n in c) Object.prototype.hasOwnProperty.call(c, n) && (a[n] = c[n]);
-    for (u && u(e); s.length; ) s.shift()();
+    for (u && u(e); _.length; ) _.shift()();
     return d.push.apply(d, r || []), i();
   }
   function i() {
@@ -18,40 +18,40 @@
         var r = t[c];
         0 !== l[r] && (o = !1);
       }
-      o && (d.splice(n--, 1), (e = _((_.s = t[0]))));
+      o && (d.splice(n--, 1), (e = s((s.s = t[0]))));
     }
     return e;
   }
   var t = {},
-    l = { 35: 0 },
+    l = { 36: 0 },
     d = [];
-  function _(e) {
+  function s(e) {
     if (t[e]) return t[e].exports;
     var n = (t[e] = { i: e, l: !1, exports: {} });
-    return a[e].call(n.exports, n, n.exports, _), (n.l = !0), n.exports;
+    return a[e].call(n.exports, n, n.exports, s), (n.l = !0), n.exports;
   }
-  (_.m = a),
-    (_.c = t),
-    (_.d = function (e, n, t) {
-      _.o(e, n) || Object.defineProperty(e, n, { enumerable: !0, get: t });
+  (s.m = a),
+    (s.c = t),
+    (s.d = function (e, n, t) {
+      s.o(e, n) || Object.defineProperty(e, n, { enumerable: !0, get: t });
     }),
-    (_.r = function (e) {
+    (s.r = function (e) {
       "undefined" != typeof Symbol &&
         Symbol.toStringTag &&
         Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
         Object.defineProperty(e, "__esModule", { value: !0 });
     }),
-    (_.t = function (n, e) {
-      if ((1 & e && (n = _(n)), 8 & e)) return n;
+    (s.t = function (n, e) {
+      if ((1 & e && (n = s(n)), 8 & e)) return n;
       if (4 & e && "object" == typeof n && n && n.__esModule) return n;
       var t = Object.create(null);
       if (
-        (_.r(t),
+        (s.r(t),
         Object.defineProperty(t, "default", { enumerable: !0, value: n }),
         2 & e && "string" != typeof n)
       )
         for (var o in n)
-          _.d(
+          s.d(
             t,
             o,
             function (e) {
@@ -60,7 +60,7 @@
           );
       return t;
     }),
-    (_.n = function (e) {
+    (s.n = function (e) {
       var n =
         e && e.__esModule
           ? function () {
@@ -69,27 +69,27 @@
           : function () {
               return e;
             };
-      return _.d(n, "a", n), n;
+      return s.d(n, "a", n), n;
     }),
-    (_.o = function (e, n) {
+    (s.o = function (e, n) {
       return Object.prototype.hasOwnProperty.call(e, n);
     }),
-    (_.p = "");
+    (s.p = "");
   var n = (window.webpackJsonp = window.webpackJsonp || []),
     o = n.push.bind(n);
   (n.push = e), (n = n.slice());
   for (var c = 0; c < n.length; c++) e(n[c]);
   var u = o;
-  d.push([918, 0]), i();
+  d.push([925, 0]), i();
 })({
-  830: function (e, n, t) {
-    var o = t(831);
+  836: function (e, n, t) {
+    var o = t(837);
     "string" == typeof o && (o = [[e.i, o, ""]]);
     var c = { hmr: !0, transform: void 0, insertInto: void 0 };
     t(12)(o, c);
     o.locals && (e.exports = o.locals);
   },
-  831: function (e, n, t) {
+  837: function (e, n, t) {
     var o = t(27);
     (n = e.exports = t(11)(!1)).push([
       e.i,
@@ -116,28 +116,28 @@
         confirm: "screenLock__confirm__dFItsJ6x",
       });
   },
-  918: function (e, n, t) {
+  925: function (e, n, t) {
     "use strict";
     t.r(n);
     var o,
       c = t(0),
       i = t.n(c),
       r = t(18),
-      _ = t.n(r),
-      s = t(3),
-      a = t.n(s),
+      s = t.n(r),
+      _ = t(3),
+      a = t.n(_),
       l = t(4),
       d = t.n(l),
       u = t(5),
       k = t.n(u),
       m = t(6),
-      b = t.n(m),
-      h = t(2),
-      f = t.n(h),
+      h = t.n(m),
+      b = t(2),
+      f = t.n(b),
       L = t(8),
       p = t.n(L),
       w = t(9),
-      g = (t(830), t(67)),
+      g = (t(836), t(67)),
       x = t(7),
       v = t(116),
       S = t(58),
@@ -181,7 +181,7 @@
           var t = f()(this).constructor;
           e = Reflect.construct(n, arguments, t);
         } else e = n.apply(this, arguments);
-        return b()(this, e);
+        return h()(this, e);
       };
     }
     function P(e) {
@@ -201,25 +201,30 @@
       );
     }
     var E = "passwordSuccess",
-      A =
+      A = { normal: 1, admin: 3 },
+      X =
         Object(w.a)({}, {})(
           (o = (function (e) {
-            k()(r, e);
-            var c = I(r);
-            function r() {
-              var t;
-              a()(this, r);
+            k()(s, e);
+            var r = I(s);
+            function s() {
+              var e, t;
+              a()(this, s);
               for (
-                var e = arguments.length, n = new Array(e), o = 0;
-                o < e;
-                o++
+                var n = arguments.length, o = new Array(n), c = 0;
+                c < n;
+                c++
               )
-                n[o] = arguments[o];
+                o[c] = arguments[c];
               return (
-                ((t = c.call.apply(c, [this].concat(n))).state = {
+                ((t = r.call.apply(r, [this].concat(o))).state = {
                   modalShow: !1,
                   background: "",
                   bgStyle: {},
+                  mode:
+                    (null === (e = window.urlParams) || void 0 === e
+                      ? void 0
+                      : e.mode) || "normal",
                 }),
                 (t.handleModalShow = function () {
                   t.setState({ modalShow: !0 });
@@ -264,11 +269,14 @@
                   var e = P(t.state.background || {});
                   t.setState({ bgStyle: e });
                 }),
+                (t.handleScreenLockModeReset = function () {
+                  t.setState({ mode: "normal" });
+                }),
                 t
               );
             }
             return (
-              d()(r, [
+              d()(s, [
                 {
                   key: "componentDidMount",
                   value: function () {
@@ -284,6 +292,10 @@
                         "screenLockSource",
                         this.handleListenScreenLockSource
                       ),
+                      x.a.on(
+                        "screenLockModeReset",
+                        this.handleScreenLockModeReset
+                      ),
                       window.addEventListener("resize", this.resize);
                   },
                 },
@@ -294,6 +306,10 @@
                       _ACCEPT_DATA.removeOne(
                         "screenLockSource",
                         this.handleListenScreenLockSource
+                      ),
+                      x.a.removeAllListeners(
+                        "screenLockModeReset",
+                        this.handleScreenLockModeReset
                       ),
                       window.removeEventListener("resize", this.resize);
                   },
@@ -307,8 +323,8 @@
                       o = e.bgStyle,
                       c = void 0 === o ? {} : o,
                       r = this.handleModalShow,
-                      _ = this.handleModalClose,
-                      s = this.handleShutDowm,
+                      s = this.handleModalClose,
+                      _ = this.handleShutDowm,
                       a = this.handleClickModal;
                     return i.a.createElement(
                       "div",
@@ -348,7 +364,7 @@
                         i.a.createElement(v.a, {
                           title: "解锁",
                           actionName: "解锁",
-                          actionType: 1,
+                          actionType: A[this.state.mode],
                           onPasswordInputOver: this.handlePasswordInputOver,
                           onActivationCorrect: this.handleActivationCorrect,
                           type: "SCREEN_LOCK",
@@ -389,7 +405,7 @@
                                 "div",
                                 {
                                   className: "screenLock__cancel__yfbb9t6P",
-                                  onClick: _,
+                                  onClick: s,
                                 },
                                 i.a.createElement("p", null, "取消")
                               ),
@@ -397,7 +413,7 @@
                                 "div",
                                 {
                                   className: "screenLock__confirm__dFItsJ6x",
-                                  onClick: s,
+                                  onClick: _,
                                 },
                                 i.a.createElement("p", null, "关机")
                               )
@@ -409,22 +425,22 @@
                   },
                 },
               ]),
-              r
+              s
             );
           })(c.PureComponent))
         ) || o,
-      X = t(24),
-      j = t(29),
-      C = t(22);
+      j = t(24),
+      C = t(29),
+      T = t(21);
     t(30);
-    var T,
-      O = Object(j.a)("screenLock");
-    (T = A),
-      _.a.render(
+    var O,
+      z = Object(C.a)("screenLock");
+    (O = X),
+      s.a.render(
         i.a.createElement(
-          X.a,
-          { store: O },
-          i.a.createElement(C.a, null, i.a.createElement(T, null))
+          j.a,
+          { store: z },
+          i.a.createElement(T.a, null, i.a.createElement(O, null))
         ),
         document.getElementById("root")
       );

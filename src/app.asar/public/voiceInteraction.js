@@ -23,7 +23,7 @@
     return e;
   }
   var n = {},
-    l = { 46: 0 },
+    l = { 47: 0 },
     f = [];
   function c(e) {
     if (n[e]) return n[e].exports;
@@ -80,16 +80,16 @@
   (t.push = e), (t = t.slice());
   for (var i = 0; i < t.length; i++) e(t[i]);
   var p = o;
-  f.push([884, 0]), _();
+  f.push([890, 0]), _();
 })({
-  873: function (e, t, n) {
-    var o = n(874);
+  879: function (e, t, n) {
+    var o = n(880);
     "string" == typeof o && (o = [[e.i, o, ""]]);
     var i = { hmr: !0, transform: void 0, insertInto: void 0 };
     n(12)(o, i);
     o.locals && (e.exports = o.locals);
   },
-  874: function (e, t, n) {
+  880: function (e, t, n) {
     (t = e.exports = n(11)(!1)).push([
       e.i,
       ".voiceError__box__2pbk1tbe {\n  width: 100%;\n  height: 100%;\n  padding: 24px 0;\n  text-align: center;\n}\n.voiceError__box__2pbk1tbe .voiceError__title__1oOFd6cs {\n  font-size: 20px;\n  color: #ffffff;\n}\n.voiceError__box__2pbk1tbe .voiceError__message__1kRKMqth {\n  opacity: 0.7;\n  font-size: 14px;\n  color: #ffffff;\n  margin-top: 8px;\n}\n",
@@ -101,14 +101,14 @@
         message: "voiceError__message__1kRKMqth",
       });
   },
-  875: function (e, t, n) {
-    var o = n(876);
+  881: function (e, t, n) {
+    var o = n(882);
     "string" == typeof o && (o = [[e.i, o, ""]]);
     var i = { hmr: !0, transform: void 0, insertInto: void 0 };
     n(12)(o, i);
     o.locals && (e.exports = o.locals);
   },
-  876: function (e, t, n) {
+  882: function (e, t, n) {
     (t = e.exports = n(11)(!1)).push([
       e.i,
       ".voiceInteraction__content__3lx1FxxH {\n  width: 100%;\n  height: 100%;\n  padding: 0 0 8px 0;\n}\n.voiceInteraction__content__3lx1FxxH .voiceInteraction__main__3tHcjqxC {\n  width: 100%;\n  height: 100%;\n  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);\n          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);\n  border-radius: 4px;\n  background: rgba(35, 38, 41, 0.88);\n  border: 0.5px solid #000000;\n  padding: 0.5px;\n}\n.voiceInteraction__content__3lx1FxxH .voiceInteraction__main__3tHcjqxC .voiceInteraction__main-content__3sZGoxlr {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  border-radius: 4px;\n  border: 1px solid rgba(255, 255, 255, 0.1);\n}\n.voiceInteraction__content__3lx1FxxH .voiceInteraction__main__3tHcjqxC .voiceInteraction__main-content__3sZGoxlr .voiceInteraction__close__YB4ESwI6 {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  width: 12px;\n  height: 12px;\n  background-color: rgba(255, 255, 255, 0.1);\n  border-radius: 6px;\n  text-align: center;\n  line-height: 8px;\n}\n.voiceInteraction__content__3lx1FxxH .voiceInteraction__main__3tHcjqxC .voiceInteraction__main-content__3sZGoxlr .voiceInteraction__close__YB4ESwI6 i {\n  display: inline-block;\n  vertical-align: middle;\n  font-size: 10px;\n  color: white;\n}\n",
@@ -121,14 +121,14 @@
         close: "voiceInteraction__close__YB4ESwI6",
       });
   },
-  877: function (e, t, n) {
-    var o = n(878);
+  883: function (e, t, n) {
+    var o = n(884);
     "string" == typeof o && (o = [[e.i, o, ""]]);
     var i = { hmr: !0, transform: void 0, insertInto: void 0 };
     n(12)(o, i);
     o.locals && (e.exports = o.locals);
   },
-  878: function (e, t, n) {
+  884: function (e, t, n) {
     (t = e.exports = n(11)(!1)).push([
       e.i,
       ".voiceInterList__box__3LA6CXVB {\n  width: 100%;\n  height: auto;\n  padding: 8px 10px 12px 10px;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__info__1wnBB_bY {\n  width: 100%;\n  text-align: center;\n  opacity: 0.4;\n  font-size: 12px;\n  color: #ffffff;\n  line-height: 16px;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__list__3iBo22Wz {\n  width: 100%;\n  list-style: none;\n  max-height: 163px;\n  overflow-y: auto;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__list__3iBo22Wz::-webkit-scrollbar {\n  display: none;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__list__3iBo22Wz li {\n  -webkit-transition: all 0.3s;\n  -o-transition: all 0.3s;\n  transition: all 0.3s;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__list__3iBo22Wz li.voiceInterList__empty__tOuWPRnq {\n  font-size: 16px;\n  color: #ffffff;\n  text-align: center;\n  line-height: 22px;\n  margin-top: 16px;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__list__3iBo22Wz li.voiceInterList__one-line__3pLMeMJ1 {\n  font-size: 16px;\n  color: #ffffff;\n  margin: 16px 0 0 0;\n  padding-left: 14px;\n  line-height: 22px;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__list__3iBo22Wz li.voiceInterList__auto__1spq0Zkm {\n  font-size: 16px;\n  color: #ffffff;\n  padding-left: 14px;\n  margin-bottom: 8px;\n  line-height: 22px;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__list__3iBo22Wz li.voiceInterList__user__22KM5oiB {\n  font-size: 14px;\n  color: #ffffff;\n  opacity: 0.7;\n  padding-left: 30px;\n  margin: 16px 0;\n  line-height: 20px;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__list__3iBo22Wz li.voiceInterList__error__30Tq2gvJ {\n  font-size: 16px;\n  color: #ffffff;\n  margin: 16px 0 0 0;\n  padding-left: 14px;\n  line-height: 22px;\n}\n.voiceInterList__box__3LA6CXVB .voiceInterList__list__3iBo22Wz li.voiceInterList__broken__QiIMMNoc {\n  font-size: 16px;\n  color: #ffffff;\n  text-align: center;\n  line-height: 22px;\n  margin-top: 16px;\n}\n",
@@ -146,7 +146,7 @@
         broken: "voiceInterList__broken__QiIMMNoc",
       });
   },
-  884: function (e, t, n) {
+  890: function (e, t, n) {
     "use strict";
     n.r(t);
     var o = n(0),
@@ -165,7 +165,7 @@
       d = n.n(x),
       h = n(2),
       m = n.n(h);
-    n(873);
+    n(879);
     function b(e) {
       return c.a.createElement(
         "div",
@@ -182,10 +182,10 @@
         )
       );
     }
-    n(875);
+    n(881);
     var g = n(8),
       I = n.n(g),
-      L = (n(877), n(117)),
+      L = (n(883), n(117)),
       y = n(7),
       w = {
         "./voiceInterList.less": {
@@ -326,9 +326,9 @@
           r
         );
       })(o.PureComponent),
-      C = n(20),
+      C = n(19),
       M = n(65),
-      W = n(21);
+      W = n(20);
     var N,
       O = n(9);
     function z(o) {
@@ -579,7 +579,7 @@
         ) || N,
       T = (n(30), n(24)),
       F = n(29),
-      J = n(22);
+      J = n(21);
     var Y,
       Z = Object(F.a)("voiceInteraction");
     (Y = S),

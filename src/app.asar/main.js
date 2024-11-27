@@ -50,34 +50,37 @@
       return Object.prototype.hasOwnProperty.call(e, t);
     }),
     (n.p = ""),
-    n((n.s = 139));
+    n((n.s = 140));
 })([
+  function (e, t) {
+    e.exports = require("electron");
+  },
   function (e, t, n) {
-    const s = n(169),
-      { app: o } = n(1),
+    const s = n(170),
+      { app: o } = n(0),
       i = n(12),
       r = n(5);
     let a,
       c = {},
-      u = {};
+      l = {};
     try {
       if (o.isPackaged)
         try {
-          u = JSON.parse(
+          l = JSON.parse(
             i.readFileSync(
               r.resolve(o.getAppPath(), "..", "autoConfiguration.json"),
               "utf8"
             )
           );
         } catch (e) {
-          u = {};
+          l = {};
         }
     } catch (e) {
-      u = {};
+      l = {};
     }
-    ("object" == typeof u &&
-      "[object Object]" === Object.prototype.toString.call(u)) ||
-      (u = {});
+    ("object" == typeof l &&
+      "[object Object]" === Object.prototype.toString.call(l)) ||
+      (l = {});
     try {
       a = n(
         !(function () {
@@ -94,14 +97,11 @@
         process.env.runmode && "dev" === process.env.runmode
           ? n(92)
           : process.env.runmode && "test" === process.env.runmode
-          ? n(170)
-          : n(171)),
-        (c = Object.assign({}, s, e, u));
-    } else c = Object.assign({}, s, a, u);
+          ? n(171)
+          : n(172)),
+        (c = Object.assign({}, s, e, l));
+    } else c = Object.assign({}, s, a, l);
     e.exports = c;
-  },
-  function (e, t) {
-    e.exports = require("electron");
   },
   function (e, t, n) {
     const s = new (class {
@@ -145,7 +145,7 @@
   },
   function (e, t, n) {
     const s = n(7),
-      o = n(181),
+      o = n(182),
       i = n(2);
     const r = new (class {
       constructor() {
@@ -158,31 +158,31 @@
         return !!this.windows[e];
       }
       produceWindow(e, t, r, a = null, c = {}) {
-        const u = i.getData("CUSTOM_CONFIG");
-        let l;
-        if (u.windowRedirect && u.windowRedirect[e])
+        const l = i.getData("CUSTOM_CONFIG");
+        let u;
+        if (l.windowRedirect && l.windowRedirect[e])
           try {
-            (l = n(99)("./" + u.windowRedirect[e] + ".js")),
-              (l.htmlName = u.windowRedirect[e]);
+            (u = n(99)("./" + l.windowRedirect[e] + ".js")),
+              (u.htmlName = l.windowRedirect[e]);
           } catch (t) {
-            s.error(u.windowRedirect[e] + "配置不存在或出现问题");
+            s.error(l.windowRedirect[e] + "配置不存在或出现问题");
           }
-        else (l = n(99)("./" + e + ".js")), (l.htmlName = e);
+        else (u = n(99)("./" + e + ".js")), (u.htmlName = e);
         return (
-          u.htmlRedirect &&
-            u.htmlRedirect[e] &&
-            (l.htmlName = u.htmlRedirect[e]),
-          (l.onCrashed = (e, t, n) => {
+          l.htmlRedirect &&
+            l.htmlRedirect[e] &&
+            (u.htmlName = l.htmlRedirect[e]),
+          (u.onCrashed = (e, t, n) => {
             this.close(n);
           }),
-          (l._onClosed = (e, t, n) => {
-            l.onClosed && l.onClosed(e, t, n), delete this.windows[n];
+          (u._onClosed = (e, t, n) => {
+            u.onClosed && u.onClosed(e, t, n), delete this.windows[n];
           }),
-          (l.windowTypeName = e),
-          (l.url = c.url || null),
+          (u.windowTypeName = e),
+          (u.url = c.url || null),
           delete c.url,
-          (l.configure = { ...l.configure, ...c }),
-          new o(l, t || e, r, a)
+          (u.configure = { ...u.configure, ...c }),
+          new o(u, t || e, r, a)
         );
       }
       newOne(e, t, n, s) {
@@ -318,8 +318,8 @@
     e.exports = require("path");
   },
   function (e, t, n) {
-    const s = n(0).ports,
-      { openPortSearching: o } = n(0),
+    const s = n(1).ports,
+      { openPortSearching: o } = n(1),
       i = n(7),
       { rpcDiscover: r } = n(29),
       a = n(2);
@@ -377,23 +377,23 @@
     e.exports = c;
   },
   function (e, t, n) {
-    const s = n(140),
-      o = n(167),
-      i = n(168),
+    const s = n(141),
+      o = n(168),
+      i = n(169),
       r = n(13),
-      { getDateString: a } = n(172);
+      { getDateString: a } = n(173);
     let c = "SeewoServiceAssistant_" + a();
-    const u = (e) => {
+    const l = (e) => {
       s.configure({ appenders: i(e), categories: o });
     };
-    u(c);
+    l(c);
     e.exports = (() => {
       let e = new Object();
       return (
         Object.keys(o).forEach((t) => {
           e[t] = function () {
             let e = "SeewoServiceAssistant_" + a();
-            e !== c && ((c = e), u(e));
+            e !== c && ((c = e), l(e));
             const n = s.getLogger(t);
             let o = [];
             for (const e in arguments)
@@ -436,6 +436,8 @@
         NEWS_PLAYER: "NEWS_PLAYER",
         QUIT_FULLSCREEN_AUTH: "QUIT_FULLSCREEN_AUTH",
         EYE_PROTECTION_MODE_TIME_OUT: "EYE_PROTECTION_MODE_TIME_OUT",
+        EYE_PROTECTION_MODE_BALL: "EYE_PROTECTION_MODE_BALL",
+        BLACK_WINDOW: "BLACK_WINDOW",
       },
       i = [
         o.GLOBAL_CONFIRM,
@@ -455,12 +457,14 @@
         o.DEVICE_NOTIFICATION,
         o.VOICE_INTERACTION,
         o.USB_INSERT,
+        o.EYE_PROTECTION_MODE_TIME_OUT,
         o.QUIT_FULLSCREEN_AUTH,
         o.NEWS_PLAYER,
         o.SCHOOL_ANNOUNCEMENT,
         o.SCREEN_SAVER,
         o.SCREEN_LOCK,
-        o.EYE_PROTECTION_MODE_TIME_OUT,
+        o.EYE_PROTECTION_MODE_BALL,
+        o.BLACK_WINDOW,
         o.POPOP_CUSTOMIZE,
       ],
       r = [
@@ -474,6 +478,7 @@
         o.DEVICE_LINK,
         o.NFC_AUTH_RESULT,
         o.REMOTE_DISK_CLEAR_WARN,
+        o.BLACK_WINDOW,
       ];
     const a = new (class {
       constructor() {
@@ -552,7 +557,7 @@
   },
   function (e, t, n) {
     const { toTopMostQueue: s } = n(8),
-      o = n(0);
+      o = n(1);
     e.exports = {
       topMost: function (e, t) {
         o.topMostForbidden ||
@@ -565,12 +570,12 @@
   },
   function (e, t, n) {
     "undefined" == typeof process || "renderer" === process.type
-      ? (e.exports = n(141))
-      : (e.exports = n(143));
+      ? (e.exports = n(142))
+      : (e.exports = n(144));
   },
   function (e, t, n) {
     const s = n(7),
-      o = n(272).https,
+      o = n(274).https,
       i = n(112);
     e.exports = function (
       e,
@@ -579,20 +584,20 @@
       r,
       a,
       c,
-      u = { "x-auth-traceid": i(Date.now) }
+      l = { "x-auth-traceid": i(Date.now) }
     ) {
-      let l = JSON.stringify(a);
+      let u = JSON.stringify(a);
       const d = {
         hostname: e,
         port: t,
         path: n,
         method: r,
         rejectUnauthorized: !1,
-        headers: { "Content-Type": "application/json", ...u },
+        headers: { "Content-Type": "application/json", ...l },
         secureProtocol: "TLSv1_2_method",
       };
       ("POST" !== r && "post" !== r) ||
-        (d.headers["Content-Length"] = Buffer.byteLength(l)),
+        (d.headers["Content-Length"] = Buffer.byteLength(u)),
         s.info("主线程发送 " + r, e + ":" + t + n, "等待返回");
       const h = o.request(d, (o) => {
         o.on("data", (o) => {
@@ -603,7 +608,7 @@
       h.on("error", (o) => {
         s.error("主线程 " + r, e + ":" + t + n, o), c("", o);
       }),
-        ("POST" !== r && "post" !== r) || h.write(l),
+        ("POST" !== r && "post" !== r) || h.write(u),
         h.end();
     };
   },
@@ -619,7 +624,7 @@
       const o = n(15),
         i = n(13).inspect,
         r = n(10)("ref"),
-        a = n(27),
+        a = n(25),
         c = n(5);
       ((t = e.exports = n(93)(c.join(s, ".."))).endianness = a.endianness()),
         (t.refType = function (e) {
@@ -738,7 +743,7 @@
           if (null == e || (Buffer.isBuffer(e) && t.isNull(e))) return t.NULL;
           const s = Buffer.byteLength(e, n) + 1,
             o = new Buffer(s);
-          return t.writeCString(o, 0, e, n), (o.type = y), o;
+          return t.writeCString(o, 0, e, n), (o.type = m), o;
         }),
         (t.writeCString = function (e, t, n, s) {
           o(Buffer.isBuffer(e), "expected a Buffer as the first argument"),
@@ -757,25 +762,25 @@
         (t["readUInt64" + t.endianness] = t.readUInt64),
         (t["writeInt64" + t.endianness] = t.writeInt64),
         (t["writeUInt64" + t.endianness] = t.writeUInt64);
-      var u = "LE" == t.endianness ? "BE" : "LE",
-        l = Buffer.alloc(t.sizeof.int64),
+      var l = "LE" == t.endianness ? "BE" : "LE",
+        u = Buffer.alloc(t.sizeof.int64),
         d = Buffer.alloc(t.sizeof.uint64);
-      (t["readInt64" + u] = function (e, n) {
+      (t["readInt64" + l] = function (e, n) {
         for (let s = 0; s < t.sizeof.int64; s++)
-          l[s] = e[n + t.sizeof.int64 - s - 1];
-        return t.readInt64(l, 0);
+          u[s] = e[n + t.sizeof.int64 - s - 1];
+        return t.readInt64(u, 0);
       }),
-        (t["readUInt64" + u] = function (e, n) {
+        (t["readUInt64" + l] = function (e, n) {
           for (let s = 0; s < t.sizeof.uint64; s++)
             d[s] = e[n + t.sizeof.uint64 - s - 1];
           return t.readUInt64(d, 0);
         }),
-        (t["writeInt64" + u] = function (e, n, s) {
-          t.writeInt64(l, 0, s);
+        (t["writeInt64" + l] = function (e, n, s) {
+          t.writeInt64(u, 0, s);
           for (let s = 0; s < t.sizeof.int64; s++)
-            e[n + s] = l[t.sizeof.int64 - s - 1];
+            e[n + s] = u[t.sizeof.int64 - s - 1];
         }),
-        (t["writeUInt64" + u] = function (e, n, s) {
+        (t["writeUInt64" + l] = function (e, n, s) {
           t.writeUInt64(d, 0, s);
           for (let s = 0; s < t.sizeof.uint64; s++)
             e[n + s] = d[t.sizeof.uint64 - s - 1];
@@ -1024,7 +1029,7 @@
       /*!
        * This `char *` type is used by "allocCString()" above.
        */
-      const y = t.refType(t.types.char);
+      const m = t.refType(t.types.char);
       /*!
        * Set the `type` property of the `NULL` pointer Buffer object.
        */ (t.NULL.type = t.types.void),
@@ -1092,9 +1097,9 @@
         (Buffer.prototype.reinterpretUntilZeros = function (e, n) {
           return t.reinterpretUntilZeros(this, e, n);
         });
-      var m = i.custom || "inspect";
+      var y = i.custom || "inspect";
       if (
-        (Buffer.prototype[m] && (Buffer.prototype[m] = S(Buffer.prototype[m])),
+        (Buffer.prototype[y] && (Buffer.prototype[y] = S(Buffer.prototype[y])),
         !(t.NULL instanceof Buffer))
       ) {
         r(
@@ -1126,7 +1131,7 @@
           (b.prototype.writeInt64LE = Buffer.prototype.writeInt64LE),
           (b.prototype.readUInt64LE = Buffer.prototype.readUInt64LE),
           (b.prototype.writeUInt64LE = Buffer.prototype.writeUInt64LE),
-          b.prototype[m] && (b.prototype[m] = S(b.prototype[m]));
+          b.prototype[y] && (b.prototype[y] = S(b.prototype[y]));
       }
       function S(e) {
         return "refinspect" === e.name
@@ -1145,11 +1150,11 @@
     var s,
       o,
       i = n(12),
-      r = n(243),
-      a = n(245),
-      c = n(246),
-      u = n(13);
-    function l(e, t) {
+      r = n(245),
+      a = n(247),
+      c = n(248),
+      l = n(13);
+    function u(e, t) {
       Object.defineProperty(e, s, {
         get: function () {
           return t;
@@ -1163,17 +1168,17 @@
     var d,
       h = function () {};
     if (
-      (u.debuglog
-        ? (h = u.debuglog("gfs4"))
+      (l.debuglog
+        ? (h = l.debuglog("gfs4"))
         : /\bgfs4\b/i.test(process.env.NODE_DEBUG || "") &&
           (h = function () {
-            var e = u.format.apply(u, arguments);
+            var e = l.format.apply(l, arguments);
             (e = "GFS4: " + e.split(/\n/).join("\nGFS4: ")), console.error(e);
           }),
       !i[s])
     ) {
       var f = global[s] || [];
-      l(i, f),
+      u(i, f),
         (i.close = (function (e) {
           function t(t, n) {
             return e.call(i, t, function (e) {
@@ -1270,12 +1275,12 @@
       };
       var c = /^v[0-5]\./;
       if ("v0.8" === process.version.substr(0, 4)) {
-        var u = a(e);
-        (w = u.ReadStream), (y = u.WriteStream);
+        var l = a(e);
+        (w = l.ReadStream), (m = l.WriteStream);
       }
-      var l = e.ReadStream;
-      l &&
-        ((w.prototype = Object.create(l.prototype)),
+      var u = e.ReadStream;
+      u &&
+        ((w.prototype = Object.create(u.prototype)),
         (w.prototype.open = function () {
           var e = this;
           b(e.path, e.flags, e.mode, function (t, n) {
@@ -1286,8 +1291,8 @@
         }));
       var d = e.WriteStream;
       d &&
-        ((y.prototype = Object.create(d.prototype)),
-        (y.prototype.open = function () {
+        ((m.prototype = Object.create(d.prototype)),
+        (m.prototype.open = function () {
           var e = this;
           b(e.path, e.flags, e.mode, function (t, n) {
             t
@@ -1307,10 +1312,10 @@
         }),
         Object.defineProperty(e, "WriteStream", {
           get: function () {
-            return y;
+            return m;
           },
           set: function (e) {
-            y = e;
+            m = e;
           },
           enumerable: !0,
           configurable: !0,
@@ -1326,16 +1331,16 @@
         enumerable: !0,
         configurable: !0,
       });
-      var f = y;
+      var f = m;
       function w(e, t) {
         return this instanceof w
-          ? (l.apply(this, arguments), this)
+          ? (u.apply(this, arguments), this)
           : w.apply(Object.create(w.prototype), arguments);
       }
-      function y(e, t) {
-        return this instanceof y
+      function m(e, t) {
+        return this instanceof m
           ? (d.apply(this, arguments), this)
-          : y.apply(Object.create(y.prototype), arguments);
+          : m.apply(Object.create(m.prototype), arguments);
       }
       Object.defineProperty(e, "FileWriteStream", {
         get: function () {
@@ -1347,12 +1352,12 @@
         enumerable: !0,
         configurable: !0,
       });
-      var m = e.open;
+      var y = e.open;
       function b(e, t, n, s) {
         return (
           "function" == typeof n && ((s = n), (n = null)),
           (function e(t, n, s, o, i) {
-            return m(t, n, s, function (r, a) {
+            return y(t, n, s, function (r, a) {
               !r || ("EMFILE" !== r.code && "ENFILE" !== r.code)
                 ? "function" == typeof o && o.apply(this, arguments)
                 : g([e, [t, n, s, o], r, i || Date.now(), Date.now()]);
@@ -1363,14 +1368,14 @@
       return (e.open = b), e;
     }
     function g(e) {
-      h("ENQUEUE", e[0].name, e[1]), i[s].push(e), y();
+      h("ENQUEUE", e[0].name, e[1]), i[s].push(e), m();
     }
     function w() {
       for (var e = Date.now(), t = 0; t < i[s].length; ++t)
         i[s][t].length > 2 && ((i[s][t][3] = e), (i[s][t][4] = e));
-      y();
+      m();
     }
-    function y() {
+    function m() {
       if ((clearTimeout(d), (d = void 0), 0 !== i[s].length)) {
         var e = i[s].shift(),
           t = e[0],
@@ -1384,16 +1389,16 @@
           var c = n.pop();
           "function" == typeof c && c.call(null, o);
         } else {
-          var u = Date.now() - a,
-            l = Math.max(a - r, 1);
-          u >= Math.min(1.2 * l, 100)
+          var l = Date.now() - a,
+            u = Math.max(a - r, 1);
+          l >= Math.min(1.2 * u, 100)
             ? (h("RETRY", t.name, n), t.apply(null, n.concat([r])))
             : i[s].push(e);
         }
-        void 0 === d && (d = setTimeout(y, 0));
+        void 0 === d && (d = setTimeout(m, 0));
       }
     }
-    global[s] || l(global, i[s]),
+    global[s] || u(global, i[s]),
       (e.exports = p(c(i))),
       process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH &&
         !i.__patched &&
@@ -1427,91 +1432,7 @@
       });
   },
   function (e, t, n) {
-    const s = n(7),
-      { screen: o } = n(1),
-      i = n(3),
-      r = n(2),
-      a = n(22);
-    const c = new (class {
-      constructor() {
-        (this.slotList = []), (this.windowsConfigList = {});
-      }
-      enterSlot(e) {
-        let t = e.windowName,
-          n = e.yIndex;
-        this.slotList[n]
-          ? s.error(t + "已入槽，无需重新入槽")
-          : ((this.slotList[n] = t), (this.windowsConfigList[t] = e)),
-          this.updateSlots(n, !0);
-      }
-      updateConfig(e, t) {
-        let n = this.windowsConfigList[e],
-          s = t.yIndex || n.yIndex,
-          o = this.slotList.indexOf(e);
-        (this.windowsConfigList[e] = Object.assign({}, n, t)),
-          s !== o
-            ? ((this.slotList[s] = e),
-              (this.slotList[o] = ""),
-              this.windowsConfigList[e].hide || this.updateSlots(o > s ? s : o))
-            : this.windowsConfigList[e].hide || this.updateSlots(s);
-      }
-      updateSlots(e, t = !1) {
-        let n = 0;
-        if (!(0 === this.slotList.length || e >= this.slotList.length)) {
-          for (let t = 0; t <= e - 1; t++)
-            this.slotList[t] &&
-              (n += this.windowsConfigList[this.slotList[t]].height + 8);
-          for (let s = e; s < this.slotList.length; s++)
-            if (this.slotList[s]) {
-              let e = this.slotList[s];
-              (n += this.windowsConfigList[e].height + 8),
-                this.windowChange(e, this.windowsConfigList[e], n, t);
-            }
-        }
-      }
-      updateWindow(e) {
-        this.updateConfig(e, {});
-      }
-      windowChange(e, t, n) {
-        const { workArea: s, bounds: a } = o.getPrimaryDisplay(),
-          c = i.getInstance(e);
-        let u = 1;
-        u = 1080 / a.height;
-        let l = Math.ceil(s.y + s.height - n / u),
-          d = Math.ceil(s.x + s.width - (t.width + 12) / u),
-          h = Math.ceil(t.width / u),
-          f = Math.ceil(t.height / u);
-        c &&
-          !c.isDestroyed() &&
-          (c.setBounds({ width: h, height: f, x: d, y: l }),
-          r.share("setZoomFactor", 1 / u, e));
-      }
-      outSlot(e) {
-        let t = this.slotList.indexOf(e);
-        t > -1 &&
-          ((this.slotList[t] = ""),
-          delete this.windowsConfigList[e],
-          this.updateSlots(t));
-      }
-      hideSlot(e) {
-        let t = this.slotList.indexOf(e);
-        t > -1 && (this.slotList[t] = ""), this.updateSlots(t);
-      }
-      showSlot(e) {
-        this.windowsConfigList[e] && this.enterSlot(this.windowsConfigList[e]);
-      }
-      init() {
-        a.addListener(() => {
-          setTimeout(() => {
-            this.updateSlots(0);
-          }, 1e3);
-        });
-      }
-    })();
-    c.init(), (e.exports = c);
-  },
-  function (e, t, n) {
-    const s = n(234),
+    const s = n(236),
       o = n(7);
     e.exports = class {
       constructor(e, t) {
@@ -1593,6 +1514,177 @@
     };
   },
   function (e, t, n) {
+    const s = n(7),
+      { screen: o } = n(0),
+      i = n(3),
+      r = n(2),
+      a = n(23);
+    const c = new (class {
+      constructor() {
+        (this.slotList = []), (this.windowsConfigList = {});
+      }
+      enterSlot(e) {
+        let t = e.windowName,
+          n = e.yIndex;
+        this.slotList[n]
+          ? s.error(t + "已入槽，无需重新入槽")
+          : ((this.slotList[n] = t), (this.windowsConfigList[t] = e)),
+          this.updateSlots(n, !0);
+      }
+      updateConfig(e, t) {
+        let n = this.windowsConfigList[e],
+          s = t.yIndex || n.yIndex,
+          o = this.slotList.indexOf(e);
+        (this.windowsConfigList[e] = Object.assign({}, n, t)),
+          s !== o
+            ? ((this.slotList[s] = e),
+              (this.slotList[o] = ""),
+              this.windowsConfigList[e].hide || this.updateSlots(o > s ? s : o))
+            : this.windowsConfigList[e].hide || this.updateSlots(s);
+      }
+      updateSlots(e, t = !1) {
+        let n = 0;
+        if (!(0 === this.slotList.length || e >= this.slotList.length)) {
+          for (let t = 0; t <= e - 1; t++)
+            this.slotList[t] &&
+              (n += this.windowsConfigList[this.slotList[t]].height + 8);
+          for (let s = e; s < this.slotList.length; s++)
+            if (this.slotList[s]) {
+              let e = this.slotList[s];
+              (n += this.windowsConfigList[e].height + 8),
+                this.windowChange(e, this.windowsConfigList[e], n, t);
+            }
+        }
+      }
+      updateWindow(e) {
+        this.updateConfig(e, {});
+      }
+      windowChange(e, t, n) {
+        const { workArea: s, bounds: a } = o.getPrimaryDisplay(),
+          c = i.getInstance(e);
+        let l = 1;
+        l = 1080 / a.height;
+        let u = Math.ceil(s.y + s.height - n / l),
+          d = Math.ceil(s.x + s.width - (t.width + 12) / l),
+          h = Math.ceil(t.width / l),
+          f = Math.ceil(t.height / l);
+        c &&
+          !c.isDestroyed() &&
+          (c.setBounds({ width: h, height: f, x: d, y: u }),
+          r.share("setZoomFactor", 1 / l, e));
+      }
+      outSlot(e) {
+        let t = this.slotList.indexOf(e);
+        t > -1 &&
+          ((this.slotList[t] = ""),
+          delete this.windowsConfigList[e],
+          this.updateSlots(t));
+      }
+      hideSlot(e) {
+        let t = this.slotList.indexOf(e);
+        t > -1 && (this.slotList[t] = ""), this.updateSlots(t);
+      }
+      showSlot(e) {
+        this.windowsConfigList[e] && this.enterSlot(this.windowsConfigList[e]);
+      }
+      init() {
+        a.addListener(() => {
+          setTimeout(() => {
+            this.updateSlots(0);
+          }, 1e3);
+        });
+      }
+    })();
+    c.init(), (e.exports = c);
+  },
+  function (e, t, n) {
+    const s = n(3),
+      { dllForHookBoard: o } = n(29),
+      i = n(23),
+      r = n(2),
+      a = n(1),
+      c = (e) => e / 1920;
+    const l = new (class {
+      constructor() {
+        (this.windowsList = {}), (this.onWindowClose = () => {});
+      }
+      newWindow(e, t = !a.topMostForbidden, l = {}, u = () => {}) {
+        const { screen: d } = n(0);
+        let h = d.getAllDisplays();
+        t && o.SetKeyboardHook();
+        for (let n = 0; n < h.length; n++) {
+          if (this.windowsList[e] && this.windowsList[e].includes(e + "_" + n))
+            continue;
+          let o = c(h[n].bounds.width);
+          r.share("setZoomFactor", o, e + "_" + n);
+          let i = s.addOne(e, e + "_" + n, l);
+          this.windowsList[e] || (this.windowsList[e] = []),
+            this.windowsList[e].push(e + "_" + n),
+            i.setBounds({
+              width: h[n].bounds.width,
+              height: h[n].bounds.height,
+              x: h[n].bounds.x,
+              y: h[n].bounds.y,
+            }),
+            i.show(),
+            i.on("close", () => {
+              u(),
+                setTimeout(() => {
+                  this.closeWindow(e, t);
+                }, 0);
+            });
+        }
+        (this.onWindowClose = u),
+          i.addListener(() => {
+            setTimeout(() => {
+              this.resetWindow(e, t);
+            }, 1e3);
+          }, e);
+      }
+      getWindowList(e) {
+        return this.windowsList[e] || [];
+      }
+      resetWindow(e, t = !a.topMostForbidden) {
+        const { screen: o } = n(0);
+        let i = o.getAllDisplays();
+        for (let n = 0; n < i.length; n++) {
+          const o = e + "_" + n;
+          let a = s.getInstance(o),
+            l = c(i[n].bounds.width);
+          r.share("setZoomFactor", l, o),
+            a && a.isDestroyed() && (s.clearInstance(o), (a = null)),
+            a ||
+              ((a = s.addOne(e, o)),
+              this.windowsList[e] || (this.windowsList[e] = []),
+              this.windowsList[e].includes(o) || this.windowsList[e].push(o),
+              a.on("close", () => {
+                setTimeout(() => {
+                  this.closeWindow(e, t);
+                }, 0);
+              })),
+            a.setBounds({
+              width: i[n].bounds.width,
+              height: i[n].bounds.height,
+              x: i[n].bounds.x,
+              y: i[n].bounds.y,
+            }),
+            a.show();
+        }
+      }
+      closeWindow(e, t = !0) {
+        if (this.windowsList[e]) {
+          for (let t = 0; t < this.windowsList[e].length; t++)
+            s.destroy(this.windowsList[e][t]);
+          t && o.UnHookKeyBoard(),
+            i.removeEvent(e),
+            this.onWindowClose(),
+            (this.windowsList[e] = "");
+        }
+      }
+    })();
+    e.exports = l;
+  },
+  function (e, t, n) {
     "use strict";
     (function (t) {
       var s = n(5);
@@ -1602,7 +1694,7 @@
   function (e, t, n) {
     "use strict";
     const s = n(17).fromPromise,
-      { makeDir: o, makeDirSync: i } = n(248),
+      { makeDir: o, makeDirSync: i } = n(250),
       r = s(o);
     e.exports = {
       mkdirs: r,
@@ -1623,7 +1715,7 @@
         t ? (this.eventTypeListeners[t] = e) : this.listener.push(e);
       }
       listen() {
-        const { screen: e } = n(1);
+        const { screen: e } = n(0);
         e.on("display-metrics-changed", () => {
           s.info("工作区域变化"), this.publishListener();
         }),
@@ -1653,32 +1745,7 @@
     o.listen(), (e.exports = o);
   },
   function (e, t, n) {
-    const s = n(46),
-      o = n(7);
-    let i = {
-      SetWindowPos: (e, t, n, s, i, r, a) => {
-        o.error("win32Api.SetWindowPos is not implemented"),
-          console.log("win32Api.SetWindowPos is not implemented");
-      },
-    };
-    n(12).existsSync("C:\\Windows\\System32\\user32.dll") &&
-      (i = s.Library("user32.dll", {
-        SetWindowPos: [
-          "bool",
-          ["int", "int", "int", "int", "int", "int", "uint"],
-        ],
-      })),
-      (e.exports = i);
-  },
-  function (e, t, n) {
-    const s = n(14);
-    e.exports = function (e) {
-      let t = Buffer.from(e);
-      return (t.type = s.types.int), t.deref();
-    };
-  },
-  function (e, t, n) {
-    const { dllRoot: s } = n(0),
+    const { dllRoot: s } = n(1),
       o = n(46),
       i = n(14),
       r = n(7);
@@ -1712,7 +1779,7 @@
     })((e) => {
       r.info("windowApiFfi_dll", e);
     });
-    const u = new (class {
+    const l = new (class {
       constructor() {
         (this.listener = []),
           (this.onListen = !1),
@@ -1756,7 +1823,7 @@
         GetScreenLockState: c.GetScreenLockState,
         StartListener: c.StarListener,
         StopListener: c.StopListener,
-        systemScreenLock: u,
+        systemScreenLock: l,
         GetRegistryString: c.GetRegistryString,
         GetRegistryInt: c.GetRegistryInt,
         startHideTaskbar: function (e) {
@@ -1771,93 +1838,36 @@
         Md5DigestWithSalt: c.Md5DigestWithSalt,
       });
   },
-  function (e, t, n) {
-    const s = n(3),
-      { dllForHookBoard: o } = n(29),
-      i = n(22),
-      r = n(2),
-      a = n(0),
-      c = (e) => e / 1920;
-    const u = new (class {
-      constructor() {
-        this.windowsList = {};
-      }
-      newWindow(e, t = !a.topMostForbidden, u = {}) {
-        const { screen: l } = n(1);
-        let d = l.getAllDisplays();
-        t && o.SetKeyboardHook();
-        for (let t = 0; t < d.length; t++) {
-          if (this.windowsList[e] && this.windowsList[e].includes(e + "_" + t))
-            continue;
-          let n = c(d[t].bounds.width);
-          r.share("setZoomFactor", n, e + "_" + t);
-          let o = s.addOne(e, e + "_" + t, u);
-          this.windowsList[e] || (this.windowsList[e] = []),
-            this.windowsList[e].push(e + "_" + t),
-            o.setBounds({
-              width: d[t].bounds.width,
-              height: d[t].bounds.height,
-              x: d[t].bounds.x,
-              y: d[t].bounds.y,
-            }),
-            o.show(),
-            o.on("close", () => {
-              setTimeout(() => {
-                this.closeWindow();
-              }, 0);
-            });
-        }
-        i.addListener(() => {
-          setTimeout(() => {
-            this.resetWindow(e);
-          }, 1e3);
-        }, e);
-      }
-      getWindowList(e) {
-        return this.windowsList[e] || [];
-      }
-      resetWindow(e) {
-        const { screen: t } = n(1);
-        let o = t.getAllDisplays();
-        for (let t = 0; t < o.length; t++) {
-          const n = e + "_" + t;
-          let i = s.getInstance(n),
-            a = c(o[t].bounds.width);
-          r.share("setZoomFactor", a, n),
-            i && i.isDestroyed() && (s.clearInstance(n), (i = null)),
-            i ||
-              ((i = s.addOne(e, n)),
-              this.windowsList[e] || (this.windowsList[e] = []),
-              this.windowsList[e].includes(n) || this.windowsList[e].push(n),
-              i.on("close", () => {
-                setTimeout(() => {
-                  this.closeWindow();
-                }, 0);
-              })),
-            i.setBounds({
-              width: o[t].bounds.width,
-              height: o[t].bounds.height,
-              x: o[t].bounds.x,
-              y: o[t].bounds.y,
-            }),
-            i.show();
-        }
-      }
-      closeWindow(e, t = !0) {
-        if (this.windowsList[e]) {
-          for (let t = 0; t < this.windowsList[e].length; t++)
-            s.destroy(this.windowsList[e][t]);
-          t && o.UnHookKeyBoard(), i.removeEvent(e), (this.windowsList[e] = "");
-        }
-      }
-    })();
-    e.exports = u;
-  },
   function (e, t) {
     e.exports = require("os");
   },
   function (e, t, n) {
-    const s = n(284);
+    const s = n(46),
+      o = n(7);
+    let i = {
+      SetWindowPos: (e, t, n, s, i, r, a) => {
+        o.error("win32Api.SetWindowPos is not implemented"),
+          console.log("win32Api.SetWindowPos is not implemented");
+      },
+    };
+    n(12).existsSync("C:\\Windows\\System32\\user32.dll") &&
+      (i = s.Library("user32.dll", {
+        SetWindowPos: [
+          "bool",
+          ["int", "int", "int", "int", "int", "int", "uint"],
+        ],
+      })),
+      (e.exports = i);
+  },
+  function (e, t, n) {
+    const s = n(14);
+    e.exports = function (e) {
+      let t = Buffer.from(e);
+      return (t.type = s.types.int), t.deref();
+    };
+  },
+  function (e, t, n) {
+    const s = n(286);
     const o = new (class {
       constructor() {
         this.timingList = [];
@@ -1892,9 +1902,9 @@
     e.exports = o;
   },
   function (e, t, n) {
-    const s = n(174),
-      { app: o } = n(1),
-      i = n(180);
+    const s = n(175),
+      { app: o } = n(0),
+      i = n(181);
     o.on("before-quit", () => {
       s.StopMonitor();
     }),
@@ -2029,26 +2039,27 @@
   },
   function (e, t, n) {
     const s = n(3),
-      o = n(300),
-      i = n(301),
+      o = n(301),
+      i = n(302),
       { dllForHookBoard: r } = n(29),
       a = n(7),
-      c = n(22),
-      u = n(2),
-      l = n(32),
+      c = n(23),
+      l = n(2),
+      u = n(32),
       d = n(31),
       h = n(55),
       f = n(56),
       p = n(28),
       g = 1211,
       w = 1215,
-      y = 1,
-      m = 0,
+      m = 1,
+      y = 0,
       b = 1,
       S = 2,
       v = 1,
-      E = (e) => e / 1920;
-    const _ = new (class {
+      E = "admin",
+      _ = (e) => e / 1920;
+    const T = new (class {
       constructor() {
         (this.message = null),
           (this.password = ""),
@@ -2059,19 +2070,22 @@
       }
       onMessage(e) {
         e.messageType === g &&
-          (e.data.screenLockStatus === y
+          (e.data.screenLockStatus === m
             ? this.startLockTask(!1, e.data)
-            : e.data.screenLockStatus === m &&
+            : e.data.screenLockStatus === y &&
               (this.message || a.error(e, "解锁指令异常，不存在锁屏"),
               this.stopLockTask({
                 actionOperator: v,
                 operationLogId: e.data.operationLogId,
               }))),
-          e.messageType === w && u.share("screenLockSource", e.data);
+          e.messageType === w && l.share("screenLockSource", e.data);
       }
       startLockTask(e, t) {
         this.message ||
-          l.enQueue({
+          ((this.message = e
+            ? { operationLogId: "0", screenLockStatus: 1 }
+            : t),
+          u.enQueue({
             taskName: d.SCREENLOCK,
             taskDependencies: [d.LIVE, d.SCHOOLANNOUNCEMENT, d.SCREENSAVER],
             startTask: this.startLock,
@@ -2079,9 +2093,9 @@
             coutinueTask: this.startLock,
             forceCloseTaskList: [d.SCREENSAVER],
             error: () => {
-              l.outQueue(d.SCREENLOCK);
+              u.outQueue(d.SCREENLOCK);
             },
-          }),
+          })),
           (this.message = e ? { operationLogId: "0", screenLockStatus: 1 } : t),
           o({
             status: b,
@@ -2091,8 +2105,8 @@
       }
       stopLockTask(e) {
         p.delete("SCREEN_LOCK"),
-          u.share("SCREEN_LOCK_FEEDBACK", 0),
-          u.setData({ SCREEN_LOCK_ERROR_COUNT: 0 }),
+          l.share("SCREEN_LOCK_FEEDBACK", 0),
+          l.setData({ SCREEN_LOCK_ERROR_COUNT: 0 }),
           i({
             status: S,
             actionOperator: e.actionOperator,
@@ -2101,7 +2115,7 @@
           }),
           (this.message = null),
           this.closeWindow(),
-          l.outQueue(d.SCREENLOCK);
+          u.outQueue(d.SCREENLOCK);
       }
       userLock() {
         this.startLockTask(!0);
@@ -2110,48 +2124,55 @@
         this.stopLockTask({ actionOperator: e, operationLogId: "0" });
       }
       startLock() {
-        const { screen: e } = n(1);
+        const { screen: e } = n(0);
         let t = e.getAllDisplays();
-        a.info("锁屏任务开始", t), "win7" === u.getData("systemType") && h();
-        for (let e = 0; e < t.length; e++) {
-          let n = E(t[e].bounds.width);
-          u.share("setZoomFactor", n, "screenLock_" + e);
-          let o = s.addOne("screenLock", "screenLock_" + e);
-          this.windows.push("screenLock_" + e),
-            o.setBounds({
-              width: t[e].bounds.width,
-              height: t[e].bounds.height,
-              x: t[e].bounds.x,
-              y: t[e].bounds.y,
-            }),
-            o.on("close", () => {
-              a.error("screenLock_" + e + "窗口崩溃了"),
-                setTimeout(() => {
-                  this.closeWindow(), this.startLock();
-                }, 0);
-            }),
-            o.show();
+        a.info("锁屏任务开始", t), "win7" === l.getData("systemType") && h();
+        try {
+          for (let e = 0; e < t.length; e++) {
+            let n = _(t[e].bounds.width);
+            l.share("setZoomFactor", n, "screenLock_" + e);
+            let o = s.addOne("screenLock", "screenLock_" + e, {
+              mode: this.message.mode === E ? "admin" : "normal",
+            });
+            this.windows.push("screenLock_" + e),
+              o.setBounds({
+                width: t[e].bounds.width,
+                height: t[e].bounds.height,
+                x: t[e].bounds.x,
+                y: t[e].bounds.y,
+              }),
+              o.on("close", () => {
+                a.error("screenLock_" + e + "窗口崩溃了"),
+                  setTimeout(() => {
+                    this.closeWindow(), this.startLock();
+                  }, 0);
+              }),
+              o.show();
+          }
+          c.addListener(() => {
+            setTimeout(() => {
+              this.reSetLockWindow();
+            }, 1e3);
+          });
+        } catch (e) {
+          console.log("error", e);
         }
-        c.addListener(() => {
-          setTimeout(() => {
-            this.reSetLockWindow();
-          }, 1e3);
-        }),
-          r.SetKeyboardHook();
       }
       reSetLockWindow() {
-        const { screen: e } = n(1);
+        const { screen: e } = n(0);
         let t = e.getAllDisplays();
         if (this.message)
           for (let e = 0; e < t.length; e++) {
             let n = s.getInstance("screenLock_" + e),
-              o = E(t[e].bounds.width);
-            u.share("setZoomFactor", o, "screenLock_" + e),
+              o = _(t[e].bounds.width);
+            l.share("setZoomFactor", o, "screenLock_" + e),
               n &&
                 n.isDestroyed() &&
                 (s.clearInstance("screenLock_" + e), (n = null)),
               n ||
-                ((n = s.addOne("screenLock", "screenLock_" + e)),
+                ((n = s.addOne("screenLock", "screenLock_" + e, {
+                  mode: this.message.mode === E ? "admin" : "normal",
+                })),
                 this.windows.includes("screenLock_" + e) ||
                   this.windows.push("screenLock_" + e),
                 n.on("close", () => {
@@ -2172,15 +2193,15 @@
       closeWindow() {
         for (let e = 0; e < this.windows.length; e++)
           s.destroy(this.windows[e]);
-        "win7" === u.getData("systemType") && f(),
+        "win7" === l.getData("systemType") && f(),
           r.UnHookKeyBoard(),
           (this.windows = []);
       }
       serverDisconnect() {
-        l.outQueue(d.SCREENLOCK);
+        u.outQueue(d.SCREENLOCK);
       }
     })();
-    e.exports = _;
+    e.exports = T;
   },
   function (e, t, n) {
     "use strict";
@@ -2352,9 +2373,9 @@
     var r = n(85),
       a = n(88);
     i.inherits(d, r);
-    for (var c = o(a.prototype), u = 0; u < c.length; u++) {
-      var l = c[u];
-      d.prototype[l] || (d.prototype[l] = a.prototype[l]);
+    for (var c = o(a.prototype), l = 0; l < c.length; l++) {
+      var u = c[l];
+      d.prototype[u] || (d.prototype[u] = a.prototype[u]);
     }
     function d(e) {
       if (!(this instanceof d)) return new d(e);
@@ -2473,7 +2494,7 @@
       if ("function" != typeof s.inherits) throw "";
       e.exports = s.inherits;
     } catch (t) {
-      e.exports = n(158);
+      e.exports = n(159);
     }
   },
   function (e, t, n) {
@@ -2493,8 +2514,8 @@
         ),
         (t = a.coerceType(t)),
         (n = n.map(a.coerceType));
-      const u = s(t, n, c);
-      return o(u, e, t, n);
+      const l = s(t, n, c);
+      return o(l, e, t, n);
     };
   },
   function (e, t, n) {
@@ -2590,7 +2611,7 @@
     "use strict";
     const s = n(14),
       o = (n(15), n(10)("ffi:ffi")),
-      i = (n(94)(s), n(20));
+      i = (n(94)(s), n(21));
     [
       "FFI_TYPES",
       "FFI_OK",
@@ -2649,13 +2670,13 @@
       (t.version = i.version),
       (t.CIF = n(62)),
       (t.CIF_var = n(95)),
-      (t.Function = n(177)),
+      (t.Function = n(178)),
       (t.ForeignFunction = n(41)),
       (t.VariadicForeignFunction = n(98)),
       (t.DynamicLibrary = n(63)),
-      (t.Library = n(178)),
+      (t.Library = n(179)),
       (t.Callback = n(96)),
-      (t.errno = n(179)),
+      (t.errno = n(180)),
       (t.ffiType = n(47)),
       (t.LIB_EXT = t.Library.EXT),
       (t.FFI_TYPE = t.ffiType.FFI_TYPE);
@@ -2666,13 +2687,13 @@
       o = n(15),
       i = n(10)("ffi:types"),
       r = n(94)(s),
-      a = n(20),
-      c = (l.FFI_TYPE = r());
+      a = n(21),
+      c = (u.FFI_TYPE = r());
     c.defineProperty("size", s.types.size_t),
       c.defineProperty("alignment", s.types.ushort),
       c.defineProperty("type", s.types.ushort);
-    const u = s.refType(s.refType(c));
-    function l(e) {
+    const l = s.refType(s.refType(c));
+    function u(e) {
       let t;
       if (
         ((e = s.coerceType(e)),
@@ -2686,22 +2707,22 @@
         const o = e.fields,
           r = Object.keys(o),
           a = r.length;
-        let u = 0;
+        let l = 0;
         const d = new c();
         let h, f;
         (d.size = 0), (d.alignment = 0), (d.type = 13);
         for (let e = 0; e < a; e++)
           (h = o[r[e]]),
-            h.type.fixedLength > 0 ? (u += h.type.fixedLength) : (u += 1);
-        const p = s.sizeof.pointer * (u + 1),
+            h.type.fixedLength > 0 ? (l += h.type.fixedLength) : (l += 1);
+        const p = s.sizeof.pointer * (l + 1),
           g = (d.elements = Buffer.alloc(p));
         let w = 0;
         for (let e = 0; e < a; e++)
           if (((h = o[r[e]]), h.type.fixedLength > 0)) {
-            f = l(h.type.type);
+            f = u(h.type.type);
             for (var n = 0; n < h.type.fixedLength; n++)
               g.writePointer(f, w++ * s.sizeof.pointer);
-          } else (f = l(h.type)), g.writePointer(f, w++ * s.sizeof.pointer);
+          } else (f = u(h.type)), g.writePointer(f, w++ * s.sizeof.pointer);
         g.writePointer(s.NULL, w * s.sizeof.pointer),
           (t = e.ffi_type = d.ref());
       }
@@ -2723,12 +2744,12 @@
         t
       );
     }
-    c.defineProperty("elements", u),
+    c.defineProperty("elements", l),
       o.strictEqual(a.FFI_TYPE_SIZE, c.size),
-      (e.exports = l);
+      (e.exports = u);
   },
   function (e, t, n) {
-    const { app: s } = n(1),
+    const { app: s } = n(0),
       o = n(5),
       i = (n(7), n(12));
     const r = new (class {
@@ -2757,8 +2778,8 @@
         i.existsSync(a)
           ? (c = this.readFile(t))
           : i.existsSync(r) || this.mdkir(r);
-        let u = JSON.stringify(Object.assign(c, n));
-        i.writeFileSync(a, u);
+        let l = JSON.stringify(Object.assign(c, n));
+        i.writeFileSync(a, l);
       }
       readFile(e, t, n) {
         let s = o.resolve(this.getFilePath(n), e, t + ".txt");
@@ -2779,14 +2800,14 @@
     e.exports = require("http");
   },
   function (e, t, n) {
-    const { screen: s } = n(1),
+    const { screen: s } = n(0),
       o = n(3),
-      i = n(233),
-      r = n(25),
+      i = n(235),
+      r = n(24),
       a = n(2),
-      c = n(22),
-      u = n(18),
-      l = n(242),
+      c = n(23),
+      l = n(19),
+      u = n(244),
       d = n(5),
       h = d.resolve(
         process.env.ProgramData,
@@ -2840,7 +2861,7 @@
           o.checkWindowExist("desktopMinier")
             ? o.hide("desktopMinier")
             : o.checkWindowExist("desktopAssistant") &&
-              (o.hide("desktopAssistant"), u.hideSlot("desktopAssistant")),
+              (o.hide("desktopAssistant"), l.hideSlot("desktopAssistant")),
           a.setData({ desktopExist: !0 }),
           this.windowControl(!0),
           c.removeEvent("seewoDesktop"),
@@ -2861,9 +2882,9 @@
       }
       getSeewoDesktopSetting() {
         let e = {};
-        if (l.existsSync(h))
+        if (u.existsSync(h))
           try {
-            e = JSON.parse(l.readFileSync(h));
+            e = JSON.parse(u.readFileSync(h));
           } catch (t) {
             e = {};
           }
@@ -2872,20 +2893,20 @@
       setSeewoDesktopSetting(e) {
         let t = this.getSeewoDesktopSetting(),
           n = Object.assign({}, t, e);
-        l.writeFileSync(h, JSON.stringify(n));
+        u.writeFileSync(h, JSON.stringify(n));
       }
     })();
     e.exports = f;
   },
   function (e, t, n) {
     "use strict";
-    const s = n(237),
+    const s = n(239),
       o = n(84),
       i = n(67),
       { kStatusCode: r, NOOP: a } = n(37),
       c = Buffer.from([0, 0, 255, 255]),
-      u = Buffer.from([0]),
-      l = Symbol("permessage-deflate"),
+      l = Buffer.from([0]),
+      u = Symbol("permessage-deflate"),
       d = Symbol("total-length"),
       h = Symbol("callback"),
       f = Symbol("buffers"),
@@ -2894,17 +2915,17 @@
     function w(e) {
       this[f].push(e), (this[d] += e.length);
     }
-    function y(e) {
+    function m(e) {
       (this[d] += e.length),
-        this[l]._maxPayload < 1 || this[d] <= this[l]._maxPayload
+        this[u]._maxPayload < 1 || this[d] <= this[u]._maxPayload
           ? this[f].push(e)
           : ((this[p] = new RangeError("Max payload size exceeded")),
             (this[p][r] = 1009),
-            this.removeListener("data", y),
+            this.removeListener("data", m),
             this.reset());
     }
-    function m(e) {
-      (this[l]._inflate = null), (e[r] = 1007), this[h](e);
+    function y(e) {
+      (this[u]._inflate = null), (e[r] = 1007), this[h](e);
     }
     e.exports = class {
       constructor(e, t, n) {
@@ -3082,11 +3103,11 @@
               windowBits: t,
             })
           )),
-            (this._inflate[l] = this),
+            (this._inflate[u] = this),
             (this._inflate[d] = 0),
             (this._inflate[f] = []),
-            this._inflate.on("error", m),
-            this._inflate.on("data", y);
+            this._inflate.on("error", y),
+            this._inflate.on("data", m);
         }
         (this._inflate[h] = n),
           this._inflate.write(e),
@@ -3103,7 +3124,7 @@
           });
       }
       _compress(e, t, n) {
-        if (!e || 0 === e.length) return void process.nextTick(n, null, u);
+        if (!e || 0 === e.length) return void process.nextTick(n, null, l);
         const s = this._isServer ? "server" : "client";
         if (!this._deflate) {
           const e = s + "_max_window_bits",
@@ -3228,7 +3249,7 @@
       r = n(108)("10.5.0"),
       a = (e) => (r ? s.stat(e, { bigint: !0 }) : s.stat(e)),
       c = (e) => (r ? s.statSync(e, { bigint: !0 }) : s.statSync(e));
-    function u(e, t) {
+    function l(e, t) {
       return Promise.all([
         a(e),
         a(t).catch((e) => {
@@ -3237,7 +3258,7 @@
         }),
       ]).then(([e, t]) => ({ srcStat: e, destStat: t }));
     }
-    function l(e, t) {
+    function u(e, t) {
       if (t.ino && t.dev && t.ino === e.ino && t.dev === e.dev) {
         if (r || t.ino < Number.MAX_SAFE_INTEGER) return !0;
         if (
@@ -3269,10 +3290,10 @@
     }
     e.exports = {
       checkPaths: function (e, t, n, s) {
-        i.callbackify(u)(e, t, (o, i) => {
+        i.callbackify(l)(e, t, (o, i) => {
           if (o) return s(o);
           const { srcStat: r, destStat: a } = i;
-          return a && l(r, a)
+          return a && u(r, a)
             ? s(new Error("Source and destination must not be the same."))
             : r.isDirectory() && d(e, t)
             ? s(new Error(h(e, t, n)))
@@ -3291,21 +3312,21 @@
           }
           return { srcStat: s, destStat: n };
         })(e, t);
-        if (o && l(s, o))
+        if (o && u(s, o))
           throw new Error("Source and destination must not be the same.");
         if (s.isDirectory() && d(e, t)) throw new Error(h(e, t, n));
         return { srcStat: s, destStat: o };
       },
       checkParentPaths: function e(t, n, i, a, c) {
-        const u = o.resolve(o.dirname(t)),
+        const l = o.resolve(o.dirname(t)),
           d = o.resolve(o.dirname(i));
-        if (d === u || d === o.parse(d).root) return c();
+        if (d === l || d === o.parse(d).root) return c();
         const f = (s, o) =>
           s
             ? "ENOENT" === s.code
               ? c()
               : c(s)
-            : l(n, o)
+            : u(n, o)
             ? c(new Error(h(t, i, a)))
             : e(t, n, d, a, c);
         r ? s.stat(d, { bigint: !0 }, f) : s.stat(d, f);
@@ -3314,14 +3335,14 @@
         const r = o.resolve(o.dirname(t)),
           a = o.resolve(o.dirname(s));
         if (a === r || a === o.parse(a).root) return;
-        let u;
+        let l;
         try {
-          u = c(a);
+          l = c(a);
         } catch (e) {
           if ("ENOENT" === e.code) return;
           throw e;
         }
-        if (l(n, u)) throw new Error(h(t, s, i));
+        if (u(n, l)) throw new Error(h(t, s, i));
         return e(t, n, a, i);
       },
       isSrcSubdir: d,
@@ -3330,12 +3351,12 @@
   function (e, t, n) {
     "use strict";
     const s = n(17).fromCallback,
-      o = n(251);
+      o = n(253);
     e.exports = { remove: s(o), removeSync: o.sync };
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function () {
@@ -3357,7 +3378,7 @@
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function () {
@@ -3379,7 +3400,7 @@
   },
   function (e, t, n) {
     const s = n(3),
-      { screen: o } = n(1),
+      { screen: o } = n(0),
       i = n(2),
       r = n(4);
     const a = new (class {
@@ -3392,14 +3413,14 @@
         let r = s.addOne("deviceLink", t, { ...e, windowId: t }),
           a = 1080 / n.height,
           c = Math.ceil(n.height - 456 / a),
-          u = Math.ceil(454 / a);
+          l = Math.ceil(454 / a);
         i.share("setZoomFactor", 1 / a, t),
           r &&
             !r.isDestroyed() &&
             ((this.windowList[t] = r),
             r.setBounds({
               width: Math.ceil(364 / a),
-              height: u,
+              height: l,
               x: Math.ceil(n.width - 366 / a),
               y: c,
             }),
@@ -3424,14 +3445,14 @@
     e.exports = a;
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(0),
+    const s = n(18),
+      o = n(1),
       i = n(6),
       r = n(4),
-      a = (n(131), n(3)),
+      a = (n(132), n(3)),
       c = n(12),
-      u = n(5),
-      l = n(2),
+      l = n(5),
+      u = n(2),
       d = n(57),
       h = {
         PEN_INSERT: 1,
@@ -3444,8 +3465,8 @@
       p = 1002,
       g = 1005,
       w = 1006,
-      y = "/sp20e/pairingError",
-      m = u.resolve(
+      m = "/sp20e/pairingError",
+      y = l.resolve(
         process.env.ProgramData,
         "Seewo",
         "SeewoServiceAssistant",
@@ -3459,10 +3480,10 @@
           (this.buttons = {}),
           (this.type =
             (() => {
-              if (c.existsSync(m)) {
+              if (c.existsSync(y)) {
                 let e;
                 try {
-                  e = JSON.parse(c.readFileSync(m)).oldPenType;
+                  e = JSON.parse(c.readFileSync(y)).oldPenType;
                 } catch (t) {
                   e = null;
                 }
@@ -3499,7 +3520,7 @@
             [h.PEN_BROKEN, h.MATCH_SUCCESS].indexOf(this.linkState),
             t.data.state === h.MATCH_SUCCESS &&
               (n = t.data.type) &&
-              c.writeFileSync(m, JSON.stringify({ oldPenType: n }), "utf8");
+              c.writeFileSync(y, JSON.stringify({ oldPenType: n }), "utf8");
         }
         var n;
         if (
@@ -3508,18 +3529,18 @@
             this.sendDataToWindow("smartPenKeyState", this.buttons)),
           t.messageType === g &&
             ((this.cursorData = t.data),
-            l.share("CURSOR_DATA", t.data, "assistant")),
+            u.share("CURSOR_DATA", t.data, "assistant")),
           t.messageType === w)
         )
           if (t.data.show) {
             this.cursorShow = !0;
             let e = a.newOne("smartPenCursor");
-            l.setData({ cursorSize: this.cursorData.cursorSize + 16 }),
+            u.setData({ cursorSize: this.cursorData.cursorSize + 16 }),
               setTimeout(() => {
                 e.show();
               }, 20);
           } else (this.cursorShow = !1), a.close("smartPenCursor");
-        if (t.url === y) {
+        if (t.url === m) {
           let e = "SP20E_MATCH_FAIL";
           d.checkWindowExist(e)
             ? d.addWaitWindow(e, {
@@ -3546,8 +3567,8 @@
           ((this.cursorData = Object.assign({}, this.cursorData, {
             cursorSize: e,
           })),
-          l.share("CURSOR_DATA", this.cursorData, "assistant")),
-          l.setData({ cursorSize: e + 16 });
+          u.share("CURSOR_DATA", this.cursorData, "assistant")),
+          u.setData({ cursorSize: e + 16 });
       }
       onDisconnectMessage() {
         this.cursorShow && ((this.cursorShow = !1), a.close("smartPenCursor"));
@@ -3571,12 +3592,12 @@
   function (e, t, n) {
     const s = n(2),
       o = n(7),
-      i = n(341),
+      i = n(342),
       r = n(3),
       a = n(28),
       c = "/message/user/login/info",
-      u = "login",
-      l = "logout";
+      l = "login",
+      u = "logout";
     const d = new (class {
       constructor() {
         (this.message = {}),
@@ -3585,10 +3606,10 @@
       }
       onMessage(e) {
         e.url === c &&
-          (e.data.operation === u &&
+          (e.data.operation === l &&
             ((this.message = e.data),
             r.checkWindowExist("login") && r.close("login")),
-          e.data.operation === l &&
+          e.data.operation === u &&
             ((this.message = null), a.delete("user-login")),
           s.share("userInfo", this.message));
       }
@@ -3611,12 +3632,12 @@
           a.add("user-login", "* * * * * *", 3e3, (e) => {
             0 === e && this.handleLogout();
           }),
-          this.handlePostLoginMessage(u),
+          this.handlePostLoginMessage(l),
           s.share("userInfo", this.message);
       }
       handleLogout() {
         a.delete("user-login"),
-          this.handlePostLoginMessage(l),
+          this.handlePostLoginMessage(u),
           (this.message = null),
           s.share("userInfo", this.message);
       }
@@ -3627,12 +3648,12 @@
     const s = n(10)("log4js:clustering"),
       o = n(81),
       i = n(34),
-      r = n(148),
+      r = n(149),
       a = [];
     let c = !1,
-      u = !1,
-      l = "NODE_APP_INSTANCE";
-    const d = () => u && "0" === process.env[l],
+      l = !1,
+      u = "NODE_APP_INSTANCE";
+    const d = () => l && "0" === process.env[u],
       h = () => c || r.isMaster || d(),
       f = (e) => {
         a.forEach((t) => t(e));
@@ -3651,14 +3672,14 @@
     i.addListener((e) => {
       (a.length = 0),
         (c = e.disableClustering),
-        (u = e.pm2),
-        (l = e.pm2InstanceVar || "NODE_APP_INSTANCE"),
+        (l = e.pm2),
+        (u = e.pm2InstanceVar || "NODE_APP_INSTANCE"),
         s("clustering disabled ? " + c),
         s("cluster.isMaster ? " + r.isMaster),
-        s("pm2 enabled ? " + u),
-        s("pm2InstanceVar = " + l),
-        s(`process.env[${l}] = ${process.env[l]}`),
-        u && process.removeListener("message", p),
+        s("pm2 enabled ? " + l),
+        s("pm2InstanceVar = " + u),
+        s(`process.env[${u}] = ${process.env[u]}`),
+        l && process.removeListener("message", p),
         r.removeListener && r.removeListener("message", p),
         e.disableClustering
           ? s(
@@ -3679,7 +3700,7 @@
         send: (e) => {
           h()
             ? f(e)
-            : (u ||
+            : (l ||
                 (e.cluster = { workerId: r.worker.id, worker: process.pid }),
               process.send({ topic: "log4js:message", data: e.serialise() }));
         },
@@ -3697,10 +3718,10 @@
     const o = n(15),
       i = n(10)("ffi:cif"),
       r = n(14),
-      a = n(20),
+      a = n(21),
       c = r.sizeof.pointer,
-      u = a.ffi_prep_cif,
-      l = a.FFI_CIF_SIZE,
+      l = a.ffi_prep_cif,
+      u = a.FFI_CIF_SIZE,
       d = a.FFI_DEFAULT_ABI,
       h = a.FFI_OK,
       f = a.FFI_BAD_TYPEDEF,
@@ -3713,20 +3734,20 @@
           Array.isArray(t),
           'expected an Array of arg "type" objects as the second argument'
         );
-      const r = Buffer.alloc(l),
+      const r = Buffer.alloc(u),
         a = t.length,
         w = Buffer.alloc(a * c),
-        y = s(e);
-      for (var m = 0; m < a; m++) {
-        const e = t[m],
+        m = s(e);
+      for (var y = 0; y < a; y++) {
+        const e = t[y],
           n = s(e);
-        w.writePointer(n, m * c);
+        w.writePointer(n, y * c);
       }
-      (r.rtnTypePtr = y),
+      (r.rtnTypePtr = m),
         (r.argTypesPtr = w),
         void 0 === n &&
           (i("no ABI specified (this is OK), using FFI_DEFAULT_ABI"), (n = d));
-      const b = u(r, a, y, w, n);
+      const b = l(r, a, m, w, n);
       if (b !== h)
         switch (b) {
           case f: {
@@ -3752,14 +3773,14 @@
     const s = n(41),
       o = n(15),
       i = n(10)("ffi:DynamicLibrary"),
-      r = n(20),
+      r = n(21),
       a = r.StaticFunctions,
       c = n(14),
-      u = n(12).readFileSync,
-      l = c.types.int,
+      l = n(12).readFileSync,
+      u = c.types.int,
       d = c.refType(c.types.void),
-      h = s(a.dlopen, d, ["string", l]),
-      f = s(a.dlclose, l, [d]),
+      h = s(a.dlopen, d, ["string", u]),
+      f = s(a.dlclose, u, [d]),
       p = s(a.dlsym, d, [d, "string"]),
       g = s(a.dlerror, "string", []);
     function w(e, t) {
@@ -3777,7 +3798,7 @@
         var n = this.error();
         let e;
         if ((e = n.match(/^(([^ \t()])+\.so([^ \t:()])*):([ \t])*/))) {
-          if ((e = u(e[1], "ascii").match(/GROUP *\( *(([^ )])+)/)))
+          if ((e = l(e[1], "ascii").match(/GROUP *\( *(([^ )])+)/)))
             return w.call(this, e[1], t);
         }
         throw new Error("Dynamic Linking Error: " + n);
@@ -3809,7 +3830,7 @@
   },
   function (e) {
     e.exports = JSON.parse(
-      '{"name":"SeewoServiceAssistant","version":"1.5.0","private":true,"dependencies":{"ffi-napi":"^2.5.0","follow-redirects":"^1.7.0","fs-extra":"^9.0.1","log4js":"^3.0.5","md5":"^2.2.1","node-cron":"^2.0.3","ref-napi":"^1.5.2","unzip2":"^0.2.5","util":"^0.11.0","ws":"^6.1.0"},"main":"main.js","author":"广州视睿电子科技有限公司 (Guangzhou Shirui Electronics Co.,Ltd)","config":{"arch":"ia32"},"scripts":{"start":"electron .","test:pro":"electron ../dist/main.js","rebuild":"electron-rebuild --arch=ia32","pack":"empack"},"devDependencies":{"@cvte/electron-main-pack":"^2.0.1","electron":"^9.3.3","electron-rebuild":"^2.2.0"}}'
+      '{"name":"SeewoServiceAssistant","version":"1.5.1","private":true,"dependencies":{"ffi-napi":"^2.5.0","follow-redirects":"^1.7.0","fs-extra":"^9.0.1","log4js":"^3.0.5","md5":"^2.2.1","node-cron":"^2.0.3","ref-napi":"^1.5.2","unzip2":"^0.2.5","util":"^0.11.0","ws":"^6.1.0"},"main":"main.js","author":"广州视睿电子科技有限公司 (Guangzhou Shirui Electronics Co.,Ltd)","config":{"arch":"ia32"},"scripts":{"start":"electron .","test:pro":"electron ../dist/main.js","rebuild":"electron-rebuild --arch=ia32","pack":"empack"},"devDependencies":{"@cvte/electron-main-pack":"^2.0.1","electron":"^9.3.3","electron-rebuild":"^2.2.0"}}'
     );
   },
   function (e, t) {
@@ -3860,7 +3881,7 @@
       var t;
     }
     try {
-      const t = n(238),
+      const t = n(240),
         s = t.BufferUtil || t;
       e.exports = {
         concat: o,
@@ -3905,7 +3926,7 @@
     const s = n(17).fromCallback,
       o = n(16),
       i = n(5),
-      r = n(21),
+      r = n(22),
       a = n(30).pathExists;
     e.exports = {
       outputFile: s(function (e, t, n, s) {
@@ -3931,13 +3952,13 @@
   },
   function (e, t, n) {
     const s = n(2),
-      o = n(26),
+      o = n(20),
       i = n(3),
       r = n(32),
       a = n(31),
       c = n(33),
-      u = n(55),
-      l = n(56),
+      l = n(55),
+      u = n(56),
       d = n(71),
       h = n(72),
       f = {
@@ -3950,7 +3971,7 @@
       p = "/propaganda/cancel",
       g = "/propaganda/auth",
       w = 1;
-    const y = new (class {
+    const m = new (class {
       constructor() {
         (this.propagandaList = []),
           (this.start = !1),
@@ -4022,7 +4043,7 @@
         return (
           !!this.propagandaList.length &&
           (o.newWindow("uipsShowWindow"),
-          "win7" === s.getData("systemType") && u(),
+          "win7" === s.getData("systemType") && l(),
           setTimeout(() => {
             s.share("uipsTaskData", this.propagandaList);
           }, 0),
@@ -4048,7 +4069,7 @@
       }
       pauseTask() {
         o.closeWindow("uipsShowWindow"),
-          "win7" === s.getData("systemType") && l();
+          "win7" === s.getData("systemType") && u();
       }
       closeTask() {
         (this.start = !1),
@@ -4056,11 +4077,11 @@
           r.outQueue(a.SCHOOLANNOUNCEMENT),
           o.closeWindow("uipsShowWindow"),
           i.checkWindowExist("uipsMinier") && i.close("uipsMinier"),
-          "win7" === s.getData("systemType") && l(),
+          "win7" === s.getData("systemType") && u(),
           s.share("uipsTaskData", this.propagandaList);
       }
     })();
-    e.exports = y;
+    e.exports = m;
   },
   function (e, t, n) {
     const s = n(3);
@@ -4090,7 +4111,7 @@
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -4111,7 +4132,7 @@
   function (e, t, n) {
     const s = n(2),
       o = n(4),
-      i = n(26),
+      i = n(20),
       r = n(71),
       a = {
         SCAN_PROCESS: "/scanProcess",
@@ -4125,7 +4146,7 @@
         SYSTEM_CLEAN_NOTICE: "/systemDisk/clean/status",
         SYSTEM_MOVING_NOTICE: "/userProfile/moving/status",
       };
-    const u = new (class {
+    const l = new (class {
       constructor() {
         (this.messageList = {}),
           (this.windows = {
@@ -4174,11 +4195,11 @@
           o("adminWebsocketState", e, "assistant");
       }
     })();
-    e.exports = u;
+    e.exports = l;
   },
   function (e, t, n) {
-    const s = n(344),
-      o = n(345),
+    const s = n(345),
+      o = n(346),
       i = n(4),
       r = { width: 448, height: 158, position: { right: 0, bottom: 36 } },
       a = { width: 400, height: 110, position: { right: 24, bottom: 60 } };
@@ -4212,23 +4233,16 @@
         "/eye_protection/timer/created" === e.url && this.closeModal(),
           "/eye_protection/timer/resumed" === e.url && this.closeModal(),
           "/eye_protection/timer/paused" === e.url && this.closeModal(),
-          "/eye_protection/timer/aborted" === e.url &&
-            (console.log(
-              "response-timeout-modal ----- /eye_protection/timer/aborted",
-              e
-            ),
-            this.closeModal());
+          "/eye_protection/timer/aborted" === e.url && this.closeModal();
       }
       getData() {
         return this.data;
       }
       postTimerFinishing(e) {
-        console.log("eyeProtectionModeTimeOutController-finish", e),
-          s(e),
-          this.closeModal();
+        s(e), this.closeModal();
       }
       startPopups(e) {
-        const { systemPreferences: t } = n(1);
+        const { systemPreferences: t } = n(0);
         let s = t.isAeroGlassEnabled();
         o.newWindow("eyeProtectionModeTimeOut", s ? r : a, !1), (this.data = e);
       }
@@ -4239,22 +4253,22 @@
     e.exports = c;
   },
   function (e, t, n) {
-    const s = n(352),
+    const s = n(353),
       o = n(2),
       i = n(33),
-      r = n(26),
+      r = n(20),
       a = n(32),
       c = n(31),
-      u = n(7),
-      l = n(1).systemPreferences,
+      l = n(7),
+      u = n(0).systemPreferences,
       d = n(55),
       h = n(56),
       f = n(28),
-      p = n(135),
+      p = n(136),
       g = n(3),
-      w = n(0),
-      y = n(12),
-      m = n(5),
+      w = n(1),
+      m = n(12),
+      y = n(5),
       b = "/newsBroadcast/play",
       S = "/newsBroadcast/cancel",
       v = "/newsBroadcast/auth",
@@ -4268,8 +4282,8 @@
       constructor() {
         (this.message = null),
           (this.needCheck = !0),
-          (this.playerScript = y.readFileSync(
-            m.join(w.jsRoot, "/newsPlayerScript.js"),
+          (this.playerScript = m.readFileSync(
+            y.join(w.jsRoot, "/newsPlayerScript.js"),
             "utf-8"
           )),
           (this.childrenWindows = []),
@@ -4319,7 +4333,7 @@
               0 === s ? { url: e.content[0].link } : {}
             );
             d.setBounds({ width: i, height: r, x: a, y: c });
-            let h = l.isAeroGlassEnabled();
+            let h = u.isAeroGlassEnabled();
             ("win7" !== o.getData("systemType") || h) &&
               d.setIgnoreMouseEvents(!0),
               0 === s &&
@@ -4329,7 +4343,7 @@
                       .executeJavaScript(e.playScript || this.playerScript, !0)
                       .then((e) => {})
                       .catch((e) => {
-                        u.info("执行播放脚本失败", e);
+                        l.info("执行播放脚本失败", e);
                       });
                     const t = setInterval(() => {
                       d.isDestroyed()
@@ -4338,7 +4352,7 @@
                             .executeJavaScript("", !0)
                             .then((e) => {})
                             .catch((e) => {
-                              u.info("执行播放脚本失败", e);
+                              l.info("执行播放脚本失败", e);
                             });
                     }, 1e3);
                     "win7" !== o.getData("systemType") ||
@@ -4350,7 +4364,7 @@
                   });
                 }),
                 d.webContents.on("did-fail-load", (t, n, s) => {
-                  u.info("网页加载失败:", n, s, e.content[0].link),
+                  l.info("网页加载失败:", n, s, e.content[0].link),
                     this.closeTask(k);
                 }),
                 (n = d.getMediaSourceId())),
@@ -4379,7 +4393,7 @@
           "win7" === o.getData("systemType") && d(),
           (!e.playCount || isNaN(e.playCount) || e.playCount <= 0) &&
             (this.timeout = setTimeout(() => {
-              u.info("时事转播到时"), this.closeTask();
+              l.info("时事转播到时"), this.closeTask();
             }, 1e3 * (e.duration + 2)));
       }
       pauseAnnouncement() {
@@ -4451,8 +4465,8 @@
             return n;
           })),
             t.formatArgs.call(e, r);
-          var u = s.log || t.log || console.log.bind(console);
-          u.apply(e, r);
+          var l = s.log || t.log || console.log.bind(console);
+          l.apply(e, r);
         }
       }
       return (
@@ -4505,7 +4519,7 @@
           if (t.names[n].test(e)) return !0;
         return !1;
       }),
-      (t.humanize = n(142)),
+      (t.humanize = n(143)),
       (t.instances = []),
       (t.names = []),
       (t.skips = []),
@@ -4517,7 +4531,7 @@
   function (e, t, n) {
     "use strict";
     const s = n(79),
-      o = n(27),
+      o = n(25),
       i = n(13),
       r = o.EOL || "\n",
       a = {
@@ -4538,10 +4552,10 @@
     function c(e) {
       return e ? `[${a[e][0]}m` : "";
     }
-    function u(e) {
+    function l(e) {
       return e ? `[${a[e][1]}m` : "";
     }
-    function l(e, t, n) {
+    function u(e, t, n) {
       return (
         (o = i.format(
           "[%s] [%s] %s - ",
@@ -4549,15 +4563,15 @@
           e.level,
           e.categoryName
         )),
-        c((r = t)) + o + u(r)
+        c((r = t)) + o + l(r)
       );
       var o, r;
     }
     function d(e, t) {
-      return l(e, void 0, t) + i.format(...e.data);
+      return u(e, void 0, t) + i.format(...e.data);
     }
     function h(e, t) {
-      return l(e, e.level.colour, t) + i.format(...e.data);
+      return u(e, e.level.colour, t) + i.format(...e.data);
     }
     function f(e) {
       return i.format(...e.data);
@@ -4568,7 +4582,7 @@
     function g(e, t, n) {
       const a =
         /%(-?[0-9]+)?(\.?[0-9]+)?([[\]cdhmnprzxXy%])(\{([^}]+)\})?|([^%]+)/;
-      function l(e) {
+      function u(e) {
         return e && e.pid ? e.pid.toString() : process.pid.toString();
       }
       e = e || "%r %p %c - %m%n";
@@ -4616,12 +4630,12 @@
           return c(e.level.colour);
         },
         "]": function (e) {
-          return u(e.level.colour);
+          return l(e.level.colour);
         },
         y: function () {
-          return l();
+          return u();
         },
-        z: l,
+        z: u,
         "%": function () {
           return "%";
         },
@@ -4730,8 +4744,8 @@
       var r = o(n.getUTCDate()),
         a = o(n.getUTCMonth() + 1),
         c = o(n.getUTCFullYear()),
-        u = o(n.getUTCFullYear().toString().substring(2, 4)),
-        l = t.indexOf("yyyy") > -1 ? c : u,
+        l = o(n.getUTCFullYear().toString().substring(2, 4)),
+        u = t.indexOf("yyyy") > -1 ? c : l,
         d = o(n.getUTCHours()),
         h = o(n.getUTCMinutes()),
         f = o(n.getUTCSeconds()),
@@ -4751,7 +4765,7 @@
         t
           .replace(/dd/g, r)
           .replace(/MM/g, a)
-          .replace(/y{1,4}/g, l)
+          .replace(/y{1,4}/g, u)
           .replace(/hh/g, d)
           .replace(/mm/g, h)
           .replace(/ss/g, f)
@@ -4773,18 +4787,18 @@
       r = n(60),
       a = n(35),
       c = n(78),
-      u = n(149),
-      l = new Map();
-    l.set("console", n(150)),
-      l.set("stdout", n(151)),
-      l.set("stderr", n(152)),
-      l.set("file", n(153)),
-      l.set("dateFile", n(163));
+      l = n(150),
+      u = new Map();
+    u.set("console", n(151)),
+      u.set("stdout", n(152)),
+      u.set("stderr", n(153)),
+      u.set("file", n(154)),
+      u.set("dateFile", n(164));
     const d = new Map(),
       h = (e, t) => {
         o("Loading module from ", e);
         try {
-          return n(164)(e);
+          return n(165)(e);
         } catch (n) {
           return void i.throwExceptionIf(
             t,
@@ -4796,7 +4810,7 @@
       f = (e, t) => {
         const f = t.appenders[e],
           p = ((e, t) =>
-            l.get(e) ||
+            u.get(e) ||
             h("./" + e, t) ||
             h(e, t) ||
             (n.c[n.s] && h(s.join(s.dirname(n.c[n.s].filename), e), t)) ||
@@ -4816,7 +4830,7 @@
           r.onlyOnMaster(
             () => (
               o(`calling appenderModule.configure for ${e} / ${f.type}`),
-              p.configure(u.modifyConfig(f), c, (e) => d.get(e), a)
+              p.configure(l.modifyConfig(f), c, (e) => d.get(e), a)
             ),
             () => {}
           )
@@ -4853,7 +4867,7 @@
       (e.exports = d);
   },
   function (e, t, n) {
-    const s = n(147),
+    const s = n(148),
       o = n(35);
     class i {
       constructor(e, t, n, s) {
@@ -4914,18 +4928,18 @@
   },
   function (e, t, n) {
     "use strict";
-    (t.RollingFileStream = n(154)), (t.DateRollingFileStream = n(162));
+    (t.RollingFileStream = n(155)), (t.DateRollingFileStream = n(163));
   },
   function (e, t, n) {
     "use strict";
     var s = n(12),
       o = n(84),
       i = n(10)("streamroller:BaseRollingFileStream"),
-      r = n(155),
+      r = n(156),
       a = n(5),
       c = n(13),
-      u = n(156);
-    function l(e, t) {
+      l = n(157);
+    function u(e, t) {
       i("In BaseRollingFileStream"),
         (this.filename = e),
         (this.options = t || {}),
@@ -4937,7 +4951,7 @@
           if (!e) throw new Error("You must specify a filename");
         })(),
         i("Calling BaseRollingFileStream.super"),
-        l.super_.call(this),
+        u.super_.call(this),
         this.openTheStream(),
         (this.currentSize = (function (e) {
           var t = 0;
@@ -4947,9 +4961,9 @@
           return t;
         })(this.filename));
     }
-    (e.exports = l),
-      c.inherits(l, u.Writable),
-      (l.prototype._writeTheChunk = function (e, t, n) {
+    (e.exports = u),
+      c.inherits(u, l.Writable),
+      (u.prototype._writeTheChunk = function (e, t, n) {
         i("writing the chunk to the underlying stream"),
           (this.currentSize += e.length);
         try {
@@ -4961,14 +4975,14 @@
           i(e), n && n(e);
         }
       }),
-      (l.prototype._write = function (e, t, n) {
+      (u.prototype._write = function (e, t, n) {
         i("in _write"),
           this.shouldRoll()
             ? ((this.currentSize = 0),
               this.roll(this.filename, this._writeTheChunk.bind(this, e, t, n)))
             : this._writeTheChunk(e, t, n);
       }),
-      (l.prototype.openTheStream = function (e) {
+      (u.prototype.openTheStream = function (e) {
         i("opening the underlying stream");
         var t = this;
         r.sync(a.dirname(this.filename)),
@@ -4978,10 +4992,10 @@
           }),
           e && this.theStream.on("open", e);
       }),
-      (l.prototype.closeTheStream = function (e) {
+      (u.prototype.closeTheStream = function (e) {
         i("closing the underlying stream"), this.theStream.end(e);
       }),
-      (l.prototype.compress = function (e, t) {
+      (u.prototype.compress = function (e, t) {
         i("Compressing ", e, " -> ", e, ".gz");
         var n = o.createGzip(),
           r = s.createReadStream(e),
@@ -4991,16 +5005,16 @@
             i("Removing original ", e), s.unlink(e, t);
           });
       }),
-      (l.prototype.shouldRoll = function () {
+      (u.prototype.shouldRoll = function () {
         return !1;
       }),
-      (l.prototype.roll = function (e, t) {
+      (u.prototype.roll = function (e, t) {
         t();
       }),
-      (l.prototype.end = function (e, t, n) {
+      (u.prototype.end = function (e, t, n) {
         var s = this;
         i("end called - first close myself"),
-          u.Writable.prototype.end.call(s, function () {
+          l.Writable.prototype.end.call(s, function () {
             i("writable end callback, now close underlying stream"),
               s.theStream.end(e, t, function (e) {
                 i("underlying stream closed"), n && n(e);
@@ -5014,17 +5028,17 @@
   function (e, t, n) {
     "use strict";
     var s = n(42);
-    e.exports = m;
+    e.exports = y;
     var o,
-      i = n(157);
-    m.ReadableState = y;
+      i = n(158);
+    y.ReadableState = m;
     n(43).EventEmitter;
     var r = function (e, t) {
         return e.listeners(t).length;
       },
       a = n(86),
       c = n(44).Buffer,
-      u =
+      l =
         ("undefined" != typeof global
           ? global
           : "undefined" != typeof window
@@ -5033,17 +5047,17 @@
           ? self
           : {}
         ).Uint8Array || function () {};
-    var l = Object.create(n(39));
-    l.inherits = n(40);
+    var u = Object.create(n(39));
+    u.inherits = n(40);
     var d = n(13),
       h = void 0;
     h = d && d.debuglog ? d.debuglog("stream") : function () {};
     var f,
-      p = n(159),
+      p = n(160),
       g = n(87);
-    l.inherits(m, a);
+    u.inherits(y, a);
     var w = ["error", "close", "destroy", "pause", "resume"];
-    function y(e, t) {
+    function m(e, t) {
       e = e || {};
       var s = t instanceof (o = o || n(36));
       (this.objectMode = !!e.objectMode),
@@ -5077,9 +5091,9 @@
           (this.decoder = new f(e.encoding)),
           (this.encoding = e.encoding));
     }
-    function m(e) {
-      if (((o = o || n(36)), !(this instanceof m))) return new m(e);
-      (this._readableState = new y(e, this)),
+    function y(e) {
+      if (((o = o || n(36)), !(this instanceof y))) return new y(e);
+      (this._readableState = new m(e, this)),
         (this.readable = !0),
         e &&
           ("function" == typeof e.read && (this._read = e.read),
@@ -5106,7 +5120,7 @@
               var n;
               (s = t),
                 c.isBuffer(s) ||
-                  s instanceof u ||
+                  s instanceof l ||
                   "string" == typeof t ||
                   void 0 === t ||
                   e.objectMode ||
@@ -5153,7 +5167,7 @@
           t.needReadable && E(e)),
         T(e, t);
     }
-    Object.defineProperty(m.prototype, "destroyed", {
+    Object.defineProperty(y.prototype, "destroyed", {
       get: function () {
         return void 0 !== this._readableState && this._readableState.destroyed;
       },
@@ -5161,12 +5175,12 @@
         this._readableState && (this._readableState.destroyed = e);
       },
     }),
-      (m.prototype.destroy = g.destroy),
-      (m.prototype._undestroy = g.undestroy),
-      (m.prototype._destroy = function (e, t) {
+      (y.prototype.destroy = g.destroy),
+      (y.prototype._undestroy = g.undestroy),
+      (y.prototype._destroy = function (e, t) {
         this.push(null), t(e);
       }),
-      (m.prototype.push = function (e, t) {
+      (y.prototype.push = function (e, t) {
         var n,
           s = this._readableState;
         return (
@@ -5179,13 +5193,13 @@
           b(this, e, t, !1, n)
         );
       }),
-      (m.prototype.unshift = function (e) {
+      (y.prototype.unshift = function (e) {
         return b(this, e, null, !0, !1);
       }),
-      (m.prototype.isPaused = function () {
+      (y.prototype.isPaused = function () {
         return !1 === this._readableState.flowing;
       }),
-      (m.prototype.setEncoding = function (e) {
+      (y.prototype.setEncoding = function (e) {
         return (
           f || (f = n(89).StringDecoder),
           (this._readableState.decoder = new f(e)),
@@ -5351,7 +5365,7 @@
       for (var n = 0, s = e.length; n < s; n++) if (e[n] === t) return n;
       return -1;
     }
-    (m.prototype.read = function (e) {
+    (y.prototype.read = function (e) {
       h("read", e), (e = parseInt(e, 10));
       var t = this._readableState,
         n = e;
@@ -5391,10 +5405,10 @@
         s
       );
     }),
-      (m.prototype._read = function (e) {
+      (y.prototype._read = function (e) {
         this.emit("error", new Error("_read() is not implemented"));
       }),
-      (m.prototype.pipe = function (e, t) {
+      (y.prototype.pipe = function (e, t) {
         var n = this,
           o = this._readableState;
         switch (o.pipesCount) {
@@ -5410,8 +5424,8 @@
         (o.pipesCount += 1), h("pipe count=%d opts=%j", o.pipesCount, t);
         var a =
           (!t || !1 !== t.end) && e !== process.stdout && e !== process.stderr
-            ? u
-            : m;
+            ? l
+            : y;
         function c(t, s) {
           h("onunpipe"),
             t === n &&
@@ -5420,23 +5434,23 @@
               ((s.hasUnpiped = !0),
               h("cleanup"),
               e.removeListener("close", w),
-              e.removeListener("finish", y),
-              e.removeListener("drain", l),
+              e.removeListener("finish", m),
+              e.removeListener("drain", u),
               e.removeListener("error", g),
               e.removeListener("unpipe", c),
-              n.removeListener("end", u),
-              n.removeListener("end", m),
+              n.removeListener("end", l),
+              n.removeListener("end", y),
               n.removeListener("data", p),
               (d = !0),
               !o.awaitDrain ||
                 (e._writableState && !e._writableState.needDrain) ||
-                l());
+                u());
         }
-        function u() {
+        function l() {
           h("onend"), e.end();
         }
         o.endEmitted ? s.nextTick(a) : n.once("end", a), e.on("unpipe", c);
-        var l = (function (e) {
+        var u = (function (e) {
           return function () {
             var t = e._readableState;
             h("pipeOnDrain", t.awaitDrain),
@@ -5444,7 +5458,7 @@
               0 === t.awaitDrain && r(e, "data") && ((t.flowing = !0), O(e));
           };
         })(n);
-        e.on("drain", l);
+        e.on("drain", u);
         var d = !1;
         var f = !1;
         function p(t) {
@@ -5462,17 +5476,17 @@
         }
         function g(t) {
           h("onerror", t),
-            m(),
+            y(),
             e.removeListener("error", g),
             0 === r(e, "error") && e.emit("error", t);
         }
         function w() {
-          e.removeListener("finish", y), m();
-        }
-        function y() {
-          h("onfinish"), e.removeListener("close", w), m();
+          e.removeListener("finish", m), y();
         }
         function m() {
+          h("onfinish"), e.removeListener("close", w), y();
+        }
+        function y() {
           h("unpipe"), n.unpipe(e);
         }
         return (
@@ -5487,13 +5501,13 @@
               : e.on(t, n);
           })(e, "error", g),
           e.once("close", w),
-          e.once("finish", y),
+          e.once("finish", m),
           e.emit("pipe", n),
           o.flowing || (h("pipe resume"), n.resume()),
           e
         );
       }),
-      (m.prototype.unpipe = function (e) {
+      (y.prototype.unpipe = function (e) {
         var t = this._readableState,
           n = { hasUnpiped: !1 };
         if (0 === t.pipesCount) return this;
@@ -5525,7 +5539,7 @@
           this
         );
       }),
-      (m.prototype.on = function (e, t) {
+      (y.prototype.on = function (e, t) {
         var n = a.prototype.on.call(this, e, t);
         if ("data" === e) !1 !== this._readableState.flowing && this.resume();
         else if ("readable" === e) {
@@ -5538,8 +5552,8 @@
         }
         return n;
       }),
-      (m.prototype.addListener = m.prototype.on),
-      (m.prototype.resume = function () {
+      (y.prototype.addListener = y.prototype.on),
+      (y.prototype.resume = function () {
         var e = this._readableState;
         return (
           e.flowing ||
@@ -5552,7 +5566,7 @@
           this
         );
       }),
-      (m.prototype.pause = function () {
+      (y.prototype.pause = function () {
         return (
           h("call pause flowing=%j", this._readableState.flowing),
           !1 !== this._readableState.flowing &&
@@ -5562,7 +5576,7 @@
           this
         );
       }),
-      (m.prototype.wrap = function (e) {
+      (y.prototype.wrap = function (e) {
         var t = this,
           n = this._readableState,
           s = !1;
@@ -5597,13 +5611,13 @@
           this
         );
       }),
-      Object.defineProperty(m.prototype, "readableHighWaterMark", {
+      Object.defineProperty(y.prototype, "readableHighWaterMark", {
         enumerable: !1,
         get: function () {
           return this._readableState.highWaterMark;
         },
       }),
-      (m._fromList = L);
+      (y._fromList = L);
   },
   function (e, t, n) {
     e.exports = n(38);
@@ -5687,9 +5701,9 @@
     w.WritableState = g;
     var a = Object.create(n(39));
     a.inherits = n(40);
-    var c = { deprecate: n(160) },
-      u = n(86),
-      l = n(44).Buffer,
+    var c = { deprecate: n(161) },
+      l = n(86),
+      u = n(44).Buffer,
       d =
         ("undefined" != typeof global
           ? global
@@ -5708,9 +5722,9 @@
       (this.objectMode = !!e.objectMode),
         a && (this.objectMode = this.objectMode || !!e.writableObjectMode);
       var c = e.highWaterMark,
-        u = e.writableHighWaterMark,
-        l = this.objectMode ? 16 : 16384;
-      (this.highWaterMark = c || 0 === c ? c : a && (u || 0 === u) ? u : l),
+        l = e.writableHighWaterMark,
+        u = this.objectMode ? 16 : 16384;
+      (this.highWaterMark = c || 0 === c ? c : a && (l || 0 === l) ? l : u),
         (this.highWaterMark = Math.floor(this.highWaterMark)),
         (this.finalCalled = !1),
         (this.needDrain = !1),
@@ -5759,7 +5773,7 @@
                 n.bufferProcessing ||
                 !n.bufferedRequest ||
                 b(e, n),
-                o ? r(m, e, n, a, i) : m(e, n, a, i);
+                o ? r(y, e, n, a, i) : y(e, n, a, i);
             }
           })(t, e);
         }),
@@ -5783,9 +5797,9 @@
           "function" == typeof e.writev && (this._writev = e.writev),
           "function" == typeof e.destroy && (this._destroy = e.destroy),
           "function" == typeof e.final && (this._final = e.final)),
-        u.call(this);
+        l.call(this);
     }
-    function y(e, t, n, s, o, i, r) {
+    function m(e, t, n, s, o, i, r) {
       (t.writelen = s),
         (t.writecb = r),
         (t.writing = !0),
@@ -5793,7 +5807,7 @@
         n ? e._writev(o, t.onwrite) : e._write(o, i, t.onwrite),
         (t.sync = !1);
     }
-    function m(e, t, n, s) {
+    function y(e, t, n, s) {
       n ||
         (function (e, t) {
           0 === t.length &&
@@ -5815,7 +5829,7 @@
         for (var a = 0, c = !0; n; )
           (i[a] = n), n.isBuf || (c = !1), (n = n.next), (a += 1);
         (i.allBuffers = c),
-          y(e, t, !0, t.length, i, "", r.finish),
+          m(e, t, !0, t.length, i, "", r.finish),
           t.pendingcb++,
           (t.lastBufferedRequest = null),
           r.next
@@ -5824,11 +5838,11 @@
           (t.bufferedRequestCount = 0);
       } else {
         for (; n; ) {
-          var u = n.chunk,
-            l = n.encoding,
+          var l = n.chunk,
+            u = n.encoding,
             d = n.callback;
           if (
-            (y(e, t, !1, t.objectMode ? 1 : u.length, u, l, d),
+            (m(e, t, !1, t.objectMode ? 1 : l.length, l, u, d),
             (n = n.next),
             t.bufferedRequestCount--,
             t.writing)
@@ -5872,7 +5886,7 @@
         n
       );
     }
-    a.inherits(w, u),
+    a.inherits(w, l),
       (g.prototype.getBuffer = function () {
         for (var e = this.bufferedRequest, t = []; e; ) t.push(e), (e = e.next);
         return t;
@@ -5912,12 +5926,12 @@
         var o,
           i = this._writableState,
           r = !1,
-          a = !i.objectMode && ((o = e), l.isBuffer(o) || o instanceof d);
+          a = !i.objectMode && ((o = e), u.isBuffer(o) || o instanceof d);
         return (
           a &&
-            !l.isBuffer(e) &&
+            !u.isBuffer(e) &&
             (e = (function (e) {
-              return l.from(e);
+              return u.from(e);
             })(e)),
           "function" == typeof t && ((n = t), (t = null)),
           a ? (t = "buffer") : t || (t = i.defaultEncoding),
@@ -5951,7 +5965,7 @@
                     e.objectMode ||
                       !1 === e.decodeStrings ||
                       "string" != typeof t ||
-                      (t = l.from(t, n));
+                      (t = u.from(t, n));
                     return t;
                   })(t, s, o);
                   s !== r && ((n = !0), (o = "buffer"), (s = r));
@@ -5961,7 +5975,7 @@
                 var c = t.length < t.highWaterMark;
                 c || (t.needDrain = !0);
                 if (t.writing || t.corked) {
-                  var u = t.lastBufferedRequest;
+                  var l = t.lastBufferedRequest;
                   (t.lastBufferedRequest = {
                     chunk: s,
                     encoding: o,
@@ -5969,11 +5983,11 @@
                     callback: i,
                     next: null,
                   }),
-                    u
-                      ? (u.next = t.lastBufferedRequest)
+                    l
+                      ? (l.next = t.lastBufferedRequest)
                       : (t.bufferedRequest = t.lastBufferedRequest),
                     (t.bufferedRequestCount += 1);
-                } else y(e, t, !1, a, s, o, i);
+                } else m(e, t, !1, a, s, o, i);
                 return c;
               })(this, i, a, e, t, n))),
           r
@@ -6113,13 +6127,13 @@
         this.encoding)
       ) {
         case "utf16le":
-          (this.text = c), (this.end = u), (t = 4);
+          (this.text = c), (this.end = l), (t = 4);
           break;
         case "utf8":
           (this.fillLast = a), (t = 4);
           break;
         case "base64":
-          (this.text = l), (this.end = d), (t = 3);
+          (this.text = u), (this.end = d), (t = 3);
           break;
         default:
           return (this.write = h), void (this.end = f);
@@ -6182,7 +6196,7 @@
         e.toString("utf16le", t, e.length - 1)
       );
     }
-    function u(e) {
+    function l(e) {
       var t = e && e.length ? this.write(e) : "";
       if (this.lastNeed) {
         var n = this.lastTotal - this.lastNeed;
@@ -6190,7 +6204,7 @@
       }
       return t;
     }
-    function l(e, t) {
+    function u(e, t) {
       var n = (e.length - t) % 3;
       return 0 === n
         ? e.toString("base64", t)
@@ -6430,24 +6444,24 @@
     };
     c({ categories: { default: { appenders: ["out"], level: "OFF" } } }),
       s.addListener(c);
-    const u = (e) => (
+    const l = (e) => (
       r("configForCategory: searching for config for " + e),
       a.has(e)
         ? (r(`configForCategory: ${e} exists in config, returning it`),
           a.get(e))
         : e.indexOf(".") > 0
         ? (r(`configForCategory: ${e} has hierarchy, searching for parents`),
-          u(e.substring(0, e.lastIndexOf("."))))
+          l(e.substring(0, e.lastIndexOf("."))))
         : (r("configForCategory: returning config for default category"),
-          u("default"))
+          l("default"))
     );
     e.exports = {
-      appendersForCategory: (e) => u(e).appenders,
-      getLevelForCategory: (e) => u(e).level,
+      appendersForCategory: (e) => l(e).appenders,
+      getLevelForCategory: (e) => l(e).level,
       setLevelForCategory: (e, t) => {
         let n = a.get(e);
         if ((r(`setLevelForCategory: found ${n} for ${e}`), !n)) {
-          const t = u(e);
+          const t = l(e);
           r(
             `setLevelForCategory: no config found for category, found ${t} for parents of ${e}`
           ),
@@ -6498,9 +6512,9 @@
       return (
         console.log(e),
         e.indexOf("ffi-napi") > -1
-          ? n(175)
-          : e.indexOf("ref-napi") > -1
           ? n(176)
+          : e.indexOf("ref-napi") > -1
+          ? n(177)
           : void 0
       );
     };
@@ -6680,17 +6694,17 @@
             (e.isPacked = !!s.packed && Boolean(s.packed)),
             (e.get = t),
             (e.set = n);
-          var u = arguments[0];
+          var l = arguments[0];
           return (
-            Array.isArray(u)
-              ? u.forEach(function (t) {
+            Array.isArray(l)
+              ? l.forEach(function (t) {
                   var n = t[0],
                     s = t[1];
                   e.defineProperty(s, n);
                 })
-              : "object" == typeof u &&
-                Object.keys(u).forEach(function (t) {
-                  var n = u[t];
+              : "object" == typeof l &&
+                Object.keys(l).forEach(function (t) {
+                  var n = l[t];
                   e.defineProperty(t, n);
                 }),
             e
@@ -6705,10 +6719,10 @@
       o = n(15),
       i = n(10)("ffi:cif_var"),
       r = n(14),
-      a = n(20),
+      a = n(21),
       c = r.sizeof.pointer,
-      u = a.ffi_prep_cif_var,
-      l = a.FFI_CIF_SIZE,
+      l = a.ffi_prep_cif_var,
+      u = a.FFI_CIF_SIZE,
       d = a.FFI_DEFAULT_ABI,
       h = a.FFI_OK,
       f = a.FFI_BAD_TYPEDEF,
@@ -6721,36 +6735,36 @@
           'expected an Array of arg "type" objects as the second argument'
         ),
         o(n >= 1, "expected the number of fixed arguments to be at least 1");
-      const a = Buffer.alloc(l),
+      const a = Buffer.alloc(u),
         g = t.length,
         w = Buffer.alloc(g * c),
-        y = s(e);
+        m = s(e);
       for (let e = 0; e < g; e++) {
         const n = s(t[e]);
         w.writePointer(n, e * c);
       }
-      (a.rtnTypePtr = y),
+      (a.rtnTypePtr = m),
         (a.argTypesPtr = w),
         void 0 === r &&
           (i("no ABI specified (this is OK), using FFI_DEFAULT_ABI"), (r = d));
-      const m = u(a, n, g, y, w, r);
-      if (m !== h)
-        switch (m) {
+      const y = l(a, n, g, m, w, r);
+      if (y !== h)
+        switch (y) {
           case f: {
             const e = new Error(
               "ffi_prep_cif_var() returned an FFI_BAD_TYPEDEF error"
             );
-            throw ((e.code = "FFI_BAD_TYPEDEF"), (e.errno = m), e);
+            throw ((e.code = "FFI_BAD_TYPEDEF"), (e.errno = y), e);
           }
           case p: {
             const e = new Error(
               "ffi_prep_cif_var() returned an FFI_BAD_ABI error"
             );
-            throw ((e.code = "FFI_BAD_ABI"), (e.errno = m), e);
+            throw ((e.code = "FFI_BAD_ABI"), (e.errno = y), e);
           }
           default: {
-            const e = new Error("ffi_prep_cif_var() returned an error: " + m);
-            throw ((e.errno = m), e);
+            const e = new Error("ffi_prep_cif_var() returned an error: " + y);
+            throw ((e.errno = y), e);
           }
         }
       return a;
@@ -6762,31 +6776,31 @@
       o = n(62),
       i = n(15),
       r = n(10)("ffi:Callback"),
-      a = n(20).Callback;
+      a = n(21).Callback;
     function c(e) {
       e &&
         process.nextTick(function () {
           throw "string" == typeof e ? new Error(e) : e;
         });
     }
-    e.exports = function (e, t, n, u) {
+    e.exports = function (e, t, n, l) {
       r("creating new Callback"),
-        "function" == typeof n && ((u = n), (n = void 0)),
+        "function" == typeof n && ((l = n), (n = void 0)),
         i(!!e, 'expected a return "type" object as the first argument'),
         i(
           Array.isArray(t),
           'expected Array of arg "type" objects as the second argument'
         ),
         i.equal(
-          typeof u,
+          typeof l,
           "function",
           "expected a function as the third argument"
         ),
         (e = s.coerceType(e)),
         (t = t.map(s.coerceType));
-      const l = o(e, t, n),
+      const u = o(e, t, n),
         d = t.length,
-        h = a(l, e.size, d, c, (n, o) => {
+        h = a(u, e.size, d, c, (n, o) => {
           r("Callback function being invoked");
           try {
             const r = [];
@@ -6795,7 +6809,7 @@
                 n = o.readPointer(i * s.sizeof.pointer, e.size);
               (n.type = e), r.push(n.deref());
             }
-            const a = u.apply(null, r);
+            const a = l.apply(null, r);
             try {
               s.set(n, 0, a, e);
             } catch (e) {
@@ -6807,7 +6821,7 @@
             return e;
           }
         });
-      return (h._cif = l), h;
+      return (h._cif = u), h;
     };
   },
   function (e, t, n) {
@@ -6815,26 +6829,26 @@
     const s = n(15),
       o = n(10)("ffi:_ForeignFunction"),
       i = n(14),
-      r = n(20),
+      r = n(21),
       a = i.sizeof.pointer,
       c = r.FFI_ARG_SIZE;
-    e.exports = function (e, t, n, u) {
+    e.exports = function (e, t, n, l) {
       o("creating new ForeignFunction", t);
-      const l = u.length,
-        d = l * a,
+      const u = l.length,
+        d = u * a,
         h = n.size >= i.sizeof.long ? n.size : c;
       s(h > 0);
       const f = function () {
-        if ((o("invoking proxy function"), arguments.length !== l))
+        if ((o("invoking proxy function"), arguments.length !== u))
           throw new TypeError(
-            "Expected " + l + " arguments, got " + arguments.length
+            "Expected " + u + " arguments, got " + arguments.length
           );
         const s = Buffer.alloc(h),
           c = Buffer.alloc(d);
         let f;
         try {
-          for (f = 0; f < l; f++) {
-            const e = u[f],
+          for (f = 0; f < u; f++) {
+            const e = l[f],
               t = arguments[f],
               n = i.alloc(e, t);
             c.writePointer(n, f * a);
@@ -6852,8 +6866,8 @@
         (f.async = function () {
           o("invoking async proxy function");
           const s = arguments.length;
-          if (s !== l + 1)
-            throw new TypeError("Expected " + (l + 1) + " arguments, got " + s);
+          if (s !== u + 1)
+            throw new TypeError("Expected " + (u + 1) + " arguments, got " + s);
           const c = arguments[s - 1];
           if ("function" != typeof c)
             throw new TypeError(
@@ -6863,8 +6877,8 @@
             p = Buffer.alloc(d);
           let g;
           try {
-            for (g = 0; g < l; g++) {
-              const e = u[g],
+            for (g = 0; g < u; g++) {
+              const e = l[g],
                 t = arguments[g],
                 n = i.alloc(e, t);
               p.writePointer(n, g * a);
@@ -6892,11 +6906,11 @@
       r = n(15),
       a = n(10)("ffi:VariadicForeignFunction"),
       c = n(14),
-      u = n(20);
-    c.sizeof.pointer, u.FFI_ARG_SIZE;
-    e.exports = function (e, t, n, u) {
+      l = n(21);
+    c.sizeof.pointer, l.FFI_ARG_SIZE;
+    e.exports = function (e, t, n, l) {
       a("creating new VariadicForeignFunction", e);
-      const l = {};
+      const u = {};
       r(Buffer.isBuffer(e), "expected Buffer as first argument"),
         r(!!t, 'expected a return "type" object as the second argument'),
         r(
@@ -6917,76 +6931,77 @@
           const n = o(t);
           r(n.name), w.push(d(t));
         }
-        const y = c.coerceType(p.returnType),
-          m = d(y);
-        r(m), (w = m + w.join(""));
-        let b = l[w];
+        const m = c.coerceType(p.returnType),
+          y = d(m);
+        r(y), (w = y + w.join(""));
+        let b = u[w];
         if (b) a("cache hit for key:", w);
         else {
           a("creating the variadic ffi_cif instance for key:", w);
-          const n = s(t, g, h, u);
-          b = l[w] = i(n, e, y, g);
+          const n = s(t, g, h, l);
+          b = u[w] = i(n, e, m, g);
         }
         return b;
       }
       return (p.returnType = t), p;
     };
-    let l = 0;
+    let u = 0;
     function d(e) {
       return (
         e.hasOwnProperty("_ffiId") ||
-          (e._ffiId = ((65536 * l++) | 0).toString(16)),
+          (e._ffiId = ((65536 * u++) | 0).toString(16)),
         e._ffiId
       );
     }
   },
   function (e, t, n) {
     var s = {
-      "./assistant.js": 183,
-      "./bellRinging.js": 184,
-      "./countdown.js": 185,
-      "./customizeIntercept.js": 186,
-      "./desktopAssistant.js": 187,
-      "./desktopMinier.js": 188,
-      "./desktopNotification.js": 189,
-      "./deviceLink.js": 190,
-      "./environmentData.js": 191,
-      "./eyeProtectionModeTimeOut.js": 192,
-      "./eyeProtectionModeToolbar.js": 193,
-      "./fastToolbar.js": 194,
-      "./feedback.js": 195,
-      "./fileTransport.js": 196,
-      "./firmwareUpgrade.js": 197,
-      "./floatWindow.js": 198,
-      "./globalAdminModal.js": 199,
-      "./globalConfirm.js": 200,
-      "./globalMessage.js": 201,
-      "./login.js": 202,
-      "./newsPlayer.js": 203,
-      "./newsPlayerLive.js": 204,
-      "./newsPlayerQuit.js": 205,
-      "./nfcAuthResult.js": 206,
-      "./noticeSlider.js": 207,
-      "./notification.js": 208,
-      "./popupNotification.js": 209,
-      "./quitFullscreenAuth.js": 210,
-      "./remoteControl.js": 211,
-      "./remoteControlStatus.js": 212,
-      "./remoteDiskClearWarn.js": 213,
-      "./sceneSimulation.js": 214,
-      "./schoolAnnouncement.js": 215,
-      "./screenLock.js": 216,
-      "./screensaver.js": 217,
-      "./seewoDesktop.js": 218,
-      "./seewoDesktopSearch.js": 219,
-      "./shoutInteraction.js": 220,
-      "./smartPenCursor.js": 221,
-      "./systemDialog.js": 223,
-      "./uipsMinier.js": 224,
-      "./uipsShowWindow.js": 225,
-      "./usbInsertPrompt.js": 226,
-      "./usbInsertWarning.js": 227,
-      "./voiceInteraction.js": 228,
+      "./assistant.js": 184,
+      "./bellRinging.js": 185,
+      "./blackWindow.js": 186,
+      "./countdown.js": 187,
+      "./customizeIntercept.js": 188,
+      "./desktopAssistant.js": 189,
+      "./desktopMinier.js": 190,
+      "./desktopNotification.js": 191,
+      "./deviceLink.js": 192,
+      "./environmentData.js": 193,
+      "./eyeProtectionModeBall.js": 194,
+      "./eyeProtectionModeTimeOut.js": 195,
+      "./fastToolbar.js": 196,
+      "./feedback.js": 197,
+      "./fileTransport.js": 198,
+      "./firmwareUpgrade.js": 199,
+      "./floatWindow.js": 200,
+      "./globalAdminModal.js": 201,
+      "./globalConfirm.js": 202,
+      "./globalMessage.js": 203,
+      "./login.js": 204,
+      "./newsPlayer.js": 205,
+      "./newsPlayerLive.js": 206,
+      "./newsPlayerQuit.js": 207,
+      "./nfcAuthResult.js": 208,
+      "./noticeSlider.js": 209,
+      "./notification.js": 210,
+      "./popupNotification.js": 211,
+      "./quitFullscreenAuth.js": 212,
+      "./remoteControl.js": 213,
+      "./remoteControlStatus.js": 214,
+      "./remoteDiskClearWarn.js": 215,
+      "./sceneSimulation.js": 216,
+      "./schoolAnnouncement.js": 217,
+      "./screenLock.js": 218,
+      "./screensaver.js": 219,
+      "./seewoDesktop.js": 220,
+      "./seewoDesktopSearch.js": 221,
+      "./shoutInteraction.js": 222,
+      "./smartPenCursor.js": 223,
+      "./systemDialog.js": 225,
+      "./uipsMinier.js": 226,
+      "./uipsShowWindow.js": 227,
+      "./usbInsertPrompt.js": 228,
+      "./usbInsertWarning.js": 229,
+      "./voiceInteraction.js": 230,
     };
     function o(e) {
       var t = i(e);
@@ -7008,7 +7023,7 @@
   },
   function (e, t, n) {
     const s = n(49),
-      o = n(0),
+      o = n(1),
       i = n(65).version,
       r = n(2);
     let a = {
@@ -7052,19 +7067,19 @@
       o = n(66),
       i = n(102),
       r = n(49),
-      a = n(235),
-      c = n(236),
-      u = n(64),
-      l = n(51),
-      d = n(239),
+      a = n(237),
+      c = n(238),
+      l = n(64),
+      u = n(51),
+      d = n(241),
       h = n(103),
       f = n(104),
       p = n(106),
       {
         BINARY_TYPES: g,
         EMPTY_BUFFER: w,
-        GUID: y,
-        kStatusCode: m,
+        GUID: m,
+        kStatusCode: y,
         kWebSocket: b,
         NOOP: S,
       } = n(37),
@@ -7123,14 +7138,14 @@
                 var d;
                 "object" == typeof n && void 0 !== n.href
                   ? ((d = n), (t.url = n.href))
-                  : ((d = u.URL ? new u.URL(n) : u.parse(n)), (t.url = n));
+                  : ((d = l.URL ? new l.URL(n) : l.parse(n)), (t.url = n));
                 const f = "ws+unix:" === d.protocol;
                 if (!(d.host || (f && d.pathname)))
                   throw new Error("Invalid URL: " + t.url);
                 const p = "wss:" === d.protocol || "https:" === d.protocol,
                   g = p ? 443 : 80,
                   w = o.randomBytes(16).toString("base64"),
-                  m = p ? i.get : r.get,
+                  y = p ? i.get : r.get,
                   b = d.search
                     ? `${d.pathname || "/"}${d.search}`
                     : d.pathname || "/";
@@ -7153,13 +7168,13 @@
                   (c.path = b),
                   (c.timeout = c.handshakeTimeout),
                   c.perMessageDeflate &&
-                    ((S = new l(
+                    ((S = new u(
                       !0 !== c.perMessageDeflate ? c.perMessageDeflate : {},
                       !1,
                       c.maxPayload
                     )),
                     (c.headers["Sec-WebSocket-Extensions"] = h.format({
-                      [l.extensionName]: S.offer(),
+                      [u.extensionName]: S.offer(),
                     })));
                 s && (c.headers["Sec-WebSocket-Protocol"] = s);
                 c.origin &&
@@ -7174,7 +7189,7 @@
                   const e = b.split(":");
                   (c.socketPath = e[0]), (c.path = e[1]);
                 }
-                var v = (t._req = m(c));
+                var v = (t._req = y(c));
                 c.timeout &&
                   v.on("timeout", () => {
                     x(t, v, "Opening handshake has timed out");
@@ -7193,7 +7208,7 @@
                       if (++t._redirects > c.maxRedirects)
                         return void x(t, v, "Maximum redirects exceeded");
                       v.abort();
-                      const o = u.URL ? new u.URL(i, n) : u.resolve(n, i);
+                      const o = l.URL ? new l.URL(i, n) : l.resolve(n, i);
                       e(t, o, s, a);
                     } else
                       t.emit("unexpected-response", v, o) ||
@@ -7205,7 +7220,7 @@
                     v = t._req = null;
                     const r = o
                       .createHash("sha1")
-                      .update(w + y)
+                      .update(w + m)
                       .digest("base64");
                     if (e.headers["sec-websocket-accept"] !== r)
                       return void x(
@@ -7214,7 +7229,7 @@
                         "Invalid Sec-WebSocket-Accept header"
                       );
                     const a = e.headers["sec-websocket-protocol"],
-                      u = (s || "").split(/, */);
+                      l = (s || "").split(/, */);
                     var d;
                     if (
                       (!s && a
@@ -7223,7 +7238,7 @@
                         : s && !a
                         ? (d = "Server sent no subprotocol")
                         : a &&
-                          !u.includes(a) &&
+                          !l.includes(a) &&
                           (d = "Server sent an invalid subprotocol"),
                       d)
                     )
@@ -7234,9 +7249,9 @@
                           const n = h.parse(
                             e.headers["sec-websocket-extensions"]
                           );
-                          n[l.extensionName] &&
-                            (S.accept(n[l.extensionName]),
-                            (t._extensions[l.extensionName] = S));
+                          n[u.extensionName] &&
+                            (S.accept(n[u.extensionName]),
+                            (t._extensions[u.extensionName] = S));
                         } catch (e) {
                           return void x(
                             t,
@@ -7304,8 +7319,8 @@
       emitClose() {
         (this.readyState = _.CLOSED),
           this._socket
-            ? (this._extensions[l.extensionName] &&
-                this._extensions[l.extensionName].cleanup(),
+            ? (this._extensions[u.extensionName] &&
+                this._extensions[u.extensionName].cleanup(),
               this._receiver.removeAllListeners(),
               this.emit("close", this._closeCode, this._closeMessage))
             : this.emit("close", this._closeCode, this._closeMessage);
@@ -7394,7 +7409,7 @@
           },
           t
         );
-        this._extensions[l.extensionName] || (s.compress = !1),
+        this._extensions[u.extensionName] || (s.compress = !1),
           this._sender.send(e || w, s, n);
       }
       terminate() {
@@ -7445,7 +7460,7 @@
       const t = this[b];
       t._socket.removeListener("data", D),
         (t.readyState = _.CLOSING),
-        (t._closeCode = e[m]),
+        (t._closeCode = e[y]),
         t.emit("error", e),
         t._socket.destroy();
     }
@@ -7559,71 +7574,71 @@
         const t = {};
         if (void 0 === e || "" === e) return t;
         for (
-          var n, i, r = {}, a = !1, c = !1, u = !1, l = -1, d = -1, h = 0;
+          var n, i, r = {}, a = !1, c = !1, l = !1, u = -1, d = -1, h = 0;
           h < e.length;
           h++
         ) {
           const p = e.charCodeAt(h);
           if (void 0 === n)
-            if (-1 === d && 1 === s[p]) -1 === l && (l = h);
-            else if (32 === p || 9 === p) -1 === d && -1 !== l && (d = h);
+            if (-1 === d && 1 === s[p]) -1 === u && (u = h);
+            else if (32 === p || 9 === p) -1 === d && -1 !== u && (d = h);
             else {
               if (59 !== p && 44 !== p)
                 throw new SyntaxError("Unexpected character at index " + h);
               {
-                if (-1 === l)
+                if (-1 === u)
                   throw new SyntaxError("Unexpected character at index " + h);
                 -1 === d && (d = h);
-                const s = e.slice(l, d);
-                44 === p ? (o(t, s, r), (r = {})) : (n = s), (l = d = -1);
+                const s = e.slice(u, d);
+                44 === p ? (o(t, s, r), (r = {})) : (n = s), (u = d = -1);
               }
             }
           else if (void 0 === i)
-            if (-1 === d && 1 === s[p]) -1 === l && (l = h);
-            else if (32 === p || 9 === p) -1 === d && -1 !== l && (d = h);
+            if (-1 === d && 1 === s[p]) -1 === u && (u = h);
+            else if (32 === p || 9 === p) -1 === d && -1 !== u && (d = h);
             else if (59 === p || 44 === p) {
-              if (-1 === l)
+              if (-1 === u)
                 throw new SyntaxError("Unexpected character at index " + h);
               -1 === d && (d = h),
-                o(r, e.slice(l, d), !0),
+                o(r, e.slice(u, d), !0),
                 44 === p && (o(t, n, r), (r = {}), (n = void 0)),
-                (l = d = -1);
+                (u = d = -1);
             } else {
-              if (61 !== p || -1 === l || -1 !== d)
+              if (61 !== p || -1 === u || -1 !== d)
                 throw new SyntaxError("Unexpected character at index " + h);
-              (i = e.slice(l, h)), (l = d = -1);
+              (i = e.slice(u, h)), (u = d = -1);
             }
           else if (c) {
             if (1 !== s[p])
               throw new SyntaxError("Unexpected character at index " + h);
-            -1 === l ? (l = h) : a || (a = !0), (c = !1);
-          } else if (u)
-            if (1 === s[p]) -1 === l && (l = h);
-            else if (34 === p && -1 !== l) (u = !1), (d = h);
+            -1 === u ? (u = h) : a || (a = !0), (c = !1);
+          } else if (l)
+            if (1 === s[p]) -1 === u && (u = h);
+            else if (34 === p && -1 !== u) (l = !1), (d = h);
             else {
               if (92 !== p)
                 throw new SyntaxError("Unexpected character at index " + h);
               c = !0;
             }
-          else if (34 === p && 61 === e.charCodeAt(h - 1)) u = !0;
-          else if (-1 === d && 1 === s[p]) -1 === l && (l = h);
-          else if (-1 === l || (32 !== p && 9 !== p)) {
+          else if (34 === p && 61 === e.charCodeAt(h - 1)) l = !0;
+          else if (-1 === d && 1 === s[p]) -1 === u && (u = h);
+          else if (-1 === u || (32 !== p && 9 !== p)) {
             if (59 !== p && 44 !== p)
               throw new SyntaxError("Unexpected character at index " + h);
-            if (-1 === l)
+            if (-1 === u)
               throw new SyntaxError("Unexpected character at index " + h);
             -1 === d && (d = h);
-            var f = e.slice(l, d);
+            var f = e.slice(u, d);
             a && ((f = f.replace(/\\/g, "")), (a = !1)),
               o(r, i, f),
               44 === p && (o(t, n, r), (r = {}), (n = void 0)),
               (i = void 0),
-              (l = d = -1);
+              (u = d = -1);
           } else -1 === d && (d = h);
         }
-        if (-1 === l || u) throw new SyntaxError("Unexpected end of input");
+        if (-1 === u || l) throw new SyntaxError("Unexpected end of input");
         -1 === d && (d = h);
-        const p = e.slice(l, d);
+        const p = e.slice(u, d);
         return (
           void 0 === n
             ? o(t, p, {})
@@ -7646,7 +7661,7 @@
         kStatusCode: a,
         kWebSocket: c,
       } = n(37),
-      { concat: u, toArrayBuffer: l, unmask: d } = n(67),
+      { concat: l, toArrayBuffer: u, unmask: d } = n(67),
       { isValidStatusCode: h, isValidUTF8: f } = n(105);
     function p(e, t, n, s) {
       const o = new e(n ? "Invalid WebSocket frame: " + t : t);
@@ -7882,13 +7897,13 @@
             var e;
             (e =
               "nodebuffer" === this._binaryType
-                ? u(n, t)
+                ? l(n, t)
                 : "arraybuffer" === this._binaryType
-                ? l(u(n, t))
+                ? u(l(n, t))
                 : n),
               this.emit("message", e);
           } else {
-            const e = u(n, t);
+            const e = l(n, t);
             if (!f(e))
               return (
                 (this._loop = !1), p(Error, "invalid UTF-8 sequence", !0, 1007)
@@ -7922,7 +7937,7 @@
   function (e, t, n) {
     "use strict";
     try {
-      const e = n(240);
+      const e = n(242);
       t.isValidUTF8 = "object" == typeof e ? e.Validation.isValidUTF8 : e;
     } catch (e) {
       t.isValidUTF8 = () => !0;
@@ -7938,7 +7953,7 @@
       { EMPTY_BUFFER: i } = n(37),
       { isValidStatusCode: r } = n(105),
       { mask: a, toBuffer: c } = n(67);
-    class u {
+    class l {
       constructor(e, t) {
         (this._extensions = t || {}),
           (this._socket = e),
@@ -7999,7 +8014,7 @@
       }
       doClose(e, t, n) {
         this.sendFrame(
-          u.frame(e, { fin: !0, rsv1: !1, opcode: 8, mask: t, readOnly: !1 }),
+          l.frame(e, { fin: !0, rsv1: !1, opcode: 8, mask: t, readOnly: !1 }),
           n
         );
       }
@@ -8011,7 +8026,7 @@
       }
       doPing(e, t, n, s) {
         this.sendFrame(
-          u.frame(e, { fin: !0, rsv1: !1, opcode: 9, mask: t, readOnly: n }),
+          l.frame(e, { fin: !0, rsv1: !1, opcode: 9, mask: t, readOnly: n }),
           s
         );
       }
@@ -8023,7 +8038,7 @@
       }
       doPong(e, t, n, s) {
         this.sendFrame(
-          u.frame(e, { fin: !0, rsv1: !1, opcode: 10, mask: t, readOnly: n }),
+          l.frame(e, { fin: !0, rsv1: !1, opcode: 10, mask: t, readOnly: n }),
           s
         );
       }
@@ -8053,7 +8068,7 @@
             : this.dispatch(s, this._compress, e, n);
         } else
           this.sendFrame(
-            u.frame(s, {
+            l.frame(s, {
               fin: t.fin,
               rsv1: !1,
               opcode: r,
@@ -8064,13 +8079,13 @@
           );
       }
       dispatch(e, t, n, s) {
-        if (!t) return void this.sendFrame(u.frame(e, n), s);
+        if (!t) return void this.sendFrame(l.frame(e, n), s);
         const i = this._extensions[o.extensionName];
         (this._deflating = !0),
           i.compress(e, n.fin, (e, t) => {
             (this._deflating = !1),
               (n.readOnly = !1),
-              this.sendFrame(u.frame(t, n), s),
+              this.sendFrame(l.frame(t, n), s),
               this.dequeue();
           });
       }
@@ -8092,11 +8107,11 @@
           : this._socket.write(e[0], t);
       }
     }
-    e.exports = u;
+    e.exports = l;
   },
   function (e, t, n) {
     "use strict";
-    e.exports = { copySync: n(247) };
+    e.exports = { copySync: n(249) };
   },
   function (e, t) {
     e.exports = (e) => {
@@ -8131,25 +8146,25 @@
   function (e, t, n) {
     "use strict";
     const s = n(17).fromCallback;
-    e.exports = { copy: s(n(249)) };
+    e.exports = { copy: s(n(251)) };
   },
   function (e, t, n) {
     const s = n(3),
       o = n(4),
-      i = n(1),
+      i = n(0),
       r = n(7),
       a = n(2),
-      c = n(271),
-      u = n(276),
-      l = n(277),
-      d = n(26),
+      c = n(273),
+      l = n(278),
+      u = n(279),
+      d = n(20),
       h = n(31),
       f = n(32),
       p = 1002,
       g = "/residentNotice",
       w = "/cancelResidentNotice",
-      y = "/popupNotice";
-    const m = new (class {
+      m = "/popupNotice";
+    const y = new (class {
       constructor() {
         (this.messages = []),
           (this.popupMessages = []),
@@ -8183,13 +8198,13 @@
             e.url === w &&
               (s.getInstance("desktopNotification") &&
                 s.close("desktopNotification"),
-              u(
+              l(
                 { method: "cancleResidentNotice", status: 2, message: "" },
                 { "x-auth-traceid": e.traceId }
               )),
-            e.url === y &&
+            e.url === m &&
               (this.popupMessages.push(e.data),
-              l(
+              u(
                 { method: "popupNotice", status: 2, message: "" },
                 { "x-auth-traceid": e.traceId }
               ),
@@ -8221,15 +8236,15 @@
       }
     })();
     i.ipcMain.on("init-message-roller-finished", function (e) {
-      o("init-messages", m.messages, "noticeSlider"), (m.messages = []);
+      o("init-messages", y.messages, "noticeSlider"), (y.messages = []);
     }),
-      (e.exports = m);
+      (e.exports = y);
   },
   function (e, t, n) {
     var s, o, i, r, a;
-    (s = n(274)),
+    (s = n(276)),
       (o = n(113).utf8),
-      (i = n(275)),
+      (i = n(277)),
       (r = n(113).bin),
       ((a = function (e, t) {
         e.constructor == String
@@ -8245,8 +8260,8 @@
         for (
           var n = s.bytesToWords(e),
             c = 8 * e.length,
-            u = 1732584193,
-            l = -271733879,
+            l = 1732584193,
+            u = -271733879,
             d = -1732584194,
             h = 271733878,
             f = 0;
@@ -8260,103 +8275,103 @@
         var p = a._ff,
           g = a._gg,
           w = a._hh,
-          y = a._ii;
+          m = a._ii;
         for (f = 0; f < n.length; f += 16) {
-          var m = u,
-            b = l,
+          var y = l,
+            b = u,
             S = d,
             v = h;
-          (u = p(u, l, d, h, n[f + 0], 7, -680876936)),
-            (h = p(h, u, l, d, n[f + 1], 12, -389564586)),
-            (d = p(d, h, u, l, n[f + 2], 17, 606105819)),
-            (l = p(l, d, h, u, n[f + 3], 22, -1044525330)),
-            (u = p(u, l, d, h, n[f + 4], 7, -176418897)),
-            (h = p(h, u, l, d, n[f + 5], 12, 1200080426)),
-            (d = p(d, h, u, l, n[f + 6], 17, -1473231341)),
-            (l = p(l, d, h, u, n[f + 7], 22, -45705983)),
-            (u = p(u, l, d, h, n[f + 8], 7, 1770035416)),
-            (h = p(h, u, l, d, n[f + 9], 12, -1958414417)),
-            (d = p(d, h, u, l, n[f + 10], 17, -42063)),
-            (l = p(l, d, h, u, n[f + 11], 22, -1990404162)),
-            (u = p(u, l, d, h, n[f + 12], 7, 1804603682)),
-            (h = p(h, u, l, d, n[f + 13], 12, -40341101)),
-            (d = p(d, h, u, l, n[f + 14], 17, -1502002290)),
-            (u = g(
-              u,
-              (l = p(l, d, h, u, n[f + 15], 22, 1236535329)),
+          (l = p(l, u, d, h, n[f + 0], 7, -680876936)),
+            (h = p(h, l, u, d, n[f + 1], 12, -389564586)),
+            (d = p(d, h, l, u, n[f + 2], 17, 606105819)),
+            (u = p(u, d, h, l, n[f + 3], 22, -1044525330)),
+            (l = p(l, u, d, h, n[f + 4], 7, -176418897)),
+            (h = p(h, l, u, d, n[f + 5], 12, 1200080426)),
+            (d = p(d, h, l, u, n[f + 6], 17, -1473231341)),
+            (u = p(u, d, h, l, n[f + 7], 22, -45705983)),
+            (l = p(l, u, d, h, n[f + 8], 7, 1770035416)),
+            (h = p(h, l, u, d, n[f + 9], 12, -1958414417)),
+            (d = p(d, h, l, u, n[f + 10], 17, -42063)),
+            (u = p(u, d, h, l, n[f + 11], 22, -1990404162)),
+            (l = p(l, u, d, h, n[f + 12], 7, 1804603682)),
+            (h = p(h, l, u, d, n[f + 13], 12, -40341101)),
+            (d = p(d, h, l, u, n[f + 14], 17, -1502002290)),
+            (l = g(
+              l,
+              (u = p(u, d, h, l, n[f + 15], 22, 1236535329)),
               d,
               h,
               n[f + 1],
               5,
               -165796510
             )),
-            (h = g(h, u, l, d, n[f + 6], 9, -1069501632)),
-            (d = g(d, h, u, l, n[f + 11], 14, 643717713)),
-            (l = g(l, d, h, u, n[f + 0], 20, -373897302)),
-            (u = g(u, l, d, h, n[f + 5], 5, -701558691)),
-            (h = g(h, u, l, d, n[f + 10], 9, 38016083)),
-            (d = g(d, h, u, l, n[f + 15], 14, -660478335)),
-            (l = g(l, d, h, u, n[f + 4], 20, -405537848)),
-            (u = g(u, l, d, h, n[f + 9], 5, 568446438)),
-            (h = g(h, u, l, d, n[f + 14], 9, -1019803690)),
-            (d = g(d, h, u, l, n[f + 3], 14, -187363961)),
-            (l = g(l, d, h, u, n[f + 8], 20, 1163531501)),
-            (u = g(u, l, d, h, n[f + 13], 5, -1444681467)),
-            (h = g(h, u, l, d, n[f + 2], 9, -51403784)),
-            (d = g(d, h, u, l, n[f + 7], 14, 1735328473)),
-            (u = w(
-              u,
-              (l = g(l, d, h, u, n[f + 12], 20, -1926607734)),
+            (h = g(h, l, u, d, n[f + 6], 9, -1069501632)),
+            (d = g(d, h, l, u, n[f + 11], 14, 643717713)),
+            (u = g(u, d, h, l, n[f + 0], 20, -373897302)),
+            (l = g(l, u, d, h, n[f + 5], 5, -701558691)),
+            (h = g(h, l, u, d, n[f + 10], 9, 38016083)),
+            (d = g(d, h, l, u, n[f + 15], 14, -660478335)),
+            (u = g(u, d, h, l, n[f + 4], 20, -405537848)),
+            (l = g(l, u, d, h, n[f + 9], 5, 568446438)),
+            (h = g(h, l, u, d, n[f + 14], 9, -1019803690)),
+            (d = g(d, h, l, u, n[f + 3], 14, -187363961)),
+            (u = g(u, d, h, l, n[f + 8], 20, 1163531501)),
+            (l = g(l, u, d, h, n[f + 13], 5, -1444681467)),
+            (h = g(h, l, u, d, n[f + 2], 9, -51403784)),
+            (d = g(d, h, l, u, n[f + 7], 14, 1735328473)),
+            (l = w(
+              l,
+              (u = g(u, d, h, l, n[f + 12], 20, -1926607734)),
               d,
               h,
               n[f + 5],
               4,
               -378558
             )),
-            (h = w(h, u, l, d, n[f + 8], 11, -2022574463)),
-            (d = w(d, h, u, l, n[f + 11], 16, 1839030562)),
-            (l = w(l, d, h, u, n[f + 14], 23, -35309556)),
-            (u = w(u, l, d, h, n[f + 1], 4, -1530992060)),
-            (h = w(h, u, l, d, n[f + 4], 11, 1272893353)),
-            (d = w(d, h, u, l, n[f + 7], 16, -155497632)),
-            (l = w(l, d, h, u, n[f + 10], 23, -1094730640)),
-            (u = w(u, l, d, h, n[f + 13], 4, 681279174)),
-            (h = w(h, u, l, d, n[f + 0], 11, -358537222)),
-            (d = w(d, h, u, l, n[f + 3], 16, -722521979)),
-            (l = w(l, d, h, u, n[f + 6], 23, 76029189)),
-            (u = w(u, l, d, h, n[f + 9], 4, -640364487)),
-            (h = w(h, u, l, d, n[f + 12], 11, -421815835)),
-            (d = w(d, h, u, l, n[f + 15], 16, 530742520)),
-            (u = y(
-              u,
-              (l = w(l, d, h, u, n[f + 2], 23, -995338651)),
+            (h = w(h, l, u, d, n[f + 8], 11, -2022574463)),
+            (d = w(d, h, l, u, n[f + 11], 16, 1839030562)),
+            (u = w(u, d, h, l, n[f + 14], 23, -35309556)),
+            (l = w(l, u, d, h, n[f + 1], 4, -1530992060)),
+            (h = w(h, l, u, d, n[f + 4], 11, 1272893353)),
+            (d = w(d, h, l, u, n[f + 7], 16, -155497632)),
+            (u = w(u, d, h, l, n[f + 10], 23, -1094730640)),
+            (l = w(l, u, d, h, n[f + 13], 4, 681279174)),
+            (h = w(h, l, u, d, n[f + 0], 11, -358537222)),
+            (d = w(d, h, l, u, n[f + 3], 16, -722521979)),
+            (u = w(u, d, h, l, n[f + 6], 23, 76029189)),
+            (l = w(l, u, d, h, n[f + 9], 4, -640364487)),
+            (h = w(h, l, u, d, n[f + 12], 11, -421815835)),
+            (d = w(d, h, l, u, n[f + 15], 16, 530742520)),
+            (l = m(
+              l,
+              (u = w(u, d, h, l, n[f + 2], 23, -995338651)),
               d,
               h,
               n[f + 0],
               6,
               -198630844
             )),
-            (h = y(h, u, l, d, n[f + 7], 10, 1126891415)),
-            (d = y(d, h, u, l, n[f + 14], 15, -1416354905)),
-            (l = y(l, d, h, u, n[f + 5], 21, -57434055)),
-            (u = y(u, l, d, h, n[f + 12], 6, 1700485571)),
-            (h = y(h, u, l, d, n[f + 3], 10, -1894986606)),
-            (d = y(d, h, u, l, n[f + 10], 15, -1051523)),
-            (l = y(l, d, h, u, n[f + 1], 21, -2054922799)),
-            (u = y(u, l, d, h, n[f + 8], 6, 1873313359)),
-            (h = y(h, u, l, d, n[f + 15], 10, -30611744)),
-            (d = y(d, h, u, l, n[f + 6], 15, -1560198380)),
-            (l = y(l, d, h, u, n[f + 13], 21, 1309151649)),
-            (u = y(u, l, d, h, n[f + 4], 6, -145523070)),
-            (h = y(h, u, l, d, n[f + 11], 10, -1120210379)),
-            (d = y(d, h, u, l, n[f + 2], 15, 718787259)),
-            (l = y(l, d, h, u, n[f + 9], 21, -343485551)),
-            (u = (u + m) >>> 0),
-            (l = (l + b) >>> 0),
+            (h = m(h, l, u, d, n[f + 7], 10, 1126891415)),
+            (d = m(d, h, l, u, n[f + 14], 15, -1416354905)),
+            (u = m(u, d, h, l, n[f + 5], 21, -57434055)),
+            (l = m(l, u, d, h, n[f + 12], 6, 1700485571)),
+            (h = m(h, l, u, d, n[f + 3], 10, -1894986606)),
+            (d = m(d, h, l, u, n[f + 10], 15, -1051523)),
+            (u = m(u, d, h, l, n[f + 1], 21, -2054922799)),
+            (l = m(l, u, d, h, n[f + 8], 6, 1873313359)),
+            (h = m(h, l, u, d, n[f + 15], 10, -30611744)),
+            (d = m(d, h, l, u, n[f + 6], 15, -1560198380)),
+            (u = m(u, d, h, l, n[f + 13], 21, 1309151649)),
+            (l = m(l, u, d, h, n[f + 4], 6, -145523070)),
+            (h = m(h, l, u, d, n[f + 11], 10, -1120210379)),
+            (d = m(d, h, l, u, n[f + 2], 15, 718787259)),
+            (u = m(u, d, h, l, n[f + 9], 21, -343485551)),
+            (l = (l + y) >>> 0),
+            (u = (u + b) >>> 0),
             (d = (d + S) >>> 0),
             (h = (h + v) >>> 0);
         }
-        return s.endian([u, l, d, h]);
+        return s.endian([l, u, d, h]);
       })._ff = function (e, t, n, s, o, i, r) {
         var a = e + ((t & n) | (~t & s)) + (o >>> 0) + r;
         return ((a << i) | (a >>> (32 - i))) + t;
@@ -8411,7 +8426,7 @@
     e.exports = n;
   },
   function (e, t, n) {
-    const s = n(0),
+    const s = n(1),
       o = n(115),
       i = n(4);
     e.exports = (e) => {
@@ -8422,7 +8437,7 @@
   function (e, t, n) {
     const s = n(12),
       o = n(5);
-    n(0);
+    n(1);
     e.exports = (e) => {
       let t = [];
       if (s.existsSync(e))
@@ -8447,11 +8462,11 @@
   },
   function (e, t, n) {
     "use strict";
-    var s = n(286),
-      o = n(287),
-      i = n(288),
-      r = n(289),
-      a = n(290);
+    var s = n(288),
+      o = n(289),
+      i = n(290),
+      r = n(291),
+      a = n(292);
     e.exports = function (e) {
       var t,
         n = ((t = e), t.replace(/\s{2,}/g, " ").trim()).split(" ");
@@ -8534,18 +8549,19 @@
     const s = n(31),
       o = n(2),
       i = n(32),
-      r = n(26),
-      a = n(297),
+      r = n(20),
+      a = n(119),
       c = "/displayScreenSaver";
-    const u = new (class {
+    const l = new (class {
       constructor() {
         (this.startScreensaver = this.startScreensaver.bind(this)),
           (this.stopScreensaver = this.stopScreensaver.bind(this)),
           (this.closeWindow = this.closeWindow.bind(this));
       }
       onMessage(e) {
-        e.url === c &&
-          (o.share(
+        if (e.url === c) {
+          if ("pause" === o.getData("eyeProtectionMode")) return;
+          o.share(
             "screensaverTransitionList",
             ((e, t = 7) => {
               let n = [];
@@ -8553,18 +8569,19 @@
               return n;
             })(e.data.imageList.length)
           ),
-          o.share("screensaverMessage", e.data),
-          i.enQueue({
-            taskName: s.SCREENSAVER,
-            taskDependencies: [s.LIVE, s.SCHOOLANNOUNCEMENT],
-            startTask: this.startScreensaver,
-            pauseTask: this.closeWindow,
-            coutinueTask: this.startScreensaver,
-            closedTask: this.stopScreensaver,
-            error: () => {
-              i.outQueue(s.SCREENSAVER);
-            },
-          }));
+            o.share("screensaverMessage", e.data),
+            i.enQueue({
+              taskName: s.SCREENSAVER,
+              taskDependencies: [s.LIVE, s.SCHOOLANNOUNCEMENT],
+              startTask: this.startScreensaver,
+              pauseTask: this.closeWindow,
+              coutinueTask: this.startScreensaver,
+              closedTask: this.stopScreensaver,
+              error: () => {
+                i.outQueue(s.SCREENSAVER);
+              },
+            });
+        }
       }
       startScreensaver() {
         r.newWindow("screensaver", !1);
@@ -8582,12 +8599,32 @@
         a();
       }
     })();
-    e.exports = u;
+    e.exports = l;
+  },
+  function (e, t, n) {
+    const s = n(11),
+      o = n(1),
+      i = n(6),
+      { ip: r } = o.proxyHttp;
+    e.exports = function (e) {
+      i.register(["SeewoProxyHTTP"], !1, (t) => {
+        !(function (e, t) {
+          s(
+            r,
+            e,
+            "/forward/SeewoHugoHttp/api/v1/screenSaver/reset",
+            "post",
+            { ...t },
+            (e) => {}
+          );
+        })(t.SeewoProxyHTTP, e);
+      });
+    };
   },
   function (e, t, n) {
     const s = n(3),
       o = n(2),
-      i = n(307),
+      i = n(308),
       r = {
         modalWidth: 480,
         title: "提示",
@@ -8656,7 +8693,7 @@
   function (e, t, n) {
     const s = n(3),
       o = n(2),
-      i = n(311);
+      i = n(312);
     const r = new (class {
       constructor() {
         this.messages = [];
@@ -8676,12 +8713,12 @@
   function (e, t, n) {
     const s = n(3),
       o = n(7),
-      { screen: i } = n(1),
+      { screen: i } = n(0),
       r = n(2),
       a = n(4),
       c = "/tipConfirm",
-      u = 328,
-      l = 146;
+      l = 328,
+      u = 146;
     const d = new (class {
       constructor() {
         (this.windows = {}),
@@ -8728,16 +8765,16 @@
           r,
           { scaleFactor: a, workAreaSize: c } = i.getPrimaryDisplay();
         if (
-          ((o = t + s >= c.width * a ? c.width * a - u - 4 : t + s - u),
-          (r = n - 8 - l),
+          ((o = t + s >= c.width * a ? c.width * a - l - 4 : t + s - l),
+          (r = n - 8 - u),
           !e.isDestroyed())
         ) {
           let t = 1 / a;
           e.setBounds({
             x: Math.ceil(o / a),
             y: Math.ceil(r / a),
-            width: Math.ceil(u * t),
-            height: Math.ceil(l * t),
+            width: Math.ceil(l * t),
+            height: Math.ceil(u * t),
           });
         }
       }
@@ -8770,10 +8807,10 @@
     e.exports = i;
   },
   function (e, t, n) {
-    const s = n(19),
+    const s = n(18),
       o = n(73),
       i = n(6),
-      { ip: r, url: a } = n(0).adminWebsocket;
+      { ip: r, url: a } = n(1).adminWebsocket;
     const c = new (class extends s {
       constructor(e) {
         super(e), (this.adminConnectState = !1);
@@ -8800,13 +8837,13 @@
   },
   function (e, t, n) {
     const s = n(2),
-      { createGetDeviceId: o } = n(125),
+      { createGetDeviceId: o } = n(126),
       i = n(6),
       r = n(4),
       a = n(3),
-      c = n(119),
-      u = n(317),
-      l = { GET_RELATE_MES: 1001, GET_IOT_LINE: 1317, BIND_INFO_FAIL: 1005 },
+      c = n(120),
+      l = n(318),
+      u = { GET_RELATE_MES: 1001, GET_IOT_LINE: 1317, BIND_INFO_FAIL: 1005 },
       d = "/batchBind/success",
       h = "/batchbind/receivedResult",
       f = "/powerOff/confirm",
@@ -8819,20 +8856,20 @@
       onMessage(e) {
         if (
           (e.messageType &&
-            Object.values(l).indexOf(e.messageType) > -1 &&
-            (-1 === [l.BIND_INFO_FAIL].indexOf(e.messageType) &&
+            Object.values(u).indexOf(e.messageType) > -1 &&
+            (-1 === [u.BIND_INFO_FAIL].indexOf(e.messageType) &&
               ((this.message[e.messageType] = e),
               this.pushMessageToWindow(e.messageType)),
-            e.messageType === l.GET_RELATE_MES &&
+            e.messageType === u.GET_RELATE_MES &&
               (s.share("schoolCode", null === e.data ? "" : e.data.schoolCode),
               s.share("bindInfo", null === e.data ? null : e.data)),
-            e.messageType === l.GET_IOT_LINE &&
+            e.messageType === u.GET_IOT_LINE &&
               (i.register(["SeewoProxyHTTP"], !1, (e) => {
                 o(e.SeewoProxyHTTP);
               }),
               s.share("iotLineStatus", e.data.state),
               s.setData({ iotLineStatus: e.data.state })),
-            e.messageType === l.BIND_INFO_FAIL &&
+            e.messageType === u.BIND_INFO_FAIL &&
               r("bindInfoFailResponse", e.data, "assistant")),
           e.url)
         ) {
@@ -8851,7 +8888,7 @@
                 content: "设备将于10秒后自动关机。",
                 onCancel: () => {},
                 onOk: () => {
-                  u();
+                  l();
                 },
               },
               !0
@@ -8881,7 +8918,7 @@
         (t[e] = this.message[e]), r("assistantProxyMes", t, "assistant");
       }
       getMessage(e) {
-        return e ? this.message[l[e]] : this.message;
+        return e ? this.message[u[e]] : this.message;
       }
     })();
     w.onMessage({ url: "/password/authMode", data: { mode: 0 } }),
@@ -8889,7 +8926,7 @@
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp,
       a = n(2);
@@ -8963,7 +9000,7 @@
   function (e, t, n) {
     const s = n(3),
       o = n(4),
-      i = n(0),
+      i = n(1),
       r = { GET_COUNTDOWN_MES: 1004 };
     const a = new (class {
       constructor() {
@@ -8991,11 +9028,11 @@
   function (e, t, n) {
     const s = n(3),
       o = n(4),
-      i = (n(7), n(0)),
+      i = (n(7), n(1)),
       r = n(2),
       a = { GET_RESOURCE: 1315, FAST_TOOLBAR_CONTROL: 1213 },
       c = !0;
-    const u = new (class {
+    const l = new (class {
       constructor() {
         this.message = {};
       }
@@ -9029,11 +9066,11 @@
         return this.message[a[e]];
       }
     })();
-    e.exports = u;
+    e.exports = l;
   },
   function (e, t, n) {
     const s = n(12),
-      o = n(0),
+      o = n(1),
       i = n(4),
       r = n(5);
     e.exports = () => {
@@ -9075,7 +9112,7 @@
   },
   function (e, t, n) {
     const s = n(3),
-      { screen: o } = n(1),
+      { screen: o } = n(0),
       i = n(2),
       r = n(4);
     const a = new (class {
@@ -9087,14 +9124,14 @@
         let r = s.addOne("nfcAuthResult", t, { ...e, windowId: t }),
           a = 1080 / n.height,
           c = Math.ceil(n.height - 456 / a),
-          u = Math.ceil(454 / a);
+          l = Math.ceil(454 / a);
         i.share("setZoomFactor", 1 / a, t),
           r &&
             !r.isDestroyed() &&
             ((this.windowList[t] = r),
             r.setBounds({
               width: Math.ceil(364 / a),
-              height: u,
+              height: l,
               x: Math.ceil(n.width - 366 / a),
               y: c,
             }),
@@ -9147,8 +9184,9 @@
   function (e, t, n) {
     const s = n(3),
       o = n(4),
-      i = (n(7), n(0), n(2), n(346));
-    const r = new (class {
+      i = (n(7), n(1), n(2), n(347)),
+      r = n(20);
+    const a = new (class {
       constructor() {
         this.message = {};
       }
@@ -9157,47 +9195,36 @@
         o(
           "postEyeProtectionModeActionByMain",
           { action: "start", data: e },
-          "eyeProtectionModeToolbar"
+          "eyeProtectionModeBall"
         );
       }
       onMessage(e) {
         "/eye_protection/timer/created" === e.url &&
-          (console.log("response-toolbar --- /eye_protection/timer/created", e),
-          this.createEyeProtectionModeToolbar(e.data)),
+          this.createEyeProtectionModeBall(e.data),
           "/eye_protection/timer/paused" === e.url &&
-            (console.log(
-              "response-toolbar --- /eye_protection/timer/paused",
-              e
-            ),
             o(
               "postEyeProtectionModeActionByMain",
               { action: "pause", data: e.data },
-              "eyeProtectionModeToolbar"
-            )),
+              "eyeProtectionModeBall"
+            ),
           "/eye_protection/timer/resumed" === e.url &&
-            (console.log(
-              "response-toolbar --- /eye_protection/timer/resumed",
-              e
-            ),
-            this.createEyeProtectionModeToolbar(e.data)),
+            this.createEyeProtectionModeBall(e.data),
           "/eye_protection/timer/aborted" === e.url &&
-            (console.log(
-              "response-toolbar ----- /eye_protection/timer/aborted",
-              e
-            ),
-            this.closeWindow());
+            (this.closeWindow(),
+            o("screenLockModeReset", {}),
+            r.getWindowList("blackWindow") && r.closeWindow("blackWindow", !0));
       }
-      createEyeProtectionModeToolbar(e) {
-        s.getInstance("eyeProtectionModeToolbar")
+      createEyeProtectionModeBall(e) {
+        s.getInstance("eyeProtectionModeBall")
           ? o(
               "postEyeProtectionModeActionByMain",
               { action: "resumed", data: e },
-              "eyeProtectionModeToolbar"
+              "eyeProtectionModeBall"
             )
-          : ((this.message = e), s.newOne("eyeProtectionModeToolbar"));
+          : ((this.message = e), s.newOne("eyeProtectionModeBall"));
       }
       closeWindow() {
-        s.close("eyeProtectionModeToolbar");
+        s.close("eyeProtectionModeBall");
       }
       getMessage() {
         return this.message;
@@ -9206,10 +9233,10 @@
         i({ id: e });
       }
     })();
-    e.exports = r;
+    e.exports = a;
   },
   function (e, t, n) {
-    const s = n(26);
+    const s = n(20);
     e.exports = new (class {
       constructor() {
         (this.successFn = null), (this.failFn = null);
@@ -9246,14 +9273,14 @@
     e.exports = { WINDOW_TYPES: n, WINDOW_TYPE_CONFIGS: s };
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(0),
+    const s = n(18),
+      o = n(1),
       i = n(6),
       r = n(4),
       a = n(2),
-      c = n(360),
-      u = n(5),
-      l = {
+      c = n(361),
+      l = n(5),
+      u = {
         VIRUS_LIB_NOTICE: 1001,
         VIRUS_SCANNING_NOTICE: 1002,
         USB_LIST: 1003,
@@ -9269,9 +9296,9 @@
       }
       onMessage(e) {
         const t = JSON.parse(e);
-        for (let e in l)
-          l[e] === t.messageType && a.share(e, t.data, "assistant");
-        if (t.messageType === l.USB_LIST) {
+        for (let e in u)
+          u[e] === t.messageType && a.share(e, t.data, "assistant");
+        if (t.messageType === u.USB_LIST) {
           let e = ((e, t) => {
             let n = [],
               s = [];
@@ -9286,10 +9313,10 @@
             e.delete.length > 0 &&
               (r("usbOut", e.delete, "assistant"), c.deleteWindow(e.delete));
         }
-        t.messageType === l.VIRUS_LIB_NOTICE &&
+        t.messageType === u.VIRUS_LIB_NOTICE &&
           ((this.virusFilesList = []),
           a.share("virusFilesList", this.virusFilesList, "assistant")),
-          t.messageType === l.VIRUS_SCANNING_NOTICE &&
+          t.messageType === u.VIRUS_SCANNING_NOTICE &&
             (this.scanId !== parseInt(t.data.id) &&
               ((this.virusFilesList = []),
               a.share("virusFilesList", this.virusFilesList, "assistant")),
@@ -9298,7 +9325,7 @@
               (this.virusFilesList.push({
                 path: t.data.path,
                 type: t.data.name,
-                fileName: u.basename(t.data.path, u.extname(t.data.path)),
+                fileName: l.basename(t.data.path, l.extname(t.data.path)),
               }),
               a.share("virusFilesList", this.virusFilesList, "assistant")));
       }
@@ -9321,22 +9348,22 @@
       (e.exports = f);
   },
   function (e, t, n) {
-    const s = n(368),
+    const s = n(369),
       o = n(2),
       i = n(33),
-      r = n(26),
+      r = n(20),
       a = n(32),
       c = n(31),
-      u = n(7),
-      l = n(55),
+      l = n(7),
+      u = n(55),
       d = n(56),
       h = n(28),
       f = "/propaganda/task",
       p = "/propaganda/cancel",
       g = "/propaganda/auth",
       w = 0,
-      y = 2,
-      m = 6,
+      m = 2,
+      y = 6,
       b = 1;
     const S = new (class {
       constructor() {
@@ -9364,7 +9391,7 @@
             !isNaN(e.data.playCount) &&
             0 !== e.data.playCount) ||
             (this.timeout = setTimeout(() => {
-              u.info("校宣到时"), this.closeTask();
+              l.info("校宣到时"), this.closeTask();
             }, 1e3 * (e.data.duration + 2)))),
           e.messageType === p &&
             (e.data.type === b
@@ -9376,7 +9403,7 @@
       startTask() {
         const e = this.message;
         r.newWindow("schoolAnnouncement"),
-          "win7" === o.getData("systemType") && l(),
+          "win7" === o.getData("systemType") && u(),
           setTimeout(() => {
             o.share("schoolAnnouncementTaskData", e.data);
           }, 0);
@@ -9385,7 +9412,7 @@
         r.closeWindow("schoolAnnouncement"),
           "win7" === o.getData("systemType") && d();
       }
-      closeTask(e = y) {
+      closeTask(e = m) {
         h.delete("ANNOUNCEMENT"),
           o.share("ANNOUNCEMENT_FEEDBACK", 0),
           o.setData({ ANNOUNCEMENT_ERROR_COUNT: 0 });
@@ -9399,7 +9426,7 @@
           (this.message = null));
       }
       exit(e) {
-        this.closeTask(1 === e ? y : m);
+        this.closeTask(1 === e ? m : y);
       }
       serverDisconnect() {
         a.outQueue(c.SCHOOLANNOUNCEMENT);
@@ -9408,14 +9435,14 @@
     e.exports = S;
   },
   function (e, t, n) {
-    const { app: s, protocol: o } = n(1),
+    const { app: s, protocol: o } = n(0),
       i = n(7),
-      r = n(173),
+      r = n(174),
       a = n(6),
       c = n(3),
-      u = n(229),
-      l = n(230),
-      d = n(231);
+      l = n(231),
+      u = n(232),
+      d = n(233);
     s.requestSingleInstanceLock()
       ? (s.disableHardwareAcceleration(),
         s.commandLine.appendSwitch("--disable-gpu", !0),
@@ -9441,14 +9468,14 @@
             process.env.easiassistant_debugport
           ),
         i.info("程序启动"),
-        u.init(),
-        l(),
+        l.init(),
+        u(),
         a.startGetFromRegedit(),
         s.isPackaged &&
           (process.on("uncaughtException", (e) => {
             i.error("系统异常", e), console.log("系统异常", e), d(e.toString());
           }),
-          "pro" === u.version && r()),
+          "pro" === l.version && r()),
         s.on("second-instance", (e, t, s) => {
           if (
             (i.info("监听到第二实例", JSON.stringify(t)),
@@ -9465,7 +9492,7 @@
         }),
         s.on("window-all-closed", () => {}),
         s.on("ready", function () {
-          n(267)(),
+          n(269)(),
             i.info("监听到第一实例", JSON.stringify(process.argv)),
             a.register(["SeewoProxyHTTP"], !0, () => {
               process.argv.includes("--uninstall")
@@ -9483,20 +9510,20 @@
     "use strict";
     const s = n(10)("log4js:main"),
       o = n(12),
-      i = n(146)({ proto: !0 }),
+      i = n(147)({ proto: !0 }),
       r = n(34),
       a = n(78),
       c = n(35),
-      u = n(80),
-      l = n(91),
-      d = n(165),
+      l = n(80),
+      u = n(91),
+      d = n(166),
       h = n(60),
-      f = n(166);
+      f = n(167);
     let p = !1;
     function g(e) {
       if (!p) return;
       s("Received log event ", e);
-      l.appendersForCategory(e.categoryName).forEach((t) => {
+      u.appendersForCategory(e.categoryName).forEach((t) => {
         t(e);
       });
     }
@@ -9513,10 +9540,10 @@
         r.configure(i(t)),
         h.onMessage(g),
         (p = !0),
-        y
+        m
       );
     }
-    const y = {
+    const m = {
       getLogger: function (e) {
         return (
           p ||
@@ -9532,7 +9559,7 @@
       configure: w,
       shutdown: function (e) {
         s("Shutdown called. Disabling all log writing."), (p = !1);
-        const t = Array.from(u.values()),
+        const t = Array.from(l.values()),
           n = t.reduceRight((e, t) => (t.shutdown ? e + 1 : e), 0);
         let o,
           i = 0;
@@ -9553,7 +9580,7 @@
       levels: c,
       addLayout: a.addLayout,
     };
-    e.exports = y;
+    e.exports = m;
   },
   function (e, t, n) {
     function s() {
@@ -9851,7 +9878,7 @@
       }),
       (t.colors = [6, 2, 3, 4, 5, 1]);
     try {
-      var i = n(144);
+      var i = n(145);
       i &&
         i.level >= 2 &&
         (t.colors = [
@@ -9908,9 +9935,9 @@
   },
   function (e, t, n) {
     "use strict";
-    const s = n(27),
+    const s = n(25),
       o = n(77),
-      i = n(145),
+      i = n(146),
       { env: r } = process;
     let a;
     function c(e) {
@@ -9918,7 +9945,7 @@
         0 !== e && { level: e, hasBasic: !0, has256: e >= 2, has16m: e >= 3 }
       );
     }
-    function u(e, t) {
+    function l(e, t) {
       if (0 === a) return 0;
       if (i("color=16m") || i("color=full") || i("color=truecolor")) return 3;
       if (i("color=256")) return 2;
@@ -9979,10 +10006,10 @@
             : Math.min(parseInt(r.FORCE_COLOR, 10), 3)),
       (e.exports = {
         supportsColor: function (e) {
-          return c(u(e, e && e.isTTY));
+          return c(l(e, e && e.isTTY));
         },
-        stdout: c(u(!0, o.isatty(1))),
-        stderr: c(u(!0, o.isatty(2))),
+        stdout: c(l(!0, o.isatty(1))),
+        stderr: c(l(!0, o.isatty(2))),
       });
   },
   function (e, t, n) {
@@ -10024,8 +10051,8 @@
                       r[a] = new Set(o(Array.from(c), e));
                     else if (ArrayBuffer.isView(c)) r[a] = s(c);
                     else {
-                      var u = t.indexOf(c);
-                      r[a] = -1 !== u ? n[u] : e(c);
+                      var l = t.indexOf(c);
+                      r[a] = -1 !== l ? n[l] : e(c);
                     }
                   }
                   return t.pop(), n.pop(), r;
@@ -10048,8 +10075,8 @@
                         r[a] = new Set(o(Array.from(c), e));
                       else if (ArrayBuffer.isView(c)) r[a] = s(c);
                       else {
-                        var u = t.indexOf(c);
-                        r[a] = -1 !== u ? n[u] : e(c);
+                        var l = t.indexOf(c);
+                        r[a] = -1 !== l ? n[l] : e(c);
                       }
                     }
                   return t.pop(), n.pop(), r;
@@ -10061,13 +10088,13 @@
                 a++
               ) {
                 var c = i[a],
-                  u = e[c];
-                if ("object" != typeof u || null === u) r[c] = u;
-                else if (u instanceof Date) r[c] = new Date(u);
-                else if (ArrayBuffer.isView(u)) r[c] = s(u);
+                  l = e[c];
+                if ("object" != typeof l || null === l) r[c] = l;
+                else if (l instanceof Date) r[c] = new Date(l);
+                else if (ArrayBuffer.isView(l)) r[c] = s(l);
                 else {
-                  var l = t.indexOf(u);
-                  r[c] = -1 !== l ? n[l] : o(u);
+                  var u = t.indexOf(l);
+                  r[c] = -1 !== u ? n[u] : o(l);
                 }
               }
               return r;
@@ -10176,10 +10203,10 @@ THE SOFTWARE.
           return t;
         },
       c = String;
-    function u(e, t, n) {
+    function l(e, t, n) {
       return t instanceof Array
         ? (function (e, t, n) {
-            for (var s = 0, o = t.length; s < o; s++) t[s] = u(e, t[s], n);
+            for (var s = 0, o = t.length; s < o; s++) t[s] = l(e, t[s], n);
             return t;
           })(e, t, n)
         : t instanceof c
@@ -10197,20 +10224,20 @@ THE SOFTWARE.
           : e
         : t instanceof Object
         ? (function (e, t, n) {
-            for (var s in t) t.hasOwnProperty(s) && (t[s] = u(e, t[s], n));
+            for (var s in t) t.hasOwnProperty(s) && (t[s] = l(e, t[s], n));
             return t;
           })(e, t, n)
         : t;
     }
-    var l = {
+    var u = {
       stringify: function (e, t, i, r) {
-        return l.parser.stringify(
+        return u.parser.stringify(
           e,
           (function (e, t, i) {
             var r,
               c,
-              u = !1,
-              l = !!t,
+              l = !1,
+              u = !!t,
               d = [],
               h = [e],
               f = [e],
@@ -10218,7 +10245,7 @@ THE SOFTWARE.
               g = e,
               w = 1;
             return (
-              l &&
+              u &&
                 (c =
                   "object" == typeof t
                     ? function (e, n) {
@@ -10227,8 +10254,8 @@ THE SOFTWARE.
                     : t),
               function (e, t) {
                 return (
-                  l && (t = c.call(this, e, t)),
-                  u
+                  u && (t = c.call(this, e, t)),
+                  l
                     ? (g !== this &&
                         ((r = w - a.call(h, this) - 1),
                         (w -= r),
@@ -10248,7 +10275,7 @@ THE SOFTWARE.
                         : "string" == typeof t &&
                           i &&
                           (t = t.replace(n, s).replace("~", n)))
-                    : (u = !0),
+                    : (l = !0),
                   t
                 );
               }
@@ -10258,14 +10285,14 @@ THE SOFTWARE.
         );
       },
       parse: function (e, t) {
-        return l.parser.parse(
+        return u.parser.parse(
           e,
           (function (e) {
             return function (t, o) {
               var i = "string" == typeof o;
               return i && "~" === o.charAt(0)
                 ? new c(o.slice(1))
-                : ("" === t && (o = u(o, o, {})),
+                : ("" === t && (o = l(o, o, {})),
                   i && (o = o.replace(r, "$1~").replace(s, n)),
                   e ? e.call(this, t, o) : o);
             };
@@ -10274,7 +10301,7 @@ THE SOFTWARE.
       },
       parser: JSON,
     };
-    e.exports = l;
+    e.exports = u;
   },
   function (e, t) {
     e.exports = require("cluster");
@@ -10353,8 +10380,8 @@ THE SOFTWARE.
     const s = n(10)("log4js:file"),
       o = n(5),
       i = n(82),
-      r = n(27).EOL || "\n";
-    function a(e, t, n, a, c, u) {
+      r = n(25).EOL || "\n";
+    function a(e, t, n, a, c, l) {
       (e = o.normalize(e)),
         s(
           "Creating file appender (",
@@ -10366,10 +10393,10 @@ THE SOFTWARE.
           ", ",
           c,
           ", ",
-          u,
+          l,
           ")"
         );
-      const l = (function (e, t, n, s) {
+      const u = (function (e, t, n, s) {
           const o = new i.RollingFileStream(e, t, n, s);
           return (
             o.on("error", (t) => {
@@ -10383,19 +10410,19 @@ THE SOFTWARE.
           );
         })(e, n, a, c),
         d = function (e) {
-          l.write(t(e, u) + r, "utf8");
+          u.write(t(e, l) + r, "utf8");
         };
       return (
         (d.reopen = function () {
-          l.closeTheStream(l.openTheStream.bind(l));
+          u.closeTheStream(u.openTheStream.bind(u));
         }),
         (d.sighupHandler = function () {
           s("SIGHUP handler called."), d.reopen();
         }),
         (d.shutdown = function (e) {
           process.removeListener("SIGHUP", d.sighupHandler),
-            l.write("", "utf-8", () => {
-              l.end(e);
+            u.write("", "utf-8", () => {
+              u.end(e);
             });
         }),
         process.on("SIGHUP", d.sighupHandler),
@@ -10444,10 +10471,10 @@ THE SOFTWARE.
           s = r.parse(e),
           i = s.dir,
           c = s.name,
-          u = "" === s.ext ? "" : s.ext.substring(1),
-          l = new RegExp("^" + c);
+          l = "" === s.ext ? "" : s.ext.substring(1),
+          u = new RegExp("^" + c);
         function d(e) {
-          return l.test(e);
+          return u.test(e);
         }
         function h(e) {
           o("Calculating index of " + e);
@@ -10470,20 +10497,20 @@ THE SOFTWARE.
               o("Renaming the old files"),
                 a.readdir(r.dirname(e), function (e, s) {
                   if (e) return t(e);
-                  var l = s.filter(d).sort(f);
+                  var u = s.filter(d).sort(f);
                   !(function e(s) {
-                    var d = l.pop();
+                    var d = u.pop();
                     if (!d || s) return t(s);
                     !(function (e, t) {
                       var s = h(e);
                       if ((o("Index of " + e + " is " + s), s < n.backups)) {
-                        var l = (s + 1).toString(),
+                        var u = (s + 1).toString(),
                           d = [c];
-                        u
+                        l
                           ? n.options.keepFileExt
-                            ? d.push(l, u)
-                            : d.push(u, l)
-                          : d.push(l);
+                            ? d.push(u, l)
+                            : d.push(l, u)
+                          : d.push(u);
                         var f = r.join(i, d.join("."));
                         n.options.compress &&
                           ".gz" === r.extname(e) &&
@@ -10515,22 +10542,22 @@ THE SOFTWARE.
         ? ((n = t), (t = {}))
         : (t && "object" == typeof t) || (t = { mode: t });
       var c = t.mode,
-        u = t.fs || o;
+        l = t.fs || o;
       void 0 === c && (c = i), a || (a = null);
-      var l = n || function () {};
+      var u = n || function () {};
       (e = s.resolve(e)),
-        u.mkdir(e, c, function (n) {
-          if (!n) return l(null, (a = a || e));
+        l.mkdir(e, c, function (n) {
+          if (!n) return u(null, (a = a || e));
           switch (n.code) {
             case "ENOENT":
-              if (s.dirname(e) === e) return l(n);
+              if (s.dirname(e) === e) return u(n);
               r(s.dirname(e), t, function (n, s) {
-                n ? l(n, s) : r(e, t, l, s);
+                n ? u(n, s) : r(e, t, u, s);
               });
               break;
             default:
-              u.stat(e, function (e, t) {
-                e || !t.isDirectory() ? l(n, a) : l(null, a);
+              l.stat(e, function (e, t) {
+                e || !t.isDirectory() ? u(n, a) : u(null, a);
               });
           }
         });
@@ -10549,13 +10576,13 @@ THE SOFTWARE.
               (r = e(s.dirname(t), n, r)), e(t, n, r);
               break;
             default:
-              var u;
+              var l;
               try {
-                u = c.statSync(t);
+                l = c.statSync(t);
               } catch (e) {
                 throw o;
               }
-              if (!u.isDirectory()) throw o;
+              if (!l.isDirectory()) throw o;
           }
         }
         return r;
@@ -10576,7 +10603,7 @@ THE SOFTWARE.
         (t.Writable = n(88)),
         (t.Duplex = n(36)),
         (t.Transform = n(90)),
-        (t.PassThrough = n(161)));
+        (t.PassThrough = n(162)));
   },
   function (e, t) {
     var n = {}.toString;
@@ -10708,7 +10735,7 @@ THE SOFTWARE.
       r = n(12),
       a = n(5),
       c = n(13);
-    function u(e, t, n, s) {
+    function l(e, t, n, s) {
       o("Now is ", s),
         t && "object" == typeof t && ((s = n), (n = t), (t = null)),
         (this.pattern = t || ".yyyy-MM-dd"),
@@ -10729,11 +10756,11 @@ THE SOFTWARE.
           (e = this.baseFilename + this.lastTimeWeWroteSomething),
           o("filename is now ", e)),
         o("this.now is ", this.now, ", now is ", s),
-        u.super_.call(this, e, n);
+        l.super_.call(this, e, n);
     }
-    (e.exports = u),
-      c.inherits(u, s),
-      (u.prototype.shouldRoll = function () {
+    (e.exports = l),
+      c.inherits(l, s),
+      (l.prototype.shouldRoll = function () {
         var e = this.lastTimeWeWroteSomething,
           t = i.asString(this.pattern, new Date(this.now()));
         return (
@@ -10750,7 +10777,7 @@ THE SOFTWARE.
           t !== e
         );
       }),
-      (u.prototype.roll = function (e, t) {
+      (l.prototype.roll = function (e, t) {
         o("Starting roll");
         var n = a.parse(this.baseFilename);
         if (this.alwaysIncludePattern)
@@ -10795,11 +10822,11 @@ THE SOFTWARE.
           );
         }
       }),
-      (u.prototype.compressIfNeeded = function (e, t) {
+      (l.prototype.compressIfNeeded = function (e, t) {
         o("Checking if we need to compress the old file"),
           this.options.compress ? this.compress(e, t) : t();
       }),
-      (u.prototype.removeOldFilesIfNeeded = function (e) {
+      (l.prototype.removeOldFilesIfNeeded = function (e) {
         if (
           (o("Checking if we need to delete old files"),
           this.options.daysToKeep && this.options.daysToKeep > 0)
@@ -10810,7 +10837,7 @@ THE SOFTWARE.
         }
         e();
       }),
-      (u.prototype.removeFilesOlderThan = function (e) {
+      (l.prototype.removeFilesOlderThan = function (e) {
         for (
           var t = a.dirname(this.baseFilename),
             n = a.basename(this.baseFilename),
@@ -10830,7 +10857,7 @@ THE SOFTWARE.
   function (e, t, n) {
     "use strict";
     const s = n(82),
-      o = n(27).EOL || "\n";
+      o = n(25).EOL || "\n";
     e.exports.configure = function (e, t) {
       let n = t.basicLayout;
       return (
@@ -10863,7 +10890,7 @@ THE SOFTWARE.
     }),
       (n.resolve = n),
       (e.exports = n),
-      (n.id = 164);
+      (n.id = 165);
   },
   function (e, t, n) {
     "use strict";
@@ -10873,7 +10900,7 @@ THE SOFTWARE.
       r = n(60),
       a = n(91),
       c = n(34);
-    class u {
+    class l {
       constructor(e) {
         if (!e) throw new Error("No category provided.");
         (this.category = e),
@@ -10908,25 +10935,25 @@ THE SOFTWARE.
         this.context = {};
       }
     }
-    function l(e) {
+    function u(e) {
       const t = i.getLevel(e),
         n = t
           .toString()
           .toLowerCase()
           .replace(/_([a-z])/g, (e) => e[1].toUpperCase()),
         s = n[0].toUpperCase() + n.slice(1);
-      (u.prototype[`is${s}Enabled`] = function () {
+      (l.prototype[`is${s}Enabled`] = function () {
         return this.isLevelEnabled(t);
       }),
-        (u.prototype[n] = function (...e) {
+        (l.prototype[n] = function (...e) {
           this.log(t, ...e);
         });
     }
-    i.levels.forEach(l),
+    i.levels.forEach(u),
       c.addListener(() => {
-        i.levels.forEach(l);
+        i.levels.forEach(u);
       }),
-      (e.exports = u);
+      (e.exports = l);
   },
   function (e, t, n) {
     "use strict";
@@ -10961,32 +10988,32 @@ THE SOFTWARE.
               return t;
             })(t.nolog)
           : null;
-      return (e, u, l) => {
-        if (e._logging) return l();
-        if (c && c.test(e.originalUrl)) return l();
+      return (e, l, u) => {
+        if (e._logging) return u();
+        if (c && c.test(e.originalUrl)) return u();
         if (n.isLevelEnabled(r) || "auto" === t.level) {
           const c = new Date(),
-            l = u.writeHead;
+            u = l.writeHead;
           (e._logging = !0),
-            (u.writeHead = (e, n) => {
-              (u.writeHead = l),
-                u.writeHead(e, n),
-                (u.__statusCode = e),
-                (u.__headers = n || {}),
+            (l.writeHead = (e, n) => {
+              (l.writeHead = u),
+                l.writeHead(e, n),
+                (l.__statusCode = e),
+                (l.__headers = n || {}),
                 "auto" === t.level
                   ? ((r = s.INFO),
                     e >= 300 && (r = s.WARN),
                     e >= 400 && (r = s.ERROR))
                   : (r = s.getLevel(t.level, s.INFO));
             }),
-            u.on("finish", () => {
+            l.on("finish", () => {
               if (
-                ((u.responseTime = new Date() - c),
-                u.statusCode &&
+                ((l.responseTime = new Date() - c),
+                l.statusCode &&
                   "auto" === t.level &&
                   ((r = s.INFO),
-                  u.statusCode >= 300 && (r = s.WARN),
-                  u.statusCode >= 400 && (r = s.ERROR)),
+                  l.statusCode >= 300 && (r = s.WARN),
+                  l.statusCode >= 400 && (r = s.ERROR)),
                 n.isLevelEnabled(r))
               ) {
                 const s = (function (e, t, n) {
@@ -11061,15 +11088,15 @@ THE SOFTWARE.
                       return t;
                     })(n.concat(s))
                   );
-                })(e, u, t.tokens || []);
+                })(e, l, t.tokens || []);
                 if ("function" == typeof a) {
-                  const t = a(e, u, (e) => i(e, s));
+                  const t = a(e, l, (e) => i(e, s));
                   t && n.log(r, t);
                 } else n.log(r, i(a, s));
               }
             });
         }
-        return l();
+        return u();
       };
     };
   },
@@ -11085,7 +11112,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(5),
-      o = n(0).logsPath;
+      o = n(1).logsPath;
     e.exports = function (e) {
       return {
         error: {
@@ -11118,7 +11145,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(5),
-      { app: o } = n(1);
+      { app: o } = n(0);
     e.exports = {
       topMostForbidden: !1,
       sundayAppId: "21a945e25b6e47c9ad812354edb46cf4",
@@ -11198,7 +11225,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(5),
-      { app: o } = n(1);
+      { app: o } = n(0);
     e.exports = {
       canOpenDevTool: !0,
       webConfig: {
@@ -11222,7 +11249,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(5),
-      { app: o } = n(1);
+      { app: o } = n(0);
     e.exports = {
       canOpenDevTool: !1,
       webConfig: {
@@ -11258,8 +11285,8 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(0),
-      { crashReporter: o } = n(1);
+    const s = n(1),
+      { crashReporter: o } = n(0);
     e.exports = function () {
       let e = "https://sunday.cvte.com/bugly/api/v1/electron/" + s.sundayAppId;
       o.start({
@@ -11271,7 +11298,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { dllRoot: s } = n(0),
+    const { dllRoot: s } = n(1),
       o = n(46),
       i = n(14);
     let r = [],
@@ -11301,12 +11328,12 @@ THE SOFTWARE.
     "use strict";
     const s = n(14),
       o = n(15),
-      i = n(20),
+      i = n(21),
       r = n(96),
       a = n(41),
       c = n(10)("ffi:FunctionType");
-    function u(e, t, n) {
-      if (!(this instanceof u)) return new u(e, t, n);
+    function l(e, t, n) {
+      if (!(this instanceof l)) return new l(e, t, n);
       c("creating new FunctionType"),
         o(!!e, 'expected a return "type" object as the first argument'),
         o(
@@ -11317,23 +11344,23 @@ THE SOFTWARE.
         (this.argTypes = t.map(s.coerceType)),
         (this.abi = null == n ? i.FFI_DEFAULT_ABI : n);
     }
-    (e.exports = u),
-      (u.prototype.ffi_type = i.FFI_TYPES.pointer),
-      (u.prototype.size = s.sizeof.pointer),
-      (u.prototype.alignment = s.alignof.pointer),
-      (u.prototype.indirection = 1),
-      (u.prototype.toPointer = function (e) {
+    (e.exports = l),
+      (l.prototype.ffi_type = i.FFI_TYPES.pointer),
+      (l.prototype.size = s.sizeof.pointer),
+      (l.prototype.alignment = s.alignof.pointer),
+      (l.prototype.indirection = 1),
+      (l.prototype.toPointer = function (e) {
         return r(this.retType, this.argTypes, this.abi, e);
       }),
-      (u.prototype.toFunction = function (e) {
+      (l.prototype.toFunction = function (e) {
         return a(e, this.retType, this.argTypes, this.abi);
       }),
-      (u.prototype.get = function (e, t) {
+      (l.prototype.get = function (e, t) {
         c('ffi FunctionType "get" function');
         const n = e.readPointer(t);
         return this.toFunction(n);
       }),
-      (u.prototype.set = function (e, t, n) {
+      (l.prototype.set = function (e, t, n) {
         let s;
         if ((c('ffi FunctionType "set" function'), "function" == typeof n))
           s = this.toPointer(n);
@@ -11354,7 +11381,7 @@ THE SOFTWARE.
       i = n(98),
       r = n(10)("ffi:Library"),
       a = s.FLAGS.RTLD_NOW,
-      c = (u.EXT = {
+      c = (l.EXT = {
         linux: ".so",
         linux2: ".so",
         sunos: ".so",
@@ -11365,17 +11392,17 @@ THE SOFTWARE.
         mac: ".dylib",
         win32: ".dll",
       }[process.platform]);
-    function u(e, t, n) {
+    function l(e, t, n) {
       r("creating Library object for", e),
         e &&
           -1 === e.indexOf(c) &&
           (r("appending library extension to library name", c), (e += c)),
         n || (n = {});
-      const u = new s(e || null, a);
+      const l = new s(e || null, a);
       return (
         Object.keys(t || {}).forEach(function (s) {
           r("defining function", s);
-          const a = u.get(s),
+          const a = l.get(s),
             c = t[s];
           if (a.isNull())
             throw new Error(
@@ -11385,41 +11412,41 @@ THE SOFTWARE.
                 s +
                 '"'
             );
-          const l = c[0],
+          const u = c[0],
             d = c[1],
             h = c[2],
             f = h && h.abi,
             p = h && h.async;
-          if (h && h.varargs) n[s] = i(a, l, d, f);
+          if (h && h.varargs) n[s] = i(a, u, d, f);
           else {
-            const e = o(a, l, d, f);
+            const e = o(a, u, d, f);
             n[s] = p ? e.async : e;
           }
         }),
         n
       );
     }
-    e.exports = u;
+    e.exports = l;
   },
   function (e, t, n) {
     "use strict";
     const s = n(63),
       o = n(41),
-      i = n(20).StaticFunctions,
+      i = n(21).StaticFunctions,
       r = n(14),
       a = r.types.int,
       c = r.refType(a);
-    let u = null;
+    let l = null;
     if ("win32" == process.platform) {
       const e = o(s("msvcrt.dll").get("_errno"), c, []);
-      u = function () {
+      l = function () {
         return e().deref();
       };
-    } else u = o(i._errno, "int", []);
-    e.exports = u;
+    } else l = o(i._errno, "int", []);
+    e.exports = l;
   },
   function (e, t, n) {
-    const { dllRoot: s } = n(0),
+    const { dllRoot: s } = n(1),
       o = n(46),
       i = n(14);
     let r = o.Library(s + "/KeyBoardHookFfi.dll", {
@@ -11432,13 +11459,13 @@ THE SOFTWARE.
       (e.exports = r);
   },
   function (e, t, n) {
-    const { BrowserWindow: s, app: o, systemPreferences: i, shell: r } = n(1),
+    const { BrowserWindow: s, app: o, systemPreferences: i, shell: r } = n(0),
       a = n(7),
-      c = n(0),
-      u = n(64),
-      l = n(182),
+      c = n(1),
+      l = n(64),
+      u = n(183),
       d = (e) => {
-        const { screen: t } = n(1),
+        const { screen: t } = n(0),
           { bounds: s } = t.getPrimaryDisplay(),
           o = (e.autoResizeBaseWidth || 1920) / s.width;
         let i = e.right
@@ -11479,7 +11506,7 @@ THE SOFTWARE.
           (this.urlParamsStr = ((e) => {
             if (e) {
               let t = [];
-              for (let n in e) t.push(l(n) + "=" + l(e[n]));
+              for (let n in e) t.push(u(n) + "=" + u(e[n]));
               return t.join("&");
             }
             return "";
@@ -11490,8 +11517,8 @@ THE SOFTWARE.
           t = e.hasOwnProperty("beforeCreate")
             ? e.beforeCreate(e.configure)
             : null,
-          l = n(2);
-        l.share("DWMOpenState", i.isAeroGlassEnabled());
+          u = n(2);
+        u.share("DWMOpenState", i.isAeroGlassEnabled());
         const h = {};
         if (e.autoResize && e.configure && e.configure.width) {
           let t = d(e);
@@ -11499,7 +11526,7 @@ THE SOFTWARE.
             (h.height = t.height),
             (h.x = t.x),
             (h.y = t.y),
-            l.share("setZoomFactor", 1 / t.windowScale, this.wname);
+            u.share("setZoomFactor", 1 / t.windowScale, this.wname);
         }
         let f = new s(
           Object.assign(
@@ -11519,7 +11546,7 @@ THE SOFTWARE.
                 devTools: !!c.canOpenDevTool,
               },
               parent: this.parentWindow || null,
-              title: l.getData("CUSTOM_CONFIG").appName,
+              title: u.getData("CUSTOM_CONFIG").appName,
             },
             e.configure,
             h
@@ -11572,7 +11599,7 @@ THE SOFTWARE.
             ? f.loadURL(e.url)
             : o.isPackaged
             ? f.loadURL(
-                u.format({
+                l.format({
                   protocol: "file",
                   slashes: !0,
                   search: "?windowName=" + this.wname + "&" + this.urlParamsStr,
@@ -11589,7 +11616,7 @@ THE SOFTWARE.
               ),
           e.autoResize)
         ) {
-          const t = n(22),
+          const t = n(23),
             s = this.wname;
           function p() {
             const t = d(e);
@@ -11599,7 +11626,7 @@ THE SOFTWARE.
                   ? { width: t.width, height: t.height }
                   : { width: t.width, height: t.height, x: t.x, y: t.y }
               ),
-              l.share("setZoomFactor", 1 / t.windowScale, s);
+              u.share("setZoomFactor", 1 / t.windowScale, s);
           }
           t.addListener(p), f.hookWindowMessage(126, p);
         }
@@ -11675,12 +11702,12 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s, systemPreferences: o, app: i } = n(1),
+    const { screen: s, systemPreferences: o, app: i } = n(0),
       r = n(2),
       a = n(7),
-      c = n(22);
-    let u = !1;
-    const l = (e) => {
+      c = n(23);
+    let l = !1;
+    const u = (e) => {
         const { width: t, height: n } = s.getPrimaryDisplay().workArea;
         let o = e ? 912 : 880,
           i = e ? 632 : 600;
@@ -11699,9 +11726,9 @@ THE SOFTWARE.
       d = (e, t) => {
         setTimeout(() => {
           if (!e.isDestroyed())
-            if (e.isMinimized()) u = !0;
+            if (e.isMinimized()) l = !0;
             else {
-              let n = l(t);
+              let n = u(t);
               e.setBounds({ width: n.width, height: n.height }),
                 r.share("setZoomFactor", n.scale, "assistant"),
                 e.center();
@@ -11718,7 +11745,7 @@ THE SOFTWARE.
       },
       beforeCreate: (e) => {
         let t = o.isAeroGlassEnabled(),
-          n = l(t);
+          n = u(t);
         return (e.width = n.width), (e.height = n.height), (n.DWMState = t), n;
       },
       afterCreate: (e, t) => {
@@ -11748,12 +11775,12 @@ THE SOFTWARE.
         }
       },
       onRestore: (e, t) => {
-        u && ((u = !1), d(e, t.DWMState));
+        l && ((l = !1), d(e, t.DWMState));
       },
     };
   },
   function (e, t, n) {
-    const { screen: s, systemPreferences: o } = n(1),
+    const { screen: s, systemPreferences: o } = n(0),
       { QUEUE_LIST: i } = n(8),
       { topMost: r, topMostExist: a } = n(9);
     e.exports = {
@@ -11785,9 +11812,34 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(23),
-      o = n(18),
-      i = n(24),
+    const { QUEUE_LIST: s } = n(8),
+      { topMost: o, topMostExist: i } = n(9);
+    e.exports = {
+      configure: {
+        movable: !1,
+        skipTaskbar: !0,
+        resizable: !1,
+        maximizable: !0,
+        autoHideMenuBar: !0,
+        focusable: !0,
+        fullscreen: !0,
+        fullscreenable: !0,
+        type: "toolbar",
+        backgroundColor: "#000000",
+      },
+      needsFocusFix: !0,
+      afterCreate: (e) => {
+        o(s.BLACK_WINDOW, e);
+      },
+      onClosed: (e) => {
+        i(s.BLACK_WINDOW, e);
+      },
+    };
+  },
+  function (e, t, n) {
+    const s = n(26),
+      o = n(19),
+      i = n(27),
       r = { windowName: "countdown", width: 480, height: 260, yIndex: 3 };
     e.exports = {
       configure: {
@@ -11853,9 +11905,9 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(18),
-      o = n(23),
-      i = n(24),
+    const s = n(19),
+      o = n(26),
+      i = n(27),
       r = {
         windowName: "desktopAssistant",
         width: 480,
@@ -11903,7 +11955,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s } = n(1),
+    const { screen: s } = n(0),
       o = n(2);
     e.exports = {
       configure: {
@@ -11931,9 +11983,9 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(23),
-      o = n(18),
-      i = n(24),
+    const s = n(26),
+      o = n(19),
+      i = n(27),
       r = {
         windowName: "desktopNotification",
         width: 480,
@@ -12004,9 +12056,9 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(23),
-      o = n(18),
-      i = n(24),
+    const s = n(26),
+      o = n(19),
+      i = n(27),
       r = { windowName: "environmentData", width: 480, height: 357, yIndex: 4 };
     e.exports = {
       configure: {
@@ -12049,6 +12101,37 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
+    const { screen: s } = n(0),
+      { QUEUE_LIST: o } = n(8),
+      { topMost: i, topMostExist: r } = n(9);
+    e.exports = {
+      configure: {
+        width: 100,
+        height: 100,
+        center: !1,
+        movable: !1,
+        resizable: !1,
+        maximizable: !1,
+        zoomFactor: 1,
+        type: "toolbar",
+      },
+      beforeCreate: (e) => {
+        const { workArea: t } = s.getPrimaryDisplay();
+        (e.x = t.x + t.width - 100 - 20), (e.y = t.y + t.height - 100 - 40);
+      },
+      afterCreate: (e) => {
+        e.setSkipTaskbar(!0),
+          setInterval(() => {
+            !e.isDestroyed() && e.setSkipTaskbar(!0);
+          }, 2e3),
+          i(o.EYE_PROTECTION_MODE_BALL, e);
+      },
+      onClosed: (e) => {
+        r(o.EYE_PROTECTION_MODE_BALL, e);
+      },
+    };
+  },
+  function (e, t, n) {
     const { QUEUE_LIST: s } = n(8),
       { topMost: o, topMostExist: i } = n(9);
     e.exports = {
@@ -12072,59 +12155,9 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(23),
-      o = n(18),
-      i = n(24),
-      r = {
-        windowName: "eyeProtectionModeToolbar",
-        width: 480,
-        height: 56,
-        yIndex: 1,
-      };
-    e.exports = {
-      configure: {
-        center: !1,
-        movable: !1,
-        skipTaskbar: !0,
-        resizable: !1,
-        maximizable: !1,
-        autoHideMenuBar: !0,
-        focusable: !1,
-        type: "toolbar",
-        show: !1,
-      },
-      beforeCreate: () => {
-        o.enterSlot(r);
-      },
-      afterCreate: (e) => {
-        e.setSkipTaskbar(!0);
-        try {
-          e.hookWindowMessage(126, () => {
-            o.updateWindow(r.windowName);
-          });
-          let t = setInterval(() => {
-            e.isDestroyed() ? clearInterval(t) : e.setSkipTaskbar(!0);
-          }, 2e3);
-        } catch (e) {
-          logger.error(e);
-        }
-      },
-      onFinished: (e) => {
-        o.enterSlot(r);
-        const t = i(e.getNativeWindowHandle());
-        e.show(),
-          s.SetWindowPos(t, 1, 0, 0, 0, 0, 3),
-          s.SetWindowPos(t, 1, 0, 0, 0, 0, 3);
-      },
-      onClose: () => {
-        o.outSlot(r.windowName);
-      },
-    };
-  },
-  function (e, t, n) {
-    const s = n(23),
-      o = n(18),
-      i = n(24),
+    const s = n(26),
+      o = n(19),
+      i = n(27),
       r = { windowName: "fastToolbar", width: 480, height: 56, yIndex: 0 };
     e.exports = {
       configure: {
@@ -12167,10 +12200,10 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s } = n(1),
-      { systemPreferences: o } = n(1),
+    const { screen: s } = n(0),
+      { systemPreferences: o } = n(0),
       i = n(2),
-      r = n(22);
+      r = n(23);
     let a = !1;
     const c = (e) => {
         const { width: t, height: n } = s.getPrimaryDisplay().workArea;
@@ -12188,7 +12221,7 @@ THE SOFTWARE.
         }
         return { width: o, height: i, scale: 1 };
       },
-      u = (e, t) => {
+      l = (e, t) => {
         setTimeout(() => {
           if (!e.isDestroyed())
             if (e.isMinimized()) a = !0;
@@ -12223,22 +12256,22 @@ THE SOFTWARE.
             e.isDestroyed() ? clearInterval(n) : e.setSkipTaskbar(!0);
           }, 2e3);
           r.addListener(() => {
-            u(e, t.DWMState);
+            l(e, t.DWMState);
           }),
             e.hookWindowMessage(126, () => {
-              u(e, t.DWMState);
+              l(e, t.DWMState);
             });
         } catch (e) {
           logger.error(e);
         }
       },
       onRestore: (e) => {
-        a && ((a = !1), u(e, passData.DWMState));
+        a && ((a = !1), l(e, passData.DWMState));
       },
     };
   },
   function (e, t, n) {
-    const { screen: s, systemPreferences: o } = n(1),
+    const { screen: s, systemPreferences: o } = n(0),
       { QUEUE_LIST: i } = n(8),
       { topMost: r, topMostExist: a } = n(9);
     e.exports = {
@@ -12315,7 +12348,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const { toTopMostQueue: s, QUEUE_LIST: o } = n(8),
-      { systemPreferences: i } = n(1);
+      { systemPreferences: i } = n(0);
     e.exports = {
       configure: {
         center: !1,
@@ -12341,7 +12374,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const { QUEUE_LIST: s } = n(8),
-      { systemPreferences: o } = n(1),
+      { systemPreferences: o } = n(0),
       { topMost: i, topMostExist: r } = n(9);
     e.exports = {
       configure: {
@@ -12373,7 +12406,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const { QUEUE_LIST: s } = n(8),
-      o = n(27),
+      o = n(25),
       { topMost: i, topMostExist: r } = n(9);
     e.exports = {
       configure: {
@@ -12410,10 +12443,10 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s } = n(1),
-      { systemPreferences: o } = n(1),
+    const { screen: s } = n(0),
+      { systemPreferences: o } = n(0),
       i = n(2),
-      r = n(22);
+      r = n(23);
     let a = !1;
     const c = (e) => {
         const { width: t, height: n } = s.getPrimaryDisplay().workArea;
@@ -12431,7 +12464,7 @@ THE SOFTWARE.
         }
         return { width: o, height: i, scale: 1 };
       },
-      u = (e, t) => {
+      l = (e, t) => {
         setTimeout(() => {
           if (!e.isDestroyed())
             if (e.isMinimized()) a = !0;
@@ -12470,10 +12503,10 @@ THE SOFTWARE.
         });
         try {
           r.addListener(() => {
-            u(e, t.DWMState);
+            l(e, t.DWMState);
           }),
             e.hookWindowMessage(126, () => {
-              u(e, t.DWMState);
+              l(e, t.DWMState);
             }),
             setInterval(() => {
               !e.isDestroyed() && e.setSkipTaskbar(!0);
@@ -12483,7 +12516,7 @@ THE SOFTWARE.
         }
       },
       onRestore: (e) => {
-        a && ((a = !1), u(e, passData.DWMState));
+        a && ((a = !1), l(e, passData.DWMState));
       },
     };
   },
@@ -12502,6 +12535,8 @@ THE SOFTWARE.
         backgroundColor: "#000000",
         fullscreen: !0,
         type: "toolbar",
+        maximizable: !0,
+        fullscreenable: !0,
       },
       needsFocusFix: !0,
       afterCreate: (e) => {
@@ -12525,6 +12560,8 @@ THE SOFTWARE.
         backgroundColor: "#000000",
         fullscreen: !0,
         type: "toolbar",
+        maximizable: !0,
+        fullscreenable: !0,
       },
       afterCreate: (e) => {},
       onClosed: (e) => {},
@@ -12572,8 +12609,8 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(27),
-      { systemPreferences: o, screen: i } = n(1),
+    const s = n(25),
+      { systemPreferences: o, screen: i } = n(0),
       { QUEUE_LIST: r } = n(8),
       { topMost: a, topMostExist: c } = n(9);
     e.exports = {
@@ -12610,7 +12647,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s, systemPreferences: o } = n(1),
+    const { screen: s, systemPreferences: o } = n(0),
       { QUEUE_LIST: i } = n(8),
       { topMost: r, topMostExist: a } = n(9);
     e.exports = {
@@ -12678,6 +12715,8 @@ THE SOFTWARE.
         backgroundColor: "#000000",
         fullscreen: !0,
         type: "toolbar",
+        maximizable: !0,
+        fullscreenable: !0,
       },
       needsFocusFix: !0,
       afterCreate: (e) => {
@@ -12758,7 +12797,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s, systemPreferences: o } = n(1);
+    const { screen: s, systemPreferences: o } = n(0);
     e.exports = {
       configure: {
         center: !1,
@@ -12802,6 +12841,8 @@ THE SOFTWARE.
         backgroundColor: "#000000",
         fullscreen: !0,
         type: "toolbar",
+        maximizable: !0,
+        fullscreenable: !0,
       },
       needsFocusFix: !0,
       afterCreate: (e) => {
@@ -12846,16 +12887,16 @@ THE SOFTWARE.
       { topMost: o, topMostExist: i } = n(9);
     e.exports = {
       configure: {
-        transparent: !1,
-        movable: !0,
+        movable: !1,
         skipTaskbar: !0,
         resizable: !1,
+        maximizable: !0,
         autoHideMenuBar: !0,
         focusable: !0,
-        show: !1,
-        backgroundColor: "#000000",
         fullscreen: !0,
+        fullscreenable: !0,
         type: "toolbar",
+        backgroundColor: "#000000",
       },
       needsFocusFix: !0,
       afterCreate: (e) => {
@@ -12867,7 +12908,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(25);
+    const s = n(24);
     e.exports = {
       configure: {
         transparent: !1,
@@ -12899,10 +12940,10 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s } = n(1),
+    const { screen: s } = n(0),
       { x: o, y: i, width: r } = s.getPrimaryDisplay().workArea,
       { QUEUE_LIST: a } = n(8),
-      { topMost: c, topMostExist: u } = n(9);
+      { topMost: c, topMostExist: l } = n(9);
     e.exports = {
       configure: {
         width: 360,
@@ -12925,12 +12966,12 @@ THE SOFTWARE.
         c(a.VOICE_INTERACTION, e);
       },
       onClosed: (e) => {
-        u(a.VOICE_INTERACTION, e);
+        l(a.VOICE_INTERACTION, e);
       },
     };
   },
   function (e, t, n) {
-    const s = n(222),
+    const s = n(224),
       o = n(2),
       { QUEUE_LIST: i } = n(8),
       { topMost: r, topMostExist: a } = n(9);
@@ -12971,7 +13012,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s } = n(1);
+    const { screen: s } = n(0);
     let o,
       i = [],
       r = !1,
@@ -13025,7 +13066,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s } = n(1),
+    const { screen: s } = n(0),
       o = n(2);
     e.exports = {
       configure: {
@@ -13067,6 +13108,8 @@ THE SOFTWARE.
         backgroundColor: "#000000",
         fullscreen: !0,
         type: "toolbar",
+        maximizable: !0,
+        fullscreenable: !0,
       },
       afterCreate: (e) => {
         o(s.SCHOOL_ANNOUNCEMENT, e);
@@ -13077,7 +13120,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s, systemPreferences: o } = n(1),
+    const { screen: s, systemPreferences: o } = n(0),
       { QUEUE_LIST: i } = n(8),
       { topMost: r, topMostExist: a } = n(9);
     e.exports = {
@@ -13127,9 +13170,9 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(23),
-      o = n(18),
-      i = n(24),
+    const s = n(26),
+      o = n(19),
+      i = n(27),
       r = {
         windowName: "usbInsertWarning",
         width: 480,
@@ -13177,10 +13220,10 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s } = n(1),
+    const { screen: s } = n(0),
       { x: o, y: i, width: r } = s.getPrimaryDisplay().workArea,
       { QUEUE_LIST: a } = n(8),
-      { topMost: c, topMostExist: u } = n(9);
+      { topMost: c, topMostExist: l } = n(9);
     e.exports = {
       configure: {
         width: 360,
@@ -13203,19 +13246,19 @@ THE SOFTWARE.
         c(a.VOICE_INTERACTION, e);
       },
       onClosed: (e) => {
-        u(a.VOICE_INTERACTION, e);
+        l(a.VOICE_INTERACTION, e);
       },
     };
   },
   function (e, t, n) {
     const s = n(2),
       o = n(48),
-      i = n(0),
+      i = n(1),
       r = n(7),
       a = n(5),
-      { app: c } = n(1),
-      u = n(27),
-      l = {
+      { app: c } = n(0),
+      l = n(25),
+      u = {
         "10.0": "10",
         6.3: "8.1",
         6.2: "8",
@@ -13255,8 +13298,8 @@ THE SOFTWARE.
           s.share("appVersion", this.version);
       }
       getSystemType() {
-        const e = /\d+\.\d/.exec(u.release());
-        (this.systemType = "win" + l[e]),
+        const e = /\d+\.\d/.exec(l.release());
+        (this.systemType = "win" + u[e]),
           s.share("systemType", this.systemType),
           s.setData({ systemType: this.systemType }),
           r.info("系统 " + this.systemType);
@@ -13265,9 +13308,9 @@ THE SOFTWARE.
     e.exports = d;
   },
   function (e, t, n) {
-    const { customMadeRoot: s } = n(0),
+    const { customMadeRoot: s } = n(1),
       o = n(2),
-      { GetRegistryString: i, GetRegistryInt: r } = n(25),
+      { GetRegistryString: i, GetRegistryInt: r } = n(24),
       a = n(7),
       c = n(12);
     e.exports = () => {
@@ -13282,19 +13325,19 @@ THE SOFTWARE.
       let t,
         n = s + "/" + e;
       c.existsSync(n) || (n = s + "/default");
-      let u = JSON.parse(c.readFileSync(s + "/default/config.json", "utf8"));
+      let l = JSON.parse(c.readFileSync(s + "/default/config.json", "utf8"));
       try {
         t = JSON.parse(c.readFileSync(n + "/config.json", "utf8"));
       } catch (e) {
         console.log(e), a.info("custom配置文件损坏");
       }
       (t.root = n), (t.customName = e);
-      let l = Object.assign({}, u, t);
-      (l.desktopAssistantHide = !!Number(
+      let u = Object.assign({}, l, t);
+      (u.desktopAssistantHide = !!Number(
         r(
           "HKEY_LOCAL_MACHINE\\SOFTWARE\\SeewoServiceCustom",
           "hideAssistant",
-          l.desktopAssistantHide ? 1 : 0
+          u.desktopAssistantHide ? 1 : 0
         )
       )),
         a.info(
@@ -13307,11 +13350,11 @@ THE SOFTWARE.
             )
           )
         ),
-        (l.hideLightIotNotify = !!Number(
+        (u.hideLightIotNotify = !!Number(
           r(
             "HKEY_LOCAL_MACHINE\\SOFTWARE\\SeewoServiceCustom",
             "hideLightIotNotify",
-            l.hideLightIotNotify ? 1 : 0
+            u.hideLightIotNotify ? 1 : 0
           )
         )),
         a.info(
@@ -13324,11 +13367,11 @@ THE SOFTWARE.
             )
           )
         ),
-        (l.showHighTechSeewoDesktop = !!Number(
+        (u.showHighTechSeewoDesktop = !!Number(
           r(
             "HKEY_LOCAL_MACHINE\\SOFTWARE\\SeewoServiceCustom",
             "showHighTechSeewoDesktop",
-            l.showHighTechSeewoDesktop ? 1 : 0
+            u.showHighTechSeewoDesktop ? 1 : 0
           )
         )),
         a.info(
@@ -13341,13 +13384,13 @@ THE SOFTWARE.
             )
           )
         ),
-        o.share("CUSTOM_CONFIG", l),
-        o.setData({ CUSTOM_CONFIG: l });
+        o.share("CUSTOM_CONFIG", u),
+        o.setData({ CUSTOM_CONFIG: u });
     };
   },
   function (e, t, n) {
-    const { app: s } = n(1),
-      o = n(232),
+    const { app: s } = n(0),
+      o = n(234),
       i = n(100);
     e.exports = function (e) {
       s.isReady &&
@@ -13355,9 +13398,9 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(0),
+    const s = n(1),
       o = n(48),
-      { app: i } = n(1),
+      { app: i } = n(0),
       r = n(5);
     e.exports = () => {
       let e;
@@ -13370,17 +13413,17 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(19),
+    const s = n(18),
       o = n(6),
-      i = n(0),
+      i = n(1),
       r = n(2),
       a = {
         DESKTOP_APP_LIST: "/api/v1/desktop/desktop_data",
         DESKTOP_SETTING_INFO: "/api/v1/desktop/setting",
       },
       c = 0,
-      u = 1,
-      l = 2;
+      l = 1,
+      u = 2;
     const d = new (class extends s {
       constructor(e) {
         super(e), (this.linkStatus = c);
@@ -13399,11 +13442,11 @@ THE SOFTWARE.
         }
       }
       onDisconnectMessage() {
-        (this.linkStatus = l),
+        (this.linkStatus = u),
           r.share("seewoDesktopLinkStatus", this.linkStatus);
       }
       onLinkOk() {
-        (this.linkStatus = u),
+        (this.linkStatus = l),
           r.share("seewoDesktopLinkStatus", this.linkStatus);
       }
       onMessage(e) {
@@ -13416,7 +13459,7 @@ THE SOFTWARE.
   function (e, t, n) {
     "use strict";
     const s = n(101);
-    (s.Server = n(241)),
+    (s.Server = n(243)),
       (s.Receiver = n(104)),
       (s.Sender = n(106)),
       (e.exports = s);
@@ -13518,7 +13561,7 @@ THE SOFTWARE.
         function c(e) {
           t.call(this, new a(e, this));
         }
-        function u() {
+        function l() {
           t.call(this, new r(this));
         }
         "function" == typeof t &&
@@ -13529,7 +13572,7 @@ THE SOFTWARE.
             : "error" === e
             ? ((c._listener = t), this.on(e, c))
             : "open" === e
-            ? ((u._listener = t), this.on(e, u))
+            ? ((l._listener = t), this.on(e, l))
             : this.on(e, t));
       },
       removeEventListener(e, t) {
@@ -13555,8 +13598,8 @@ THE SOFTWARE.
       r = n(51),
       a = n(103),
       c = n(101),
-      { GUID: u } = n(37),
-      l = /^[+/0-9A-Za-z]{22}==$/;
+      { GUID: l } = n(37),
+      u = /^[+/0-9A-Za-z]{22}==$/;
     function d(e) {
       e.emit("close");
     }
@@ -13680,7 +13723,7 @@ THE SOFTWARE.
           "GET" !== e.method ||
           "websocket" !== e.headers.upgrade.toLowerCase() ||
           !o ||
-          !l.test(o) ||
+          !u.test(o) ||
           (8 !== i && 13 !== i) ||
           !this.shouldHandle(e)
         )
@@ -13707,15 +13750,15 @@ THE SOFTWARE.
             req: e,
           };
           if (2 === this.options.verifyClient.length)
-            return void this.options.verifyClient(r, (i, r, a, u) => {
-              if (!i) return f(t, r || 401, a, u);
+            return void this.options.verifyClient(r, (i, r, a, l) => {
+              if (!i) return f(t, r || 401, a, l);
               this.completeUpgrade(o, c, e, t, n, s);
             });
           if (!this.options.verifyClient(r)) return f(t, 401);
         }
         this.completeUpgrade(o, c, e, t, n, s);
       }
-      completeUpgrade(e, t, n, s, i, l) {
+      completeUpgrade(e, t, n, s, i, u) {
         if (!s.readable || !s.writable) return s.destroy();
         const d = [
             "HTTP/1.1 101 Switching Protocols",
@@ -13724,7 +13767,7 @@ THE SOFTWARE.
             "Sec-WebSocket-Accept: " +
               o
                 .createHash("sha1")
-                .update(e + u)
+                .update(e + l)
                 .digest("base64"),
           ],
           f = new c(null);
@@ -13748,7 +13791,7 @@ THE SOFTWARE.
           f.setSocket(s, i, this.options.maxPayload),
           this.clients &&
             (this.clients.add(f), f.on("close", () => this.clients.delete(f))),
-          l(f);
+          u(f);
       }
     };
   },
@@ -13758,12 +13801,12 @@ THE SOFTWARE.
       ...n(52),
       ...n(107),
       ...n(110),
-      ...n(250),
       ...n(252),
-      ...n(258),
-      ...n(21),
-      ...n(263),
+      ...n(254),
+      ...n(260),
+      ...n(22),
       ...n(265),
+      ...n(267),
       ...n(69),
       ...n(30),
       ...n(54),
@@ -13773,7 +13816,7 @@ THE SOFTWARE.
       Object.defineProperty(e.exports, "promises", { get: () => s.promises });
   },
   function (e, t, n) {
-    var s = n(244),
+    var s = n(246),
       o = process.cwd,
       i = null,
       r = process.env.GRACEFUL_FS_PLATFORM || process.platform;
@@ -13919,7 +13962,7 @@ THE SOFTWARE.
         return t
           ? function (n, s, o) {
               return t.call(e, n, s, function (e) {
-                u(e) && (e = null), o && o.apply(this, arguments);
+                l(e) && (e = null), o && o.apply(this, arguments);
               });
             }
           : t;
@@ -13930,7 +13973,7 @@ THE SOFTWARE.
               try {
                 return t.call(e, n, s);
               } catch (e) {
-                if (!u(e)) throw e;
+                if (!l(e)) throw e;
               }
             }
           : t;
@@ -13939,7 +13982,7 @@ THE SOFTWARE.
         return t
           ? function (n, s, o, i) {
               return t.call(e, n, s, o, function (e) {
-                u(e) && (e = null), i && i.apply(this, arguments);
+                l(e) && (e = null), i && i.apply(this, arguments);
               });
             }
           : t;
@@ -13950,7 +13993,7 @@ THE SOFTWARE.
               try {
                 return t.call(e, n, s, o);
               } catch (e) {
-                if (!u(e)) throw e;
+                if (!l(e)) throw e;
               }
             }
           : t;
@@ -13984,7 +14027,7 @@ THE SOFTWARE.
             }
           : t;
       }
-      function u(e) {
+      function l(e) {
         return (
           !e ||
           "ENOSYS" === e.code ||
@@ -14001,10 +14044,10 @@ THE SOFTWARE.
               function n(n, s, o, i, r, a) {
                 var c;
                 if (a && "function" == typeof a) {
-                  var u = 0;
-                  c = function (l, d, h) {
-                    if (l && "EAGAIN" === l.code && u < 10)
-                      return u++, t.call(e, n, s, o, i, r, c);
+                  var l = 0;
+                  c = function (u, d, h) {
+                    if (u && "EAGAIN" === u.code && l < 10)
+                      return l++, t.call(e, n, s, o, i, r, c);
                     a.apply(this, arguments);
                   };
                 }
@@ -14015,11 +14058,11 @@ THE SOFTWARE.
         (e.readSync =
           "function" != typeof e.readSync
             ? e.readSync
-            : ((l = e.readSync),
+            : ((u = e.readSync),
               function (t, n, s, o, i) {
                 for (var r = 0; ; )
                   try {
-                    return l.call(e, t, n, s, o, i);
+                    return u.call(e, t, n, s, o, i);
                   } catch (e) {
                     if ("EAGAIN" === e.code && r < 10) {
                       r++;
@@ -14028,7 +14071,7 @@ THE SOFTWARE.
                     throw e;
                   }
               }));
-      var l;
+      var u;
     };
   },
   function (e, t) {
@@ -14051,8 +14094,8 @@ THE SOFTWARE.
             (this.bufferSize = 65536),
             (o = o || {});
           for (var r = Object.keys(o), a = 0, c = r.length; a < c; a++) {
-            var u = r[a];
-            this[u] = o[u];
+            var l = r[a];
+            this[l] = o[l];
           }
           this.encoding && this.setEncoding(this.encoding);
           if (void 0 !== this.start) {
@@ -14133,7 +14176,7 @@ THE SOFTWARE.
     "use strict";
     const s = n(16),
       o = n(5),
-      i = n(21).mkdirsSync,
+      i = n(22).mkdirsSync,
       r = n(109).utimesMillisSync,
       a = n(53);
     function c(e, t, n, i) {
@@ -14144,7 +14187,7 @@ THE SOFTWARE.
             return (function (e, t, n, o, i) {
               if (!t)
                 return (function (e, t, n, o) {
-                  return s.mkdirSync(n), d(t, n, o), l(n, e);
+                  return s.mkdirSync(n), d(t, n, o), u(n, e);
                 })(e.mode, n, o, i);
               if (t && !t.isDirectory())
                 throw new Error(
@@ -14156,11 +14199,11 @@ THE SOFTWARE.
             return (function (e, t, n, o, i) {
               return t
                 ? (function (e, t, n, o) {
-                    if (o.overwrite) return s.unlinkSync(n), u(e, t, n, o);
+                    if (o.overwrite) return s.unlinkSync(n), l(e, t, n, o);
                     if (o.errorOnExist)
                       throw new Error(`'${n}' already exists`);
                   })(e, n, o, i)
-                : u(e, n, o, i);
+                : l(e, n, o, i);
             })(r, e, t, n, i);
           if (r.isSymbolicLink())
             return (function (e, t, n, i) {
@@ -14192,7 +14235,7 @@ THE SOFTWARE.
             })(e, t, n, i);
         })(e, t, n, i);
     }
-    function u(e, t, n, o) {
+    function l(e, t, n, o) {
       return (
         s.copyFileSync(t, n),
         o.preserveTimestamps &&
@@ -14201,17 +14244,17 @@ THE SOFTWARE.
               return 0 == (128 & e);
             })(e) &&
               (function (e, t) {
-                l(e, 128 | t);
+                u(e, 128 | t);
               })(n, e);
             (function (e, t) {
               const n = s.statSync(e);
               r(t, n.atime, n.mtime);
             })(t, n);
           })(e.mode, t, n),
-        l(n, e.mode)
+        u(n, e.mode)
       );
     }
-    function l(e, t) {
+    function u(e, t) {
       return s.chmodSync(e, t);
     }
     function d(e, t, n) {
@@ -14219,8 +14262,8 @@ THE SOFTWARE.
         (function (e, t, n, s) {
           const i = o.join(t, e),
             r = o.join(n, e),
-            { destStat: u } = a.checkPathsSync(i, r, "copy");
-          return c(u, i, r, s);
+            { destStat: l } = a.checkPathsSync(i, r, "copy");
+          return c(l, i, r, s);
         })(s, e, t, n)
       );
     }
@@ -14233,7 +14276,7 @@ THE SOFTWARE.
           console.warn(
             "fs-extra: Using the preserveTimestamps option in 32-bit node is not recommended;\n\n    see https://github.com/jprichardson/node-fs-extra/issues/269"
           );
-      const { srcStat: r, destStat: u } = a.checkPathsSync(e, t, "copy");
+      const { srcStat: r, destStat: l } = a.checkPathsSync(e, t, "copy");
       return (
         a.checkParentPathsSync(e, r, t, "copy"),
         (function (e, t, n, r) {
@@ -14241,7 +14284,7 @@ THE SOFTWARE.
           const a = o.dirname(n);
           s.existsSync(a) || i(a);
           return c(e, t, n, r);
-        })(u, e, t, n)
+        })(l, e, t, n)
       );
     };
   },
@@ -14326,11 +14369,11 @@ THE SOFTWARE.
     "use strict";
     const s = n(16),
       o = n(5),
-      i = n(21).mkdirs,
+      i = n(22).mkdirs,
       r = n(30).pathExists,
       a = n(109).utimesMillis,
       c = n(53);
-    function u(e, t, n, s, a) {
+    function l(e, t, n, s, a) {
       const c = o.dirname(n);
       r(c, (o, r) =>
         o
@@ -14340,14 +14383,14 @@ THE SOFTWARE.
           : void i(c, (o) => (o ? a(o) : d(e, t, n, s, a)))
       );
     }
-    function l(e, t, n, s, o, i) {
+    function u(e, t, n, s, o, i) {
       Promise.resolve(o.filter(n, s)).then(
         (r) => (r ? e(t, n, s, o, i) : i()),
         (e) => i(e)
       );
     }
     function d(e, t, n, s, o) {
-      return s.filter ? l(h, e, t, n, s, o) : h(e, t, n, s, o);
+      return s.filter ? u(h, e, t, n, s, o) : h(e, t, n, s, o);
     }
     function h(e, t, n, o, i) {
       (o.dereference ? s.stat : s.lstat)(t, (r, a) =>
@@ -14383,7 +14426,7 @@ THE SOFTWARE.
                 : f(e, n, o, i, r);
             })(a, e, t, n, o, i)
           : a.isSymbolicLink()
-          ? m(e, t, n, o, i)
+          ? y(e, t, n, o, i)
           : void 0
       );
     }
@@ -14415,42 +14458,42 @@ THE SOFTWARE.
       return s.chmod(e, t, n);
     }
     function w(e, t, n, o) {
-      s.readdir(e, (s, i) => (s ? o(s) : y(i, e, t, n, o)));
+      s.readdir(e, (s, i) => (s ? o(s) : m(i, e, t, n, o)));
     }
-    function y(e, t, n, s, i) {
+    function m(e, t, n, s, i) {
       const r = e.pop();
       return r
         ? (function (e, t, n, s, i, r) {
             const a = o.join(n, t),
-              u = o.join(s, t);
-            c.checkPaths(a, u, "copy", (t, o) => {
+              l = o.join(s, t);
+            c.checkPaths(a, l, "copy", (t, o) => {
               if (t) return r(t);
               const { destStat: c } = o;
-              d(c, a, u, i, (t) => (t ? r(t) : y(e, n, s, i, r)));
+              d(c, a, l, i, (t) => (t ? r(t) : m(e, n, s, i, r)));
             });
           })(e, r, t, n, s, i)
         : i();
     }
-    function m(e, t, n, i, r) {
+    function y(e, t, n, i, r) {
       s.readlink(t, (t, a) =>
         t
           ? r(t)
           : (i.dereference && (a = o.resolve(process.cwd(), a)),
             e
-              ? void s.readlink(n, (t, u) =>
+              ? void s.readlink(n, (t, l) =>
                   t
                     ? "EINVAL" === t.code || "UNKNOWN" === t.code
                       ? s.symlink(a, n, r)
                       : r(t)
-                    : (i.dereference && (u = o.resolve(process.cwd(), u)),
-                      c.isSrcSubdir(a, u)
+                    : (i.dereference && (l = o.resolve(process.cwd(), l)),
+                      c.isSrcSubdir(a, l)
                         ? r(
                             new Error(
-                              `Cannot copy '${a}' to a subdirectory of itself, '${u}'.`
+                              `Cannot copy '${a}' to a subdirectory of itself, '${l}'.`
                             )
                           )
-                        : e.isDirectory() && c.isSrcSubdir(u, a)
-                        ? r(new Error(`Cannot overwrite '${u}' with '${a}'.`))
+                        : e.isDirectory() && c.isSrcSubdir(l, a)
+                        ? r(new Error(`Cannot overwrite '${l}' with '${a}'.`))
                         : (function (e, t, n) {
                             s.unlink(t, (o) => (o ? n(o) : s.symlink(e, t, n)));
                           })(a, n, r))
@@ -14474,7 +14517,7 @@ THE SOFTWARE.
           if (o) return s(o);
           const { srcStat: r, destStat: a } = i;
           c.checkParentPaths(e, r, t, "copy", (o) =>
-            o ? s(o) : n.filter ? l(u, a, e, t, n, s) : u(a, e, t, n, s)
+            o ? s(o) : n.filter ? u(l, a, e, t, n, s) : l(a, e, t, n, s)
           );
         });
     };
@@ -14484,7 +14527,7 @@ THE SOFTWARE.
     const s = n(17).fromCallback,
       o = n(16),
       i = n(5),
-      r = n(21),
+      r = n(22),
       a = n(54),
       c = s(function (e, t) {
         (t = t || function () {}),
@@ -14501,7 +14544,7 @@ THE SOFTWARE.
               })();
           });
       });
-    function u(e) {
+    function l(e) {
       let t;
       try {
         t = o.readdirSync(e);
@@ -14512,7 +14555,7 @@ THE SOFTWARE.
         (t = i.join(e, t)), a.removeSync(t);
       });
     }
-    e.exports = { emptyDirSync: u, emptydirSync: u, emptyDir: c, emptydir: c };
+    e.exports = { emptyDirSync: l, emptydirSync: l, emptyDir: c, emptydir: c };
   },
   function (e, t, n) {
     "use strict";
@@ -14539,7 +14582,7 @@ THE SOFTWARE.
         i(t, "rimraf: invalid options argument provided"),
         i.strictEqual(typeof t, "object", "rimraf: options should be object"),
         a(t),
-        u(e, t, function o(i) {
+        l(e, t, function o(i) {
           if (i) {
             if (
               ("EBUSY" === i.code ||
@@ -14548,14 +14591,14 @@ THE SOFTWARE.
               s < t.maxBusyTries
             ) {
               s++;
-              return setTimeout(() => u(e, t, o), 100 * s);
+              return setTimeout(() => l(e, t, o), 100 * s);
             }
             "ENOENT" === i.code && (i = null);
           }
           n(i);
         });
     }
-    function u(e, t, n) {
+    function l(e, t, n) {
       i(e),
         i(t),
         i("function" == typeof n),
@@ -14563,21 +14606,21 @@ THE SOFTWARE.
           s && "ENOENT" === s.code
             ? n(null)
             : s && "EPERM" === s.code && r
-            ? l(e, t, s, n)
+            ? u(e, t, s, n)
             : o && o.isDirectory()
             ? h(e, t, s, n)
             : void t.unlink(e, (s) => {
                 if (s) {
                   if ("ENOENT" === s.code) return n(null);
                   if ("EPERM" === s.code)
-                    return r ? l(e, t, s, n) : h(e, t, s, n);
+                    return r ? u(e, t, s, n) : h(e, t, s, n);
                   if ("EISDIR" === s.code) return h(e, t, s, n);
                 }
                 return n(s);
               })
         );
     }
-    function l(e, t, n, s) {
+    function u(e, t, n, s) {
       i(e),
         i(t),
         i("function" == typeof s),
@@ -14695,9 +14738,9 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     "use strict";
-    const s = n(253),
-      o = n(254),
-      i = n(255);
+    const s = n(255),
+      o = n(256),
+      i = n(257);
     e.exports = {
       createFile: s.createFile,
       createFileSync: s.createFileSync,
@@ -14718,7 +14761,7 @@ THE SOFTWARE.
     const s = n(17).fromCallback,
       o = n(5),
       i = n(16),
-      r = n(21);
+      r = n(22);
     e.exports = {
       createFile: s(function (e, t) {
         function n() {
@@ -14768,7 +14811,7 @@ THE SOFTWARE.
     const s = n(17).fromCallback,
       o = n(5),
       i = n(16),
-      r = n(21),
+      r = n(22),
       a = n(30).pathExists;
     e.exports = {
       createLink: s(function (e, t, n) {
@@ -14778,10 +14821,10 @@ THE SOFTWARE.
             n(null);
           });
         }
-        a(t, (c, u) =>
+        a(t, (c, l) =>
           c
             ? n(c)
-            : u
+            : l
             ? n(null)
             : void i.lstat(e, (i) => {
                 if (i)
@@ -14819,13 +14862,13 @@ THE SOFTWARE.
     const s = n(17).fromCallback,
       o = n(5),
       i = n(16),
-      r = n(21),
+      r = n(22),
       a = r.mkdirs,
       c = r.mkdirsSync,
-      u = n(256),
-      l = u.symlinkPaths,
-      d = u.symlinkPathsSync,
-      h = n(257),
+      l = n(258),
+      u = l.symlinkPaths,
+      d = l.symlinkPathsSync,
+      h = n(259),
       f = h.symlinkType,
       p = h.symlinkTypeSync,
       g = n(30).pathExists;
@@ -14838,7 +14881,7 @@ THE SOFTWARE.
               ? s(r)
               : c
               ? s(null)
-              : void l(e, t, (r, c) => {
+              : void u(e, t, (r, c) => {
                   if (r) return s(r);
                   (e = c.toDst),
                     f(c.toCwd, n, (n, r) => {
@@ -14949,9 +14992,9 @@ THE SOFTWARE.
   function (e, t, n) {
     "use strict";
     const s = n(17).fromPromise,
-      o = n(259);
-    (o.outputJson = s(n(261))),
-      (o.outputJsonSync = n(262)),
+      o = n(261);
+    (o.outputJson = s(n(263))),
+      (o.outputJsonSync = n(264)),
       (o.outputJSON = o.outputJson),
       (o.outputJSONSync = o.outputJsonSync),
       (o.writeJSON = o.writeJson),
@@ -14962,7 +15005,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     "use strict";
-    const s = n(260);
+    const s = n(262);
     e.exports = {
       readJson: s.readFile,
       readJsonSync: s.readFileSync,
@@ -15040,7 +15083,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     "use strict";
-    e.exports = { moveSync: n(264) };
+    e.exports = { moveSync: n(266) };
   },
   function (e, t, n) {
     "use strict";
@@ -15048,9 +15091,9 @@ THE SOFTWARE.
       o = n(5),
       i = n(107).copySync,
       r = n(54).removeSync,
-      a = n(21).mkdirpSync,
+      a = n(22).mkdirpSync,
       c = n(53);
-    function u(e, t, n) {
+    function l(e, t, n) {
       try {
         s.renameSync(e, t);
       } catch (s) {
@@ -15062,14 +15105,14 @@ THE SOFTWARE.
     }
     e.exports = function (e, t, n) {
       const i = (n = n || {}).overwrite || n.clobber || !1,
-        { srcStat: l } = c.checkPathsSync(e, t, "move");
+        { srcStat: u } = c.checkPathsSync(e, t, "move");
       return (
-        c.checkParentPathsSync(e, l, t, "move"),
+        c.checkParentPathsSync(e, u, t, "move"),
         a(o.dirname(t)),
         (function (e, t, n) {
-          if (n) return r(t), u(e, t, n);
+          if (n) return r(t), l(e, t, n);
           if (s.existsSync(t)) throw new Error("dest already exists.");
-          return u(e, t, n);
+          return l(e, t, n);
         })(e, t, i)
       );
     };
@@ -15077,7 +15120,7 @@ THE SOFTWARE.
   function (e, t, n) {
     "use strict";
     const s = n(17).fromCallback;
-    e.exports = { move: s(n(266)) };
+    e.exports = { move: s(n(268)) };
   },
   function (e, t, n) {
     "use strict";
@@ -15085,10 +15128,10 @@ THE SOFTWARE.
       o = n(5),
       i = n(110).copy,
       r = n(54).remove,
-      a = n(21).mkdirp,
+      a = n(22).mkdirp,
       c = n(30).pathExists,
-      u = n(53);
-    function l(e, t, n, o) {
+      l = n(53);
+    function u(e, t, n, o) {
       s.rename(e, t, (s) =>
         s
           ? "EXDEV" !== s.code
@@ -15104,22 +15147,22 @@ THE SOFTWARE.
     e.exports = function (e, t, n, s) {
       "function" == typeof n && ((s = n), (n = {}));
       const i = n.overwrite || n.clobber || !1;
-      u.checkPaths(e, t, "move", (n, d) => {
+      l.checkPaths(e, t, "move", (n, d) => {
         if (n) return s(n);
         const { srcStat: h } = d;
-        u.checkParentPaths(e, h, t, "move", (n) => {
+        l.checkParentPaths(e, h, t, "move", (n) => {
           if (n) return s(n);
           a(o.dirname(t), (n) =>
             n
               ? s(n)
               : (function (e, t, n, s) {
-                  if (n) return r(t, (o) => (o ? s(o) : l(e, t, n, s)));
+                  if (n) return r(t, (o) => (o ? s(o) : u(e, t, n, s)));
                   c(t, (o, i) =>
                     o
                       ? s(o)
                       : i
                       ? s(new Error("dest already exists."))
-                      : l(e, t, n, s)
+                      : u(e, t, n, s)
                   );
                 })(e, t, i, s)
           );
@@ -15128,12 +15171,12 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(268),
-      o = n(376),
-      { getDeviceId: i } = n(125),
-      r = n(0),
+    const s = n(270),
+      o = n(378),
+      { getDeviceId: i } = n(126),
+      r = n(1),
       a = n(2),
-      c = n(377);
+      c = n(379);
     e.exports = function () {
       if (
         (a.share("webConfig", r.webConfig),
@@ -15143,23 +15186,23 @@ THE SOFTWARE.
       ) {
         n(50).startDesktop(!0);
       }
-      n(378),
+      n(380),
         n(58),
-        n(385),
         n(387),
-        n(123),
-        n(393),
-        n(394),
-        n(137),
+        n(389),
+        n(124),
         n(395),
-        o(),
         n(396),
+        n(138),
+        n(397),
+        o(),
+        n(398),
         c(),
-        n(397);
+        n(399);
     };
   },
   function (e, t, n) {
-    const { ipcMain: s } = n(1),
+    const { ipcMain: s } = n(0),
       o = n(4),
       i = n(7);
     e.exports = function () {
@@ -15167,7 +15210,7 @@ THE SOFTWARE.
         if (t.crossWindowName)
           o(t.eventName, t.data, t.crossWindowName, t.windowName);
         else {
-          n(269)("./" + t.eventName + ".js")(t.data, t.windowName);
+          n(271)("./" + t.eventName + ".js")(t.data, t.windowName);
         }
       }),
         s.on("startRendering", (e, t) => {
@@ -15177,78 +15220,79 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     var s = {
-      "./PostClosePopupNotificationWindow.js": 270,
-      "./adminPasswordValidation.js": 278,
-      "./autoSetPosition.js": 281,
-      "./chooseFilesForTeacherDir.js": 282,
-      "./clearPasswordLockTiming.js": 283,
-      "./clearTimeLock.js": 294,
-      "./closeDiskFormatProgressWindow.js": 295,
-      "./closeScreenSaver.js": 296,
-      "./closeSeewoDesktop.js": 298,
-      "./continueUips.js": 299,
-      "./desktopAssistantHeightChange.js": 302,
-      "./desktopAssistantShow.js": 303,
-      "./desktopMinierShow.js": 304,
-      "./deviceLinkWindowClose.js": 305,
-      "./dialogResult.js": 306,
-      "./finishOneMessageRoll.js": 308,
-      "./finishSceneVoice.js": 310,
-      "./floatWindowClose.js": 312,
-      "./getADBlockMessage.js": 313,
-      "./getActivationCodePublicKey.js": 314,
-      "./getAdminWebsocketState.js": 315,
-      "./getAssistantProxyMes.js": 316,
-      "./getBellRingingMessage.js": 318,
-      "./getCountdownMessage.js": 319,
-      "./getDesktopAssistantResource.js": 320,
-      "./getFilesListOfPath.js": 321,
-      "./getPorts.js": 322,
-      "./getScaleFactor.js": 323,
-      "./getSeewoDesktopTeacherDirs.js": 130,
-      "./getSmartPenKeyState.js": 324,
-      "./getSmartPenLinkState.js": 325,
-      "./getSystemCleanerMessage.js": 326,
-      "./getSystemDiskMessage.js": 327,
+      "./PostClosePopupNotificationWindow.js": 272,
+      "./adminPasswordValidation.js": 280,
+      "./autoSetPosition.js": 283,
+      "./chooseFilesForTeacherDir.js": 284,
+      "./clearPasswordLockTiming.js": 285,
+      "./clearTimeLock.js": 296,
+      "./closeDiskFormatProgressWindow.js": 297,
+      "./closeScreenSaver.js": 298,
+      "./closeSeewoDesktop.js": 299,
+      "./continueUips.js": 300,
+      "./desktopAssistantHeightChange.js": 303,
+      "./desktopAssistantShow.js": 304,
+      "./desktopMinierShow.js": 305,
+      "./deviceLinkWindowClose.js": 306,
+      "./dialogResult.js": 307,
+      "./finishOneMessageRoll.js": 309,
+      "./finishSceneVoice.js": 311,
+      "./floatWindowClose.js": 313,
+      "./getADBlockMessage.js": 314,
+      "./getActivationCodePublicKey.js": 315,
+      "./getAdminWebsocketState.js": 316,
+      "./getAssistantProxyMes.js": 317,
+      "./getBellRingingMessage.js": 319,
+      "./getCountdownMessage.js": 320,
+      "./getDesktopAssistantResource.js": 321,
+      "./getFilesListOfPath.js": 322,
+      "./getPorts.js": 323,
+      "./getScaleFactor.js": 324,
+      "./getSeewoDesktopTeacherDirs.js": 131,
+      "./getSmartPenKeyState.js": 325,
+      "./getSmartPenLinkState.js": 326,
+      "./getSystemCleanerMessage.js": 327,
+      "./getSystemDiskMessage.js": 328,
       "./getTeacherDirDetail.js": 114,
-      "./handleSeewoDesktopSearchMinimize.js": 328,
-      "./log.js": 329,
-      "./minierMove.js": 330,
-      "./newSearchInputWindow.js": 331,
-      "./newTeacherDir.js": 332,
-      "./nfcAuthResultWindowClose.js": 334,
-      "./openExternal.js": 335,
-      "./passwordAuthen.js": 336,
-      "./passwordInputLockError.js": 338,
-      "./passwordInputLockRequestLimit.js": 339,
-      "./pcLoginSuccess.js": 340,
-      "./pcUserLogout.js": 342,
-      "./postEyeProtectionModeActionByRender.js": 343,
-      "./postEyeProtectionModeActionTimeOutByRender.js": 347,
-      "./postUipsFeedback.js": 348,
-      "./quitFullscreenAuth.js": 349,
-      "./quitLockTaskIfExist.js": 350,
-      "./quitNewsPlayer.js": 351,
-      "./reboot.js": 353,
-      "./requestRemoteControl.js": 354,
-      "./searchByEngine.js": 356,
-      "./setCursorSize.js": 357,
-      "./setPoweronDesktopCloseState.js": 358,
-      "./setVirusScanId.js": 359,
-      "./setVoiceWindowHeight.js": 361,
-      "./shutDown.js": 362,
-      "./startListenSCServerLive.js": 363,
-      "./startLockScreen.js": 364,
-      "./startVirusKilling.js": 365,
-      "./stopNewsPlayer.js": 366,
-      "./stopSchoolAnnouncement.js": 367,
-      "./stopScreenLock.js": 369,
-      "./stopUips.js": 370,
-      "./storeSetting.js": 371,
-      "./uipsFeedback.js": 372,
-      "./uninstallApp.js": 373,
-      "./windowControl.js": 374,
-      "./writeToClipboard.js": 375,
+      "./handleSeewoDesktopSearchMinimize.js": 329,
+      "./log.js": 330,
+      "./minierMove.js": 331,
+      "./newSearchInputWindow.js": 332,
+      "./newTeacherDir.js": 333,
+      "./nfcAuthResultWindowClose.js": 335,
+      "./openExternal.js": 336,
+      "./passwordAuthen.js": 337,
+      "./passwordInputLockError.js": 339,
+      "./passwordInputLockRequestLimit.js": 340,
+      "./pcLoginSuccess.js": 341,
+      "./pcUserLogout.js": 343,
+      "./postEyeProtectionModeActionByRender.js": 344,
+      "./postEyeProtectionModeActionTimeOutByRender.js": 348,
+      "./postUipsFeedback.js": 349,
+      "./quitFullscreenAuth.js": 350,
+      "./quitLockTaskIfExist.js": 351,
+      "./quitNewsPlayer.js": 352,
+      "./reboot.js": 354,
+      "./requestRemoteControl.js": 355,
+      "./searchByEngine.js": 357,
+      "./setCursorSize.js": 358,
+      "./setPoweronDesktopCloseState.js": 359,
+      "./setVirusScanId.js": 360,
+      "./setVoiceWindowHeight.js": 362,
+      "./shutDown.js": 363,
+      "./startListenSCServerLive.js": 364,
+      "./startLockScreen.js": 365,
+      "./startVirusKilling.js": 366,
+      "./stopNewsPlayer.js": 367,
+      "./stopSchoolAnnouncement.js": 368,
+      "./stopScreenLock.js": 370,
+      "./stopUips.js": 371,
+      "./storeSetting.js": 372,
+      "./uipsFeedback.js": 373,
+      "./uninstallApp.js": 374,
+      "./windowControl.js": 375,
+      "./windowMove.js": 376,
+      "./writeToClipboard.js": 377,
     };
     function o(e) {
       var t = i(e);
@@ -15266,7 +15310,7 @@ THE SOFTWARE.
     }),
       (o.resolve = i),
       (e.exports = o),
-      (o.id = 269);
+      (o.id = 271);
   },
   function (e, t, n) {
     const s = n(111);
@@ -15276,7 +15320,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e, t) {
@@ -15302,12 +15346,12 @@ THE SOFTWARE.
       r = n(102),
       a = n(38).Writable,
       c = n(15),
-      u = n(273),
-      l = !1;
+      l = n(275),
+      u = !1;
     try {
       c(new o());
     } catch (e) {
-      l = "ERR_INVALID_URL" === e.code;
+      u = "ERR_INVALID_URL" === e.code;
     }
     var d = [
         "auth",
@@ -15336,11 +15380,11 @@ THE SOFTWARE.
         "Maximum number of redirects exceeded",
         g
       ),
-      y = C(
+      m = C(
         "ERR_FR_MAX_BODY_LENGTH_EXCEEDED",
         "Request body larger than maxBodyLength limit"
       ),
-      m = C("ERR_STREAM_WRITE_AFTER_END", "write after end"),
+      y = C("ERR_STREAM_WRITE_AFTER_END", "write after end"),
       b = a.prototype.destroy || E;
     function S(e, t) {
       a.call(this),
@@ -15393,7 +15437,7 @@ THE SOFTWARE.
                   )).nativeProtocols = n),
                   L(s.host) || L(s.hostname) || (s.hostname = "::1"),
                   c.equal(s.protocol, i, "protocol mismatch"),
-                  u("options", s),
+                  l("options", s),
                   new S(s, r)
                 );
               },
@@ -15418,7 +15462,7 @@ THE SOFTWARE.
     function E() {}
     function _(e) {
       var t;
-      if (l) t = new o(e);
+      if (u) t = new o(e);
       else if (!L((t = T(s.parse(e))).protocol)) throw new p({ input: e });
       return t;
     }
@@ -15480,7 +15524,7 @@ THE SOFTWARE.
         return O(this._currentRequest, e), b.call(this, e), this;
       }),
       (S.prototype.write = function (e, t, n) {
-        if (this._ending) throw new m();
+        if (this._ending) throw new y();
         if (!L(e) && ("object" != typeof (s = e) || !("length" in s)))
           throw new TypeError("data should be a string, Buffer or Uint8Array");
         var s;
@@ -15490,7 +15534,7 @@ THE SOFTWARE.
               ? ((this._requestBodyLength += e.length),
                 this._requestBodyBuffers.push({ data: e, encoding: t }),
                 this._currentRequest.write(e, t, n))
-              : (this.emit("error", new y()), this.abort())
+              : (this.emit("error", new m()), this.abort())
             : n && n();
       }),
       (S.prototype.end = function (e, t, n) {
@@ -15646,26 +15690,26 @@ THE SOFTWARE.
           f = x(/^host$/i, this._options.headers),
           p = _(this._currentUrl),
           g = f || p.host,
-          y = /^\w+:/.test(i)
+          m = /^\w+:/.test(i)
             ? this._currentUrl
             : s.format(Object.assign(p, { host: g })),
-          m = ((d = i), (h = y), l ? new o(d, h) : _(s.resolve(h, d)));
+          y = ((d = i), (h = m), u ? new o(d, h) : _(s.resolve(h, d)));
         if (
-          (u("redirecting to", m.href),
+          (l("redirecting to", y.href),
           (this._isRedirect = !0),
-          k(m, this._options),
-          ((m.protocol !== p.protocol && "https:" !== m.protocol) ||
-            (m.host !== g &&
+          k(y, this._options),
+          ((y.protocol !== p.protocol && "https:" !== y.protocol) ||
+            (y.host !== g &&
               !(function (e, t) {
                 c(L(e) && L(t));
                 var n = e.length - t.length - 1;
                 return n > 0 && "." === e[n] && e.endsWith(t);
-              })(m.host, g))) &&
+              })(y.host, g))) &&
             x(/^(?:authorization|cookie)$/i, this._options.headers),
           I(r))
         ) {
           var b = { headers: e.headers, statusCode: t },
-            S = { url: y, method: a, headers: n };
+            S = { url: m, method: a, headers: n };
           r(this._options, b, S), this._sanitizeOptions(this._options);
         }
         this._performRequest();
@@ -15782,7 +15826,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e, t) {
@@ -15803,7 +15847,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e, t) {
@@ -15826,8 +15870,8 @@ THE SOFTWARE.
   function (e, t, n) {
     n(2), n(7);
     const s = n(4),
-      o = n(279),
-      i = n(280);
+      o = n(281),
+      i = n(282);
     e.exports = (e, t) => {
       ("BIND_SCHOOL" === e.checkType ? o : i)(
         {
@@ -15864,7 +15908,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e, t, n) {
@@ -15884,7 +15928,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e, t, n) {
@@ -15901,7 +15945,7 @@ THE SOFTWARE.
     const s = n(3);
     e.exports = (e) => {
       let t = s.getInstance(e),
-        { screen: o } = n(1);
+        { screen: o } = n(0);
       const { workArea: i } = o.getPrimaryDisplay();
       if (t) {
         let [e, n] = t.getPosition(),
@@ -15917,13 +15961,13 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { dialog: s } = n(1),
+    const { dialog: s } = n(0),
       o = n(3),
-      i = n(0),
+      i = n(1),
       r = n(5),
       a = n(12),
       c = n(4),
-      u = n(114);
+      l = n(114);
     e.exports = async (e, t) => {
       let n = await s.showOpenDialog(o.getInstance(t), {
         title: "请选择添加到" + e + "文件夹的文件",
@@ -15945,7 +15989,7 @@ THE SOFTWARE.
               totalSize: n.length,
               fileName: t + 1 <= n.length ? n[t + 1] : n.pop(),
             });
-        u(e);
+        l(e);
       }
     };
   },
@@ -15959,8 +16003,8 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     "use strict";
-    var s = n(285),
-      o = n(291),
+    var s = n(287),
+      o = n(293),
       i = n(117);
     e.exports = {
       schedule: function (e, t, n) {
@@ -16008,16 +16052,16 @@ THE SOFTWARE.
               i = r(e.expressions[3], t.getDate()),
               a = r(e.expressions[4], t.getMonth() + 1),
               c = r(e.expressions[5], t.getDay()),
-              u = !1,
-              l = 6 === e.initialPattern.length ? 0 : -1;
+              l = !1,
+              u = 6 === e.initialPattern.length ? 0 : -1;
             return (
-              (u =
-                "*" === e.initialPattern[3 + l]
+              (l =
+                "*" === e.initialPattern[3 + u]
                   ? c
-                  : "*" === e.initialPattern[5 + l]
+                  : "*" === e.initialPattern[5 + u]
                   ? i
                   : i || c),
-              n && s && o && u && a
+              n && s && o && l && a
             );
           })(this, e) &&
             new Promise((e, t) => {
@@ -16166,7 +16210,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     "use strict";
-    var s = n(292);
+    var s = n(294);
     e.exports = function (e, t) {
       var n = t.timezone;
       (this.start = () => (
@@ -16208,7 +16252,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    var s = n(293);
+    var s = n(295);
     e.exports = (function () {
       function e(e) {
         var t = s[e];
@@ -16245,7 +16289,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(26);
+    const s = n(20);
     e.exports = () => {
       s.closeWindow("remoteDiskClearWarn");
     };
@@ -16257,29 +16301,9 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(11),
-      o = n(0),
-      i = n(6),
-      { ip: r } = o.proxyHttp;
-    e.exports = function (e) {
-      i.register(["SeewoProxyHTTP"], !1, (t) => {
-        !(function (e, t) {
-          s(
-            r,
-            e,
-            "/forward/SeewoHugoHttp/api/v1/screenSaver/reset",
-            "post",
-            { ...t },
-            (e) => {}
-          );
-        })(t.SeewoProxyHTTP, e);
-      });
-    };
-  },
-  function (e, t, n) {
     const s = n(50),
       o = n(3),
-      i = n(18);
+      i = n(19);
     e.exports = () => {
       o.checkWindowExist("desktopMinier")
         ? o.show("desktopMinier")
@@ -16299,7 +16323,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -16319,7 +16343,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -16338,7 +16362,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(18),
+    const s = n(19),
       o = {
         fullHeight: 552,
         fullHalfTESHeight: 424,
@@ -16353,9 +16377,9 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(23),
-      o = n(18),
-      i = n(24),
+    const s = n(26),
+      o = n(19),
+      i = n(27),
       r = n(3);
     e.exports = () => {
       r.restore("desktopAssistant"), o.showSlot("desktopAssistant");
@@ -16370,9 +16394,9 @@ THE SOFTWARE.
   function (e, t, n) {
     const s = n(3),
       o = n(7),
-      i = n(18),
-      r = n(24),
-      a = n(23);
+      i = n(19),
+      r = n(27),
+      a = n(26);
     e.exports = () => {
       s.getInstance("desktopAssistant").minimize(),
         i.hideSlot("desktopAssistant"),
@@ -16396,13 +16420,13 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(119);
+    const s = n(120);
     e.exports = (e, t) => {
       s.end(t, e);
     };
   },
   function (e, t, n) {
-    const { screen: s } = n(1),
+    const { screen: s } = n(0),
       o = n(2),
       i = (e) => e / 1920;
     e.exports = function (e, t) {
@@ -16416,7 +16440,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(309),
+    const s = n(310),
       o = 2;
     e.exports = (e) => {
       s({ operationLogId: e.operationLogId, status: o });
@@ -16424,7 +16448,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -16443,14 +16467,14 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(120);
+    const s = n(121);
     e.exports = (e) => {
       s.finishIndex(e);
     };
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -16469,13 +16493,13 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(121);
+    const s = n(122);
     e.exports = (e) => {
       s.deleteWindow(e);
     };
   },
   function (e, t, n) {
-    const s = n(122),
+    const s = n(123),
       o = n(4);
     e.exports = (e, t) => {
       let n = s.getMessage(e);
@@ -16484,21 +16508,21 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(4),
-      { activationCodePublicKey: o } = n(0);
+      { activationCodePublicKey: o } = n(1);
     e.exports = (e, t) => {
       s("activationCodePublicKey", { publicKey: o, version: "1", pki: "1" }, t);
     };
   },
   function (e, t, n) {
-    const s = n(123),
+    const s = n(124),
       o = n(4);
     e.exports = () => {
       o("adminWebsocketState", s.adminConnectState, "assistant");
     };
   },
   function (e, t, n) {
-    const s = n(124),
-      o = n(126),
+    const s = n(125),
+      o = n(127),
       i = n(4);
     e.exports = (e, t) => {
       i("assistantProxyMes", s.getMessage(), t),
@@ -16507,7 +16531,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -16519,7 +16543,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(127),
+    const s = n(128),
       o = n(4);
     e.exports = (e, t) => {
       let n = s.getMessage();
@@ -16527,7 +16551,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(128),
+    const s = n(129),
       o = n(4);
     e.exports = (e, t) => {
       let n = s.getMessage("GET_COUNTDOWN_MES");
@@ -16535,7 +16559,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(129),
+    const s = n(130),
       o = n(48),
       i = n(4);
     e.exports = (e, t) => {
@@ -16566,7 +16590,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { screen: s } = n(1),
+    const { screen: s } = n(0),
       o = n(4);
     e.exports = (e, t) => {
       let { scaleFactor: n } = s.getPrimaryDisplay();
@@ -16598,7 +16622,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(25),
+    const s = n(24),
       o = n(4);
     e.exports = (e, t) => {
       let n = s.GetSystemDiskSpaceTotalCapacity(),
@@ -16630,7 +16654,7 @@ THE SOFTWARE.
     e.exports = (e) => {
       let t = s.getInstance(e.windowName);
       if (!t.isDestroyed()) {
-        let { screen: s } = n(1);
+        let { screen: s } = n(0);
         const { scaleFactor: o } = s.getPrimaryDisplay();
         let i = Math.ceil(e.x / o + t.getPosition()[0]),
           r = Math.ceil(e.y / o + t.getPosition()[1]);
@@ -16672,9 +16696,9 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(12),
-      o = n(0),
-      i = n(333),
-      r = n(130);
+      o = n(1),
+      i = n(334),
+      r = n(131);
     e.exports = (e) => {
       let t = o.seewoDesktopTeacherDirsPath + "/" + e;
       s.existsSync(t) || (i(t), r());
@@ -16690,13 +16714,13 @@ THE SOFTWARE.
     e.exports = i;
   },
   function (e, t, n) {
-    const s = n(132);
+    const s = n(133);
     e.exports = (e, t) => {
       s.closeWindow(e);
     };
   },
   function (e, t, n) {
-    const { openItem: s } = n(25),
+    const { openItem: s } = n(24),
       o = n(5),
       i = n(7);
     e.exports = (e) => {
@@ -16709,9 +16733,9 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    n(133);
+    n(134);
     const s = n(4),
-      o = n(337);
+      o = n(338);
     e.exports = (e, t) => {
       console.log("postScreenLockUnlockAuth - ", e, t),
         o({ password: e }, (e, n) => {
@@ -16739,7 +16763,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e, t = (e, t) => {}) {
@@ -16807,7 +16831,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -16834,25 +16858,32 @@ THE SOFTWARE.
   function (e, t, n) {
     n(3);
     const s = n(74),
-      o = (n(4), n(26), n(134));
-    e.exports = ({ id: e, action: t, data: n }, i) => {
-      "start" === t &&
-        (o.initEyeProtectionModeData(), console.log("begin -", i)),
-        "pause" === t && (console.log("pause", i, e), o.postPauseHttpReq(e)),
-        "openTimeOutPopups" === t &&
-          (console.log("openTimeOutPopups", i, e), s.startPopups(n)),
-        "update" === t &&
-          (console.log(
-            "postEyeProtectionModeActionTimeOutByRender - action - update - ",
-            i,
-            n
-          ),
-          s.updateData(n));
+      o = (n(4), n(20)),
+      i = n(135),
+      r = n(119),
+      a = n(2);
+    e.exports = ({ id: e, action: t, data: n }, c) => {
+      if ((a.setData({ eyeProtectionMode: t }), "start" !== t)) {
+        if ("pause" === t)
+          return (
+            i.postPauseHttpReq(e),
+            void o.newWindow("blackWindow", !0, {}, () => {
+              r();
+            })
+          );
+        "resumed" === t &&
+          (r(),
+          o.getWindowList("blackWindow") && o.closeWindow("blackWindow", !0)),
+          "openTimeOutPopups" === t &&
+            (s.startPopups(n),
+            o.getWindowList("blackWindow") && o.closeWindow("blackWindow", !0)),
+          "update" === t && s.updateData(n);
+      } else i.initEyeProtectionModeData();
     };
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -16873,11 +16904,11 @@ THE SOFTWARE.
   function (e, t, n) {
     const s = n(3),
       { dllForHookBoard: o } = n(29),
-      i = n(22),
+      i = n(23),
       r = n(2),
-      a = n(0),
+      a = n(1),
       c = (e) => e / 1920;
-    function u({ position: e, displaySize: t, windowSize: n, scale: s }) {
+    function l({ position: e, displaySize: t, windowSize: n, scale: s }) {
       const o = (t.x - n.x * s) / 2,
         i = (t.y - n.y * s) / 2;
       let r = { x: o, y: i };
@@ -16895,15 +16926,15 @@ THE SOFTWARE.
         r
       );
     }
-    const l = new (class {
+    const u = new (class {
       constructor() {
         (this.windowsList = {}), (this.size = {}), (this.scaleMap = {});
       }
-      newWindow(e, t = {}, l = !a.topMostForbidden, d = {}) {
+      newWindow(e, t = {}, u = !a.topMostForbidden, d = {}) {
         this.size = t;
-        const { screen: h } = n(1);
+        const { screen: h } = n(0);
         let f = h.getAllDisplays();
-        l && o.SetKeyboardHook();
+        u && o.SetKeyboardHook();
         for (let n = 0; n < f.length; n++) {
           if (this.windowsList[e] && this.windowsList[e].includes(e + "_" + n))
             continue;
@@ -16914,22 +16945,22 @@ THE SOFTWARE.
             this.windowsList[e] || (this.windowsList[e] = []),
             this.windowsList[e].push(e + "_" + n);
           const a = t.width || f[n].bounds.width,
-            l = t.height || f[n].bounds.height,
+            u = t.height || f[n].bounds.height,
             { width: h, height: p } = f[n].bounds,
-            { x: g, y: w } = u({
+            { x: g, y: w } = l({
               position: this.size.position,
               displaySize: { x: h, y: p },
-              windowSize: { x: a, y: l },
+              windowSize: { x: a, y: u },
               scale: this.scaleMap[n],
             }),
-            y = {
+            m = {
               width: Math.round(a * this.scaleMap[n]),
-              height: Math.round(l * this.scaleMap[n]),
+              height: Math.round(u * this.scaleMap[n]),
               x: Math.round(f[n].bounds.x + g),
               y: Math.round(f[n].bounds.y + w),
             };
-          i.setBounds(y),
-            i.setBounds(y),
+          i.setBounds(m),
+            i.setBounds(m),
             i.show(),
             i.on("close", () => {
               setTimeout(() => {
@@ -16947,7 +16978,7 @@ THE SOFTWARE.
         return this.windowsList[e] || [];
       }
       resetWindow(e) {
-        const { screen: t } = n(1);
+        const { screen: t } = n(0);
         let o = t.getAllDisplays();
         for (let t = 0; t < o.length; t++) {
           const n = e + "_" + t;
@@ -16965,17 +16996,17 @@ THE SOFTWARE.
                   this.closeWindow();
                 }, 0);
               }));
-          const l = this.size.width || o[t].bounds.width,
+          const u = this.size.width || o[t].bounds.width,
             d = this.size.height || o[t].bounds.height,
             { width: h, height: f } = o[t].bounds,
-            { x: p, y: g } = u({
+            { x: p, y: g } = l({
               position: this.size.position,
               displaySize: { x: h, y: f },
-              windowSize: { x: l, y: d },
+              windowSize: { x: u, y: d },
               scale: this.scaleMap[t],
             }),
             w = {
-              width: Math.round(l * this.scaleMap[t]),
+              width: Math.round(u * this.scaleMap[t]),
               height: Math.round(d * this.scaleMap[t]),
               x: Math.round(o[t].bounds.x + p),
               y: Math.round(o[t].bounds.y + g),
@@ -16991,11 +17022,11 @@ THE SOFTWARE.
         }
       }
     })();
-    e.exports = l;
+    e.exports = u;
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -17032,7 +17063,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(135);
+    const s = n(136);
     e.exports = (e) => {
       s.exitAuth(e);
     };
@@ -17051,7 +17082,7 @@ THE SOFTWARE.
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -17079,18 +17110,18 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { WINDOW_TYPES: s } = n(136),
-      o = n(355);
+    const { WINDOW_TYPES: s } = n(137),
+      o = n(356);
     e.exports = (e) => {
       e && "destroy" === e.messageType && o.closeWindow(s.request);
     };
   },
   function (e, t, n) {
     const s = n(3),
-      { WINDOW_TYPE_CONFIGS: o, WINDOW_TYPES: i } = n(136),
-      { screen: r } = n(1),
+      { WINDOW_TYPE_CONFIGS: o, WINDOW_TYPES: i } = n(137),
+      { screen: r } = n(0),
       { dllForHookBoard: a } = n(29),
-      { minimizeForegroundWindow: c } = n(25);
+      { minimizeForegroundWindow: c } = n(24);
     e.exports = new (class {
       constructor() {
         (this.windowsMap = {}),
@@ -17143,7 +17174,7 @@ THE SOFTWARE.
     })();
   },
   function (e, t, n) {
-    const { shell: s } = n(1);
+    const { shell: s } = n(0);
     e.exports = (e, t) => {
       let n = "https://www.baidu.com/s?wd=" + encodeURIComponent(e);
       s.openExternal(n);
@@ -17164,7 +17195,7 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(137);
+    const s = n(138);
     e.exports = (e) => {
       s.setScanId(e);
     };
@@ -17172,7 +17203,7 @@ THE SOFTWARE.
   function (e, t, n) {
     const s = n(3),
       o = n(2),
-      { topMost: i } = n(25),
+      { topMost: i } = n(24),
       r = n(112);
     let a = null;
     const c = new (class {
@@ -17256,14 +17287,14 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(138);
+    const s = n(139);
     e.exports = (e) => {
       s.exit(e.exitCode);
     };
   },
   function (e, t, n) {
     const s = n(11),
-      o = n(0),
+      o = n(1),
       i = n(6),
       { ip: r } = o.proxyHttp;
     e.exports = function (e) {
@@ -17318,18 +17349,18 @@ THE SOFTWARE.
   function (e, t, n) {
     const s = n(45),
       o = n(5),
-      { app: i } = n(1),
-      { SetRegistryString: r, GetOsMachineId: a, Md5DigestWithSalt: c } = n(25),
-      u = n(7);
+      { app: i } = n(0),
+      { SetRegistryString: r, GetOsMachineId: a, Md5DigestWithSalt: c } = n(24),
+      l = n(7);
     e.exports = () => {
-      u.info("卸载开始");
+      l.info("卸载开始");
       const e = a(),
         t = Date.now() + "",
         n = c(t, e);
       r("HKEY_LOCAL_MACHINE\\SOFTWARE\\Seewo\\SeewoService", "seed", t),
         r("HKEY_LOCAL_MACHINE\\SOFTWARE\\Seewo\\SeewoService", "secret", n),
-        u.info("调用卸载程序");
-      const l = o.resolve(
+        l.info("调用卸载程序");
+      const u = o.resolve(
         i.getAppPath(),
         "..",
         "..",
@@ -17337,14 +17368,15 @@ THE SOFTWARE.
         "..",
         "Uninstall.exe"
       );
-      s.exec(`"${l}" -UninstallConfirm=false`, () => {});
+      s.exec(`"${u}" -UninstallConfirm=false`, () => {});
     };
   },
   function (e, t, n) {
     const s = n(3),
-      o = n(4);
+      o = n(4),
+      i = n(20);
     e.exports = (e) => {
-      const { typeName: t, windowName: n, moreValue: i } = e;
+      const { typeName: t, windowName: n, moreValue: r } = e;
       switch (t) {
         case "close":
           s.close(n);
@@ -17377,12 +17409,30 @@ THE SOFTWARE.
           s.restore(n), o("restore", null, n);
           break;
         case "setFocusable":
-          s.setFocusable(n, i);
+          s.setFocusable(n, r);
+          break;
+        case "multipleFullscreenWindowClose":
+          i.closeWindow(n);
       }
     };
   },
   function (e, t, n) {
-    const { clipboard: s } = n(1);
+    const s = n(3);
+    e.exports = (e) => {
+      let t = s.getInstance(e.windowName);
+      if (!t.isDestroyed()) {
+        let { screen: s } = n(0);
+        const { scaleFactor: o } = s.getPrimaryDisplay();
+        let i = Math.ceil(e.x / o + t.getPosition()[0]),
+          r = Math.ceil(e.y / o + t.getPosition()[1]);
+        i > 0 &&
+          r > 0 &&
+          t.setBounds({ x: i, y: r, width: e.width, height: e.height });
+      }
+    };
+  },
+  function (e, t, n) {
+    const { clipboard: s } = n(0);
     e.exports = (e) => {
       switch (e.type) {
         case "html":
@@ -17395,10 +17445,10 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const { globalShortcut: s } = n(1),
+    const { globalShortcut: s } = n(0),
       o = n(3),
       i = n(7),
-      { canOpenDevTool: r } = n(0);
+      { canOpenDevTool: r } = n(1);
     e.exports = () => {
       r &&
         s.register("CommandOrControl+Shift+C", () => {
@@ -17420,15 +17470,15 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(0),
+    const s = n(18),
+      o = n(1),
       i = n(6),
-      r = n(124),
-      a = n(379),
-      c = n(380),
-      u = n(381),
-      l = n(382),
-      d = n(384);
+      r = n(125),
+      a = n(381),
+      c = n(382),
+      l = n(383),
+      u = n(384),
+      d = n(386);
     const { ip: h, url: f } = o.proxyWebsocketHost;
     let p = new (class extends s {
       constructor(e) {
@@ -17442,15 +17492,15 @@ THE SOFTWARE.
         r.onMessage(t),
           a.onMessage(t),
           c.onMessage(t),
-          u.onMessage(t),
           l.onMessage(t),
+          u.onMessage(t),
           d(t);
       }
       onLinkOk() {
-        u.onLinkOk();
+        l.onLinkOk();
       }
       onDisconnectMessage() {
-        u.onDisconnectMessage();
+        l.onDisconnectMessage();
       }
     })();
     i.register(["SeewoProxyHTTP"], !0, (e) => {
@@ -17539,11 +17589,11 @@ THE SOFTWARE.
   function (e, t, n) {
     const s = n(2),
       o = n(3),
-      i = n(383),
+      i = n(385),
       r = "/disableCover",
       a = "/serviceUpgrade/status",
       c = "/serviceUpgrade/feedback";
-    const u = new (class {
+    const l = new (class {
       constructor() {
         this.linkState = !1;
       }
@@ -17561,7 +17611,7 @@ THE SOFTWARE.
           e.url === c && s.share("UPGRADE_FEEDBACK", e.data);
       }
     })();
-    e.exports = u;
+    e.exports = l;
   },
   function (e, t) {
     e.exports = {
@@ -17642,14 +17692,14 @@ THE SOFTWARE.
     };
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(121),
-      i = n(122),
+    const s = n(18),
+      o = n(122),
+      i = n(123),
       r = n(6),
-      a = n(386),
+      a = n(388),
       c = n(3),
-      u = n(4),
-      { ip: l, url: d } = n(0).ADBlockWebSocket;
+      l = n(4),
+      { ip: u, url: d } = n(1).ADBlockWebSocket;
     const h = new (class extends s {
       constructor(e) {
         super(e);
@@ -17663,7 +17713,7 @@ THE SOFTWARE.
       }
       onDisconnectMessage() {
         c.checkWindowExist("assistant") &&
-          u(
+          l(
             "ActionsMessage",
             { type: "error", text: "服务未连接，请稍后重试！" },
             "assistant"
@@ -17671,7 +17721,7 @@ THE SOFTWARE.
       }
     })();
     r.register(["SeewoProxyHTTP"], !0, (e) => {
-      let t = `${l}:${e.SeewoProxyHTTP}${d}`;
+      let t = `${u}:${e.SeewoProxyHTTP}${d}`;
       h.setHost(t);
     }),
       (e.exports = h);
@@ -17679,7 +17729,7 @@ THE SOFTWARE.
   function (e, t, n) {
     const s = n(3),
       o = n(4),
-      { screen: i } = n(1),
+      { screen: i } = n(0),
       r = "/windowInfo";
     const a = new (class {
       constructor() {
@@ -17709,29 +17759,29 @@ THE SOFTWARE.
     e.exports = a;
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(0),
+    const s = n(18),
+      o = n(1),
       i = n(6),
-      r = n(128),
+      r = n(129),
       a = n(111),
-      c = n(129),
-      u = n(126),
+      c = n(130),
       l = n(127),
+      u = n(128),
       d = n(33),
-      h = n(388),
-      f = n(138),
-      p = n(389),
-      g = n(390),
-      w = n(133),
-      y = n(391),
-      m = n(120),
+      h = n(390),
+      f = n(139),
+      p = n(391),
+      g = n(392),
+      w = n(134),
+      m = n(393),
+      y = n(121),
       b = n(59),
       S = n(118),
-      v = n(392),
+      v = n(394),
       E = n(70),
       _ = n(75),
       T = n(74),
-      k = n(134);
+      k = n(135);
     const { ip: x, url: C } = o.hugoServiceWebsocket;
     let O = new (class extends s {
       constructor(e) {
@@ -17742,19 +17792,19 @@ THE SOFTWARE.
       }
       onMessage(e) {
         let t = JSON.parse(e);
-        u.onMessage(t),
+        l.onMessage(t),
           c.onMessage(t),
           r.onMessage(t),
           a.onMessage(t),
-          l.onMessage(t),
+          u.onMessage(t),
           d.onMessage(t),
           h.onMessage(t),
           f.onMessage(t),
           p.onMessage(t),
           w.onMessage(t),
           g.onMessage(t),
-          y.onMessage(t),
           m.onMessage(t),
+          y.onMessage(t),
           b.onMessage(t),
           S.onMessage(t),
           v.onMessage(t),
@@ -17779,8 +17829,8 @@ THE SOFTWARE.
   function (e, t, n) {
     const s = n(3),
       { dllForHookBoard: o } = n(29),
-      { screen: i } = n(1),
-      { minimizeForegroundWindow: r } = n(25);
+      { screen: i } = n(0),
+      { minimizeForegroundWindow: r } = n(24);
     const a = new (class {
       constructor() {
         (this.windows = []),
@@ -17906,14 +17956,14 @@ THE SOFTWARE.
     e.exports = i;
   },
   function (e, t, n) {
-    const s = n(132),
+    const s = n(133),
       o = "/message/nfc/authResult",
       i = "171001",
       r = "171002",
       a = "171003",
       c = "171004",
-      u = 1,
-      l = 2,
+      l = 1,
+      u = 2,
       d = "unlock",
       h = "offline",
       f = "warning",
@@ -17937,7 +17987,7 @@ THE SOFTWARE.
             background: f,
           },
         },
-        ["" + u]: {
+        ["" + l]: {
           ["" + i]: {
             title: "刷卡解锁失败",
             subTitle: "一体机断网，请尝试其他解锁方式",
@@ -17955,7 +18005,7 @@ THE SOFTWARE.
           },
           ["" + c]: {},
         },
-        ["" + l]: {
+        ["" + u]: {
           ["" + i]: {
             title: "无效刷卡",
             subTitle: "一体机断网，请尝试其他解锁方式",
@@ -17992,10 +18042,10 @@ THE SOFTWARE.
             p = "";
           if (t) {
             switch (n) {
-              case u:
+              case l:
                 f = "刷卡解锁成功";
                 break;
-              case l:
+              case u:
                 f = "设备已解锁";
             }
             (p = r + "：" + i), (h = d);
@@ -18012,8 +18062,8 @@ THE SOFTWARE.
     e.exports = w;
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(0),
+    const s = n(18),
+      o = n(1),
       i = n(6),
       r = n(3),
       a = n(4),
@@ -18026,7 +18076,7 @@ THE SOFTWARE.
         CLOSE: 7004,
         SERVICE_BROKEN: 1e3,
       };
-    const { ip: u, url: l } = o.SeewoVoiceService;
+    const { ip: l, url: u } = o.SeewoVoiceService;
     let d = new (class extends s {
       constructor(e) {
         super(e);
@@ -18055,19 +18105,19 @@ THE SOFTWARE.
       }
     })();
     i.register(["SeewoProxyHTTP"], !0, (e) => {
-      let t = `${u}:${e.SeewoProxyHTTP}${l}`;
+      let t = `${l}:${e.SeewoProxyHTTP}${u}`;
       d.setHost(t);
     }),
       (e.exports = d);
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(0),
+    const s = n(18),
+      o = n(1),
       i = n(6),
       r = n(4),
       a = 1854,
       c = 1853;
-    const { ip: u, url: l } = o.processAcceleration;
+    const { ip: l, url: u } = o.processAcceleration;
     let d = new (class extends s {
       constructor(e) {
         super(e);
@@ -18099,20 +18149,20 @@ THE SOFTWARE.
       }
     })();
     i.register(["SeewoProxyHTTP"], !0, (e) => {
-      let t = `${u}:${e.SeewoProxyHTTP}${l}`;
+      let t = `${l}:${e.SeewoProxyHTTP}${u}`;
       d.setHost(t);
     }),
       (e.exports = d);
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(0),
+    const s = n(18),
+      o = n(1),
       i = n(6),
       r = n(2),
-      a = n(131),
+      a = n(132),
       c = n(100),
-      u = "/wisdomPlatform/linkState",
-      l = "/wisdomPlatform/actionNotify";
+      l = "/wisdomPlatform/linkState",
+      u = "/wisdomPlatform/actionNotify";
     const { ip: d, url: h } = o.wisdomPlatformWebsocket;
     let f = new (class extends s {
       constructor(e) {
@@ -18123,10 +18173,10 @@ THE SOFTWARE.
       }
       onMessage(e) {
         const t = JSON.parse(e);
-        t.url === u &&
+        t.url === l &&
           (r.share(t.url, t.data, "assistant"),
           t.data.state && c("Intergrated_Podium_Link_Count", {})),
-          t.url === l &&
+          t.url === u &&
             a.showWindow({
               type: "PODIUM",
               longNotify: !0,
@@ -18141,14 +18191,14 @@ THE SOFTWARE.
       (e.exports = f);
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(0),
+    const s = n(18),
+      o = n(1),
       i = n(6),
       r = n(2),
       a = n(57),
       c = "/lightAudio/device",
-      u = "/lightAudio/newPairableDevices",
-      l = "/mic/batteryLow";
+      l = "/lightAudio/newPairableDevices",
+      u = "/mic/batteryLow";
     const { ip: d, url: h } = o.audioWebsocket;
     let f = new (class extends s {
       constructor(e) {
@@ -18161,9 +18211,9 @@ THE SOFTWARE.
         const t = JSON.parse(e);
         if (
           (t.url === c && r.share("AUDIO_LINKED_DEVICE", t.data, "assistant"),
-          t.url === u &&
+          t.url === l &&
             r.share("AUDIO_WAITING_DEVICE_LIST", t.data, "assistant"),
-          t.url === l)
+          t.url === u)
         ) {
           let e = "voice_microphone" + t.data.productType;
           a.createWindow(
@@ -18186,13 +18236,13 @@ THE SOFTWARE.
       (e.exports = f);
   },
   function (e, t, n) {
-    const s = n(19),
-      o = n(0),
+    const s = n(18),
+      o = n(1),
       i = n(6),
       r = n(2),
       a = n(3),
       c = "/shouting/notice";
-    const { ip: u, url: l } = o.webrtcWebsocket;
+    const { ip: l, url: u } = o.webrtcWebsocket;
     let d = new (class extends s {
       constructor(e) {
         super(e), (this.shoutList = []);
@@ -18216,7 +18266,7 @@ THE SOFTWARE.
       }
     })();
     i.register(["SeewoProxyHTTP"], !0, (e) => {
-      let t = `${u}:${e.SeewoProxyHTTP}${l}`;
+      let t = `${l}:${e.SeewoProxyHTTP}${u}`;
       d.setHost(t);
     }),
       (e.exports = d);

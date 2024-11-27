@@ -23,7 +23,7 @@
     return e;
   }
   var t = {},
-    l = { 36: 0 },
+    l = { 37: 0 },
     p = [];
   function _(e) {
     if (t[e]) return t[e].exports;
@@ -80,16 +80,16 @@
   (n.push = e), (n = n.slice());
   for (var a = 0; a < n.length; a++) e(n[a]);
   var v = r;
-  p.push([894, 0]), i();
+  p.push([900, 0]), i();
 })({
-  832: function (e, n, t) {
-    var r = t(833);
+  838: function (e, n, t) {
+    var r = t(839);
     "string" == typeof r && (r = [[e.i, r, ""]]);
     var a = { hmr: !0, transform: void 0, insertInto: void 0 };
     t(12)(r, a);
     r.locals && (e.exports = r.locals);
   },
-  833: function (e, n, t) {
+  839: function (e, n, t) {
     (n = e.exports = t(11)(!1)).push([
       e.i,
       ".screensaver__box__1OePhc5d {\n  width: 100%;\n  height: 100%;\n}\n.screensaver__pic__8cT9rIA4 {\n  width: 100%;\n  height: 100%;\n}\n.screensaver__content__yS4t1Kbz {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  display: inline-block;\n  width: 100%;\n  z-index: 10000;\n  text-align: center;\n  padding-bottom: 56px;\n}\n.screensaver__content__yS4t1Kbz .screensaver__time__3oTP2CWb {\n  margin-bottom: 42px;\n}\n.screensaver__content__yS4t1Kbz .screensaver__time__3oTP2CWb p:first-child {\n  font-size: 78px;\n  color: #ffffff;\n  letter-spacing: 0;\n  text-align: center;\n  line-height: 78px;\n  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);\n}\n.screensaver__content__yS4t1Kbz .screensaver__time__3oTP2CWb p:last-child {\n  margin-top: 16px;\n  font-size: 24px;\n  color: #ffffff;\n  letter-spacing: 0;\n  text-align: center;\n  line-height: 24px;\n  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);\n}\n.screensaver__content__yS4t1Kbz .screensaver__time__3oTP2CWb span {\n  margin-right: 12px;\n}\n.screensaver__content__yS4t1Kbz .screensaver__artical__HvQxa5xp {\n  margin: 0 auto;\n  width: 1000px;\n}\n.screensaver__content__yS4t1Kbz .screensaver__artical__HvQxa5xp .screensaver__line__371_qiJT {\n  display: block;\n  width: 100%;\n  height: 1px;\n  background: rgba(255, 255, 255, 0.3);\n  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);\n          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);\n}\n.screensaver__content__yS4t1Kbz .screensaver__artical__HvQxa5xp .screensaver__line__371_qiJT.screensaver__top__1zCv-FPq {\n  margin-bottom: 24px;\n}\n.screensaver__content__yS4t1Kbz .screensaver__artical__HvQxa5xp .screensaver__line__371_qiJT.screensaver__bottom__2TtkXp5A {\n  margin-top: 24px;\n}\n.screensaver__content__yS4t1Kbz .screensaver__artical__HvQxa5xp .screensaver__word__1JUEmrs6 {\n  font-size: 32px;\n  color: #ffffff;\n  letter-spacing: 0;\n  text-align: center;\n  line-height: 48px;\n  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);\n}\n.screensaver__content__yS4t1Kbz .screensaver__artical__HvQxa5xp .screensaver__origin__3EEEaZxo {\n  margin-top: 12px;\n  font-size: 24px;\n  color: #ffffff;\n  letter-spacing: 0;\n  text-align: center;\n  line-height: 24px;\n  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);\n}\n.screensaver__content__yS4t1Kbz .screensaver__from__ErHJAK6t {\n  position: absolute;\n  right: 24px;\n  bottom: 24px;\n  font-size: 12px;\n  color: rgba(255, 255, 255, 0.7);\n  letter-spacing: 0;\n  text-align: center;\n  line-height: 12px;\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);\n  display: inline-block;\n}\n",
@@ -109,7 +109,7 @@
         from: "screensaver__from__ErHJAK6t",
       });
   },
-  894: function (e, n, t) {
+  900: function (e, n, t) {
     "use strict";
     t.r(n);
     var N = t(0),
@@ -120,7 +120,7 @@
       Q = t.n(s),
       _ = t(115),
       L = t.n(_),
-      W = (t(832), t(7)),
+      W = (t(838), t(7)),
       c = t(13),
       m = t.n(c);
     m.a.locale("zh-cn");
@@ -301,7 +301,7 @@
       i = (o = Object(N.memo)(o)),
       l = t(24),
       p = t(29),
-      v = t(22);
+      v = t(21);
     t(30);
     var f,
       u = Object(p.a)("screensaver");
