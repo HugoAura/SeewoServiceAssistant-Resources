@@ -282,26 +282,22 @@
       if (n)
         if ("string" == typeof n)
           s.checkWindowExist(n) &&
-            s
-              .getInstance(n)
-              .webContents.send("mainMessage", {
-                eventName: e,
-                originWindowName: o || null,
-                data: t,
-              });
+            s.getInstance(n).webContents.send("mainMessage", {
+              eventName: e,
+              originWindowName: o || null,
+              data: t,
+            });
         else if (
           "object" == typeof n &&
           "[object Array]" === Object.prototype.toString.call(n)
         )
           for (let i of n)
             s.checkWindowExist(n) &&
-              s
-                .getInstance(i)
-                .webContents.send("mainMessage", {
-                  eventName: e,
-                  originWindowName: o || null,
-                  data: t,
-                });
+              s.getInstance(i).webContents.send("mainMessage", {
+                eventName: e,
+                originWindowName: o || null,
+                data: t,
+              });
         else console.warn("发送消息窗口类型错误");
       else {
         let n = s.getAllWindows();
